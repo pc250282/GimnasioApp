@@ -13,9 +13,11 @@ namespace Gimnasio.Clases
         public int fk_IdEstado { get; set; }
         public Estado estadoDelSocio { get; set; }
 
-        public  string registrarse()
+       
+
+        public override void registroGimnasio()
         {
-            return "El socio se registro";
+            Console.WriteLine("El socio se registro en un gimnasio");
         }
 
         public override string ToString()

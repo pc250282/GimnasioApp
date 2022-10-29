@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gimnasio.Clases
 {
-    public  class Persona
+    public abstract  class Persona
     {
         public int idPersona { get; set; }
         public string nombre { get; set; }
@@ -18,6 +18,8 @@ namespace Gimnasio.Clases
         public DateOnly fechaNacimiento { get; set; }
         public int fk_IdSocio { get; set; }
 
-          
+        public abstract void registroGimnasio();
     }
+
+
 }

@@ -13,13 +13,9 @@ namespace Gimnasio.Clases
         public Estado estadoProfesor { get; set; }
         public double sueldo { get; set; }
 
-
-       
-
-        public  string registrarse()
+        public override void registroGimnasio()
         {
-            return "El profesor se registro";
+            Console.WriteLine("El profesor empezo a trabajar en un gimnasio");
         }
-
     }
 }
