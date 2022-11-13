@@ -1,16 +1,16 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Dapper;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Dapper;
 
-namespace Gimnasio.DataStore
+namespace DataStore
 {
     public class DBOperation
     {
-        private string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\pc250282\source\repos\GimnasioApp\DBGym.mdf;Integrated Security=True;Connect Timeout=30";
+        private string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\pc250282\source\repos\GimnasioApp\Gimnasio.DataStore\BBDD\DBGym.mdf;Integrated Security=True;Connect Timeout=30";
         public List<T> OperationQuery<T>(string sqlQuery)
         {
             List<T> LstResult;
@@ -53,5 +53,3 @@ namespace Gimnasio.DataStore
 
     }
 }
-
-

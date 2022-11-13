@@ -1,30 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Gimnasio.Clases
+﻿namespace Gimnasio.Clases
 {
-    public class Socio:Persona
+    public class Socio : Persona
     {
         public int idSocio { get; set; }
-        public DateTime fechaInscripcion { get; set; }
-        public int fk_IdEstado { get; set; }
-        public Estado estadoDelSocio { get; set; }
+        public DateTime fechaDeInscripcion { get; set; }
+        public Estado fk_IdEstado { get; set; }
+        public DateTime fechaUltimoPago { get; set; }
+        public int fk_idPersona { get; set; }
+
+
 
        
 
-        public override void registroGimnasio()
-        {
-            Console.WriteLine("El socio se registro en un gimnasio");
-        }
-
         public override string ToString()
         {
-            return "SOCIO N°:"  + this.idSocio + " NOMBRE:" + this.nombre + " APELLIDO:" + this.apellido + " ESTADO: "+this.estadoDelSocio.getEstado();
+            return "SOCIO N°:" + this.idSocio + " NOMBRE:" + this.nombre + " APELLIDO:" + this.apellido + " ESTADO: ";
         }
 
-        
+
     }
 }

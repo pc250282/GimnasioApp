@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Gimnasio.Services")]
+[assembly: AssemblyTitle("GimnasioDesktop")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("NCR")]
-[assembly: AssemblyProduct("Gimnasio.Services")]
+[assembly: AssemblyProduct("GimnasioDesktop")]
 [assembly: AssemblyCopyright("Copyright © NCR 2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("1bbe8c87-dc97-47f9-b617-ac3771928e78")]
+[assembly: Guid("d970817b-bb55-4d6d-aec6-5102518832eb")]
 
 // Version information for an assembly consists of the following four values:
 //
