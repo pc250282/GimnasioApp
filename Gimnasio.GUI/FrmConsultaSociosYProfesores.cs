@@ -57,7 +57,6 @@ namespace Gimnasio.GUI
         private void obtenerProfesores()
         {
             List<ProfesorAdmin>lstProfes=securityServices.getProfesores();
-            tablaSocios.Rows.Clear();
             foreach (ProfesorAdmin profesor in lstProfes)
             {
                 llenarTableProfesores(profesor);
@@ -88,15 +87,15 @@ namespace Gimnasio.GUI
 
         private void llenarTableProfesores(ProfesorAdmin profesor)
         {
-            int rowIndex = tablaSocios.Rows.Add();
+            int rowIndex = tablaProfesores.Rows.Add();
 
-            tablaSocios.Rows[rowIndex].Cells[0].Value = profesor.idProfesor;
-            tablaSocios.Rows[rowIndex].Cells[1].Value = profesor.nombre;
-            tablaSocios.Rows[rowIndex].Cells[2].Value = profesor.apellido;
-            tablaSocios.Rows[rowIndex].Cells[3].Value = profesor.fechaContratacion.ToShortDateString();
-            tablaSocios.Rows[rowIndex].Cells[4].Value = profesor.nombreActividad;
-            tablaSocios.Rows[rowIndex].Cells[5].Value = profesor.nombreEstado;
-            tablaSocios.Rows[rowIndex].Cells[6].Value = profesor.sueldo;
+            tablaProfesores.Rows[rowIndex].Cells[0].Value = profesor.idProfesor;
+            tablaProfesores.Rows[rowIndex].Cells[1].Value = profesor.nombre;
+            tablaProfesores.Rows[rowIndex].Cells[2].Value = profesor.apellido;
+            tablaProfesores.Rows[rowIndex].Cells[3].Value = profesor.fechaContratacion.ToShortDateString();
+            tablaProfesores.Rows[rowIndex].Cells[4].Value = profesor.nombreActividad;
+            tablaProfesores.Rows[rowIndex].Cells[5].Value = profesor.nombreEstado;
+            tablaProfesores.Rows[rowIndex].Cells[6].Value = profesor.sueldo;
         }
         private void llenarIds()
         {

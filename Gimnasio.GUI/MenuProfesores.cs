@@ -75,8 +75,9 @@ namespace Gimnasio.GUI
                 };
 
                 int idPersona = securityServices.insertPersona(nuevaPersona);
-                int idProfesor = securityServices.insertDatosProfesor(profesorNuevo);
-                int insertResult = securityServices.insertProfesor(idPersona);
+                int insertResult = securityServices.insertProfesor(idPersona, profesorNuevo);
+                
+                
                 MaterialMessageBox.Show("El profesor : " + profesorNuevo.nombre + " " + profesorNuevo.apellido+ " se registro con exito");
 
             }

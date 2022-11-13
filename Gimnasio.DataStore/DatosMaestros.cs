@@ -111,37 +111,19 @@ namespace Gimnasio.DataStore
 
         }
 
-        public int InsertDatosProfesor(Profesor profesorNuevo)
+        public int InsertProfesor(int idPersona, Profesor profesorNuevo)
         {
-            string sql = "INSERT INTO Profesor (fk_idActividad, fk_idEstado, fechaContratacion, sueldo) " +
-                         "OUTPUT INSERTED.idProfesor " +
-                         "Values (@fk_idActividad, @sueldo, @fechaContratacion, @fk_idEstado)";
+
+            string sql = "INSERT INTO Profesor (fk_idPersona,fk_idEstado,fk_idActividad,fechaContratacion,sueldo)  Values" +
+                "(@fk_idPersona, @fk_idActividad, @sueldo, @fechaContratacion, @fk_idEstado)";
 
             Object paramList = new
             {
+                fk_idPersona = idPersona,
                 fk_idActividad = profesorNuevo.fk_idActividad,
-                sueldo=profesorNuevo.sueldo,
+                sueldo = profesorNuevo.sueldo,
                 fechaContratacion = profesorNuevo.fechaContratacion,
                 fk_idEstado = 1
-
-            };
-
-            int result = dbOperation.OperationExecuteWithIdentity(sql, paramList);
-
-            return result;
-
-        }
-    
-
-        public int InsertProfesor(int idPersona)
-        {
-
-            string sql = "INSERT INTO Profesor (fk_idPersona)  Values" +
-                "(@fk_idPersona)";
-
-            Object paramList = new
-            {
-                fk_idPersona = idPersona
             };
 
             int result = dbOperation.OperationExecute(sql, paramList);

@@ -46,7 +46,7 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnRegistrarPago = new MaterialSkin.Controls.MaterialButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.dataGridViewProfesores = new System.Windows.Forms.DataGridView();
+            this.tablaProfesores = new System.Windows.Forms.DataGridView();
             this.idProfesor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,7 +59,7 @@
             this.tbForm.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProfesores)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaProfesores)).BeginInit();
             this.SuspendLayout();
             // 
             // tablaSocios
@@ -288,7 +288,7 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.dataGridViewProfesores);
+            this.tabPage2.Controls.Add(this.tablaProfesores);
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -297,10 +297,10 @@
             this.tabPage2.Text = "Datos Profesores";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // dataGridViewProfesores
+            // tablaProfesores
             // 
-            this.dataGridViewProfesores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewProfesores.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.tablaProfesores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tablaProfesores.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idProfesor,
             this.nombreEstado,
             this.dataGridViewTextBoxColumn1,
@@ -308,11 +308,11 @@
             this.nombreActividad,
             this.fechaContratacion,
             this.sueldo});
-            this.dataGridViewProfesores.Location = new System.Drawing.Point(6, 30);
-            this.dataGridViewProfesores.Name = "dataGridViewProfesores";
-            this.dataGridViewProfesores.RowTemplate.Height = 25;
-            this.dataGridViewProfesores.Size = new System.Drawing.Size(745, 366);
-            this.dataGridViewProfesores.TabIndex = 0;
+            this.tablaProfesores.Location = new System.Drawing.Point(6, 30);
+            this.tablaProfesores.Name = "tablaProfesores";
+            this.tablaProfesores.RowTemplate.Height = 25;
+            this.tablaProfesores.Size = new System.Drawing.Size(745, 366);
+            this.tablaProfesores.TabIndex = 0;
             // 
             // idProfesor
             // 
@@ -369,21 +369,21 @@
             this.TabSelector1.TabIndex = 9;
             this.TabSelector1.Text = "materialTabSelector1";
             // 
-            // MenuConsultaSocio
+            // FrmConsultaSociosYProfesores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(821, 578);
             this.Controls.Add(this.TabSelector1);
             this.Controls.Add(this.tbForm);
-            this.Name = "MenuConsultaSocio";
+            this.Name = "FrmConsultaSociosYProfesores";
             this.Text = "Ver Socios";
             ((System.ComponentModel.ISupportInitialize)(this.tablaSocios)).EndInit();
             this.tbForm.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProfesores)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaProfesores)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -401,7 +401,7 @@
         private TabPage tabPage1;
         private TabPage tabPage2;
         private MaterialSkin.Controls.MaterialTabSelector TabSelector1;
-        private DataGridView dataGridViewProfesores;
+        private DataGridView tablaProfesores;
         private DataGridViewTextBoxColumn idProfesor;
         private DataGridViewTextBoxColumn nombreEstado;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
