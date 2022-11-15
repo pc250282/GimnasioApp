@@ -26,6 +26,11 @@ namespace Gimnasio.Services
         {
             return datosMaestros.GetActividad();
         }
+
+        public List<Abono> getAbono()
+        {
+            return datosMaestros.GetAbono();
+        }
         public int insertPersona(Persona nuevaPersona)
         {
             return datosMaestros.InsertPersona(nuevaPersona);
@@ -54,6 +59,11 @@ namespace Gimnasio.Services
         public int editarEstadoSocio(int idSocio, int idEstado)
         {
             return datosMaestros.EditarEstadoSocio(idSocio, idEstado);
+        }
+
+        public int editarActividadProfesor(int idProfesor, int fk_idActividad, double sueldo)
+        {
+            return datosMaestros.EditarActividadProfesor(idProfesor, fk_idActividad, sueldo);
         }
 
         public int actualizarFechaPagoSocio(int idSocio, DateTime fechaUltimoPago)

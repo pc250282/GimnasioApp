@@ -31,7 +31,6 @@
             this.btnCrearSocio = new MaterialSkin.Controls.MaterialButton();
             this.btnCrearProfesor = new MaterialSkin.Controls.MaterialButton();
             this.btbBuscarSocio = new MaterialSkin.Controls.MaterialButton();
-            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.btnNuevaActividad = new MaterialSkin.Controls.MaterialButton();
             this.btnCrearActividad = new MaterialSkin.Controls.MaterialButton();
             this.SuspendLayout();
@@ -96,18 +95,6 @@
             this.btbBuscarSocio.UseVisualStyleBackColor = true;
             this.btbBuscarSocio.Click += new System.EventHandler(this.btbBuscarSocio_Click);
             // 
-            // materialLabel1
-            // 
-            this.materialLabel1.AutoSize = true;
-            this.materialLabel1.Depth = 0;
-            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel1.Location = new System.Drawing.Point(6, 224);
-            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel1.Name = "materialLabel1";
-            this.materialLabel1.Size = new System.Drawing.Size(199, 19);
-            this.materialLabel1.TabIndex = 4;
-            this.materialLabel1.Text = "Administrar establecimiento";
-            // 
             // btnNuevaActividad
             // 
             this.btnNuevaActividad.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -153,7 +140,6 @@
             this.ClientSize = new System.Drawing.Size(458, 450);
             this.Controls.Add(this.btnCrearActividad);
             this.Controls.Add(this.btnNuevaActividad);
-            this.Controls.Add(this.materialLabel1);
             this.Controls.Add(this.btbBuscarSocio);
             this.Controls.Add(this.btnCrearProfesor);
             this.Controls.Add(this.btnCrearSocio);
@@ -169,7 +155,6 @@
         private MaterialSkin.Controls.MaterialButton btnCrearSocio;
         private MaterialSkin.Controls.MaterialButton btnCrearProfesor;
         private MaterialSkin.Controls.MaterialButton btbBuscarSocio;
-        private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private MaterialSkin.Controls.MaterialButton btnNuevaActividad;
         private MaterialSkin.Controls.MaterialButton btnCrearActividad;
     }

@@ -7,16 +7,7 @@ namespace Gimnasio.DataStore
     public class DatosMaestros
     {
         DBOperation dbOperation = new DBOperation();
-        public Persona GetSociosData(int idSocio)
-        {
-            List<Persona> LstPersonas = new List<Persona>();
-            string sql = "SELECT * FROM Socio INNER JOIN Persona on Persona.fk_idSocio=" + idSocio;
-            LstPersonas = dbOperation.OperationQuery<Persona>(sql);
-            Persona currentPerson = LstPersonas[0];
-            return currentPerson;
-        }
 
-        
 
         public List<SocioAdmin> GetSocios()
         {
@@ -37,14 +28,18 @@ namespace Gimnasio.DataStore
             string sql = "SELECT PR.idProfesor,PR.fechaContratacion,PR.sueldo,"
                         + "P.nombre,P.apellido,"
                         + "E.nombreEstado, "
-                        + "A.nombreActividad "
+                        + "A.nombreActividad, "
+                        + "AB.valorCuotaPura,porcentajeProfesor "
                         + "FROM Profesor PR "
                         + "INNER JOIN Persona P ON PR.fk_idPersona = P.idPersona "
                         + "INNER JOIN Estado E ON PR.fk_IdEstado = E.IdEstado "
-                        + "INNER JOIN Actividad A ON PR.fk_idActividad = A.idActividad";
+                        + "INNER JOIN Actividad A ON PR.fk_idActividad = A.idActividad "
+                        + "INNER JOIN Abono AB on A.fk_idAbono= AB.idAbono";
             LstProfesores = dbOperation.OperationQuery<ProfesorAdmin>(sql);
             return LstProfesores;
         }
+        
+
         public List<Genero> GetGenero()
         {
             List<Genero> LstGenero = new List<Genero>();
@@ -61,6 +56,13 @@ namespace Gimnasio.DataStore
             return LstEstado;
         }
 
+        public List<Abono> GetAbono()
+        {
+            List<Abono> LstAbono = new List<Abono>();
+            string sql = "SELECT idAbono, nombreAbono, valorCuotaPura, porcentajeProfesor,porcentajeEstablecimiento FROM Abono";
+            LstAbono = dbOperation.OperationQuery<Abono>(sql);
+            return LstAbono;
+        }
         public List<Actividad> GetActividad()
         {
             List<Actividad> LstActividad = new List<Actividad>();
@@ -141,6 +143,13 @@ namespace Gimnasio.DataStore
             return affectedRows;
         }
 
+        public int EditarActividadProfesor(int idProfesor, int fk_idActividad, double sueldo)
+        {
+            string sql = "UPDATE Profesor SET fk_idActividad = @fk_idActividad, sueldo=@sueldo WHERE idProfesor = @idProfesor";
+            Object paramList = new {idProfesor=idProfesor, fk_idActividad=fk_idActividad, sueldo=sueldo };
+            int affectedRows = dbOperation.OperationExecute(sql, paramList);
+            return affectedRows;
+        }
         public int ActualizarFechaPagoSocio(int idSocio, DateTime fechaUltimoPago)
         {
             string sql = "UPDATE Socio SET fk_IdEstado = 1, fechaUltimoPago=@fechaUltimoPago WHERE idSocio = @idSocio";

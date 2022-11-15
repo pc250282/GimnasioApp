@@ -13,7 +13,9 @@ namespace Gimnasio.Clases
         public string apellido { get; set; }
         public string nombreEstado { get; set; }
         public string nombreActividad { get; set; }
+        public double valorCuotaPura { get; set; }
         public DateTime fechaContratacion { get; set; }
+        public double porcentajeProfesor { get; set; }
         public double sueldo { get; set; }
 
     }
