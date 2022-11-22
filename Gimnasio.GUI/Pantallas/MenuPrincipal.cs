@@ -1,4 +1,5 @@
-﻿using MaterialSkin.Controls;
+﻿using Gimnasio.GUI.Pantallas;
+using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -43,6 +44,13 @@ namespace Gimnasio.GUI
         {
             MenuProfesores menuProfesores = new MenuProfesores();
             menuProfesores.Show();
+            this.Hide();
+        }
+
+        private void btnCrearActividad_Click(object sender, EventArgs e)
+        {
+            FrmActividades frmActividades= new FrmActividades();
+            frmActividades.Show();
             this.Hide();
         }
     }

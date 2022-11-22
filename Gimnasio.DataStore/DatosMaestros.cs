@@ -38,7 +38,9 @@ namespace Gimnasio.DataStore
             LstProfesores = dbOperation.OperationQuery<ProfesorAdmin>(sql);
             return LstProfesores;
         }
-        
+
+       
+
 
         public List<Genero> GetGenero()
         {
@@ -59,7 +61,7 @@ namespace Gimnasio.DataStore
         public List<Abono> GetAbono()
         {
             List<Abono> LstAbono = new List<Abono>();
-            string sql = "SELECT idAbono, nombreAbono, valorCuotaPura, porcentajeProfesor,porcentajeEstablecimiento FROM Abono";
+            string sql = "SELECT idAbono,nombreAbono FROM Abono";
             LstAbono = dbOperation.OperationQuery<Abono>(sql);
             return LstAbono;
         }
@@ -86,6 +88,25 @@ namespace Gimnasio.DataStore
                 direccion = nuevaPersona.direccion,
                 fk_IdGenero = nuevaPersona.fk_IdGenero,
                 fechaNacimiento = nuevaPersona.fechaNacimiento,
+            };
+
+            int result = dbOperation.OperationExecuteWithIdentity(sql, paramList);
+
+            return result;
+        }
+
+        public int InsertActividad(Actividad nuevaActividad)
+        {
+            string sql = "INSERT INTO Actividad (nombreActividad,horario,cupo,fk_idAbono)" +
+                "OUTPUT INSERTED.idActividad " +
+                "VALUES(@nombreActividad,@horario,@cupo,@fk_idAbono) ";
+
+            object paramList = new
+            {
+                nombreActividad = nuevaActividad.nombreActividad,
+                horario = nuevaActividad.horario,
+                cupo = nuevaActividad.cupo,
+                fk_idAbono = nuevaActividad.fk_idAbono
             };
 
             int result = dbOperation.OperationExecuteWithIdentity(sql, paramList);

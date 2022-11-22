@@ -41,6 +41,10 @@ namespace Gimnasio.Services
             return datosMaestros.InsertSocio(idPersona);
         }
 
+        public int insertActividad(Actividad nuevaActividad)
+        {
+            return datosMaestros.InsertActividad(nuevaActividad);
+        }
         public int insertProfesor(int idPersona, Profesor profesorNuevo)
         {
             return datosMaestros.InsertProfesor(idPersona, profesorNuevo);

@@ -37,7 +37,6 @@ namespace Gimnasio.GUI
             obtenerEstados();
             llenarIds();
             obtenerActividades();
-            obtenerAbono();
 
         }
 
@@ -97,11 +96,11 @@ namespace Gimnasio.GUI
 
 
             tablaProfesores.Rows[rowIndex].Cells[0].Value = profesor.idProfesor;
-            tablaProfesores.Rows[rowIndex].Cells[1].Value = profesor.nombre;
-            tablaProfesores.Rows[rowIndex].Cells[2].Value = profesor.apellido;
-            tablaProfesores.Rows[rowIndex].Cells[3].Value = profesor.fechaContratacion.ToShortDateString();
+            tablaProfesores.Rows[rowIndex].Cells[1].Value = profesor.nombreEstado;
+            tablaProfesores.Rows[rowIndex].Cells[2].Value = profesor.nombre;
+            tablaProfesores.Rows[rowIndex].Cells[3].Value = profesor.apellido;
             tablaProfesores.Rows[rowIndex].Cells[4].Value = profesor.nombreActividad;
-            tablaProfesores.Rows[rowIndex].Cells[5].Value = profesor.nombreEstado;
+            tablaProfesores.Rows[rowIndex].Cells[5].Value = profesor.fechaContratacion.ToShortDateString();
             tablaProfesores.Rows[rowIndex].Cells[6].Value = ((profesor.valorCuotaPura*profesor.porcentajeProfesor)/100).ToString();
         }
         private void llenarIds()
@@ -128,22 +127,7 @@ namespace Gimnasio.GUI
             sltActividades.DataSource = lstActividad;
 
         }
-        public void obtenerAbono()
-        {
-            List<Abono> lstAbono = securityServices.getAbono();
-            List<Actividad> lstActividad = securityServices.getActividad();
-            
-            sltAbono.DisplayMember = "nombreAbono";
-            sltAbono.ValueMember = "idAbono";
-            sltAbono.DataSource = lstAbono;
-            double sueldo = 0.0;
-            
-            foreach(Abono abo in lstAbono)
-            {
-                txtSueldo.Text = ((abo.valorCuotaPura * abo.porcentajeProfesor)/100).ToString();
-            }
-
-        }
+        
 
         private void btnActualizarEstado_Click(object sender, EventArgs e)
         {

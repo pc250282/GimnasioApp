@@ -31,7 +31,7 @@
             this.btnCrearSocio = new MaterialSkin.Controls.MaterialButton();
             this.btnCrearProfesor = new MaterialSkin.Controls.MaterialButton();
             this.btbBuscarSocio = new MaterialSkin.Controls.MaterialButton();
-            this.btnNuevaActividad = new MaterialSkin.Controls.MaterialButton();
+            this.btnVerActividades = new MaterialSkin.Controls.MaterialButton();
             this.btnCrearActividad = new MaterialSkin.Controls.MaterialButton();
             this.SuspendLayout();
             // 
@@ -95,24 +95,24 @@
             this.btbBuscarSocio.UseVisualStyleBackColor = true;
             this.btbBuscarSocio.Click += new System.EventHandler(this.btbBuscarSocio_Click);
             // 
-            // btnNuevaActividad
+            // btnVerActividades
             // 
-            this.btnNuevaActividad.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnNuevaActividad.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.btnNuevaActividad.Depth = 0;
-            this.btnNuevaActividad.HighEmphasis = true;
-            this.btnNuevaActividad.Icon = null;
-            this.btnNuevaActividad.Location = new System.Drawing.Point(7, 334);
-            this.btnNuevaActividad.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnNuevaActividad.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnNuevaActividad.Name = "btnNuevaActividad";
-            this.btnNuevaActividad.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btnNuevaActividad.Size = new System.Drawing.Size(145, 36);
-            this.btnNuevaActividad.TabIndex = 5;
-            this.btnNuevaActividad.Text = "Ver Actividades";
-            this.btnNuevaActividad.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.btnNuevaActividad.UseAccentColor = false;
-            this.btnNuevaActividad.UseVisualStyleBackColor = true;
+            this.btnVerActividades.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnVerActividades.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnVerActividades.Depth = 0;
+            this.btnVerActividades.HighEmphasis = true;
+            this.btnVerActividades.Icon = null;
+            this.btnVerActividades.Location = new System.Drawing.Point(7, 334);
+            this.btnVerActividades.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnVerActividades.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnVerActividades.Name = "btnVerActividades";
+            this.btnVerActividades.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnVerActividades.Size = new System.Drawing.Size(145, 36);
+            this.btnVerActividades.TabIndex = 5;
+            this.btnVerActividades.Text = "Ver Actividades";
+            this.btnVerActividades.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnVerActividades.UseAccentColor = false;
+            this.btnVerActividades.UseVisualStyleBackColor = true;
             // 
             // btnCrearActividad
             // 
@@ -132,6 +132,7 @@
             this.btnCrearActividad.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnCrearActividad.UseAccentColor = false;
             this.btnCrearActividad.UseVisualStyleBackColor = true;
+            this.btnCrearActividad.Click += new System.EventHandler(this.btnCrearActividad_Click);
             // 
             // MenuPrincipal
             // 
@@ -139,7 +140,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(458, 450);
             this.Controls.Add(this.btnCrearActividad);
-            this.Controls.Add(this.btnNuevaActividad);
+            this.Controls.Add(this.btnVerActividades);
             this.Controls.Add(this.btbBuscarSocio);
             this.Controls.Add(this.btnCrearProfesor);
             this.Controls.Add(this.btnCrearSocio);
@@ -155,7 +156,7 @@
         private MaterialSkin.Controls.MaterialButton btnCrearSocio;
         private MaterialSkin.Controls.MaterialButton btnCrearProfesor;
         private MaterialSkin.Controls.MaterialButton btbBuscarSocio;
-        private MaterialSkin.Controls.MaterialButton btnNuevaActividad;
+        private MaterialSkin.Controls.MaterialButton btnVerActividades;
         private MaterialSkin.Controls.MaterialButton btnCrearActividad;
     }
 }

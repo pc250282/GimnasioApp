@@ -28,34 +28,166 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.txtNombreActividad = new MaterialSkin.Controls.MaterialTextBox2();
+            this.txtHorario = new MaterialSkin.Controls.MaterialTextBox2();
+            this.txtCupo = new MaterialSkin.Controls.MaterialTextBox2();
+            this.sltAbono = new MaterialSkin.Controls.MaterialComboBox();
+            this.txtCrearAbono = new MaterialSkin.Controls.MaterialButton();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // txtNombreActividad
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(81, 109);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(552, 200);
-            this.dataGridView1.TabIndex = 0;
+            this.txtNombreActividad.AnimateReadOnly = false;
+            this.txtNombreActividad.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.txtNombreActividad.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
+            this.txtNombreActividad.Depth = 0;
+            this.txtNombreActividad.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtNombreActividad.HideSelection = true;
+            this.txtNombreActividad.Hint = "Nombre de la actividad";
+            this.txtNombreActividad.LeadingIcon = null;
+            this.txtNombreActividad.Location = new System.Drawing.Point(21, 96);
+            this.txtNombreActividad.MaxLength = 32767;
+            this.txtNombreActividad.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtNombreActividad.Name = "txtNombreActividad";
+            this.txtNombreActividad.PasswordChar = '\0';
+            this.txtNombreActividad.PrefixSuffixText = null;
+            this.txtNombreActividad.ReadOnly = false;
+            this.txtNombreActividad.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtNombreActividad.SelectedText = "";
+            this.txtNombreActividad.SelectionLength = 0;
+            this.txtNombreActividad.SelectionStart = 0;
+            this.txtNombreActividad.ShortcutsEnabled = true;
+            this.txtNombreActividad.Size = new System.Drawing.Size(250, 48);
+            this.txtNombreActividad.TabIndex = 0;
+            this.txtNombreActividad.TabStop = false;
+            this.txtNombreActividad.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtNombreActividad.TrailingIcon = null;
+            this.txtNombreActividad.UseSystemPasswordChar = false;
+            // 
+            // txtHorario
+            // 
+            this.txtHorario.AnimateReadOnly = false;
+            this.txtHorario.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.txtHorario.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
+            this.txtHorario.Depth = 0;
+            this.txtHorario.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtHorario.HelperText = "Ej: L y Ma 19:30 a 21:30";
+            this.txtHorario.HideSelection = true;
+            this.txtHorario.Hint = "Horario de la actividad";
+            this.txtHorario.LeadingIcon = null;
+            this.txtHorario.Location = new System.Drawing.Point(21, 169);
+            this.txtHorario.MaxLength = 32767;
+            this.txtHorario.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtHorario.Name = "txtHorario";
+            this.txtHorario.PasswordChar = '\0';
+            this.txtHorario.PrefixSuffixText = null;
+            this.txtHorario.ReadOnly = false;
+            this.txtHorario.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtHorario.SelectedText = "";
+            this.txtHorario.SelectionLength = 0;
+            this.txtHorario.SelectionStart = 0;
+            this.txtHorario.ShortcutsEnabled = true;
+            this.txtHorario.Size = new System.Drawing.Size(250, 48);
+            this.txtHorario.TabIndex = 1;
+            this.txtHorario.TabStop = false;
+            this.txtHorario.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtHorario.TrailingIcon = null;
+            this.txtHorario.UseSystemPasswordChar = false;
+            // 
+            // txtCupo
+            // 
+            this.txtCupo.AnimateReadOnly = false;
+            this.txtCupo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.txtCupo.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
+            this.txtCupo.Depth = 0;
+            this.txtCupo.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtCupo.HideSelection = true;
+            this.txtCupo.Hint = "Cupo de alumnos";
+            this.txtCupo.LeadingIcon = null;
+            this.txtCupo.Location = new System.Drawing.Point(21, 250);
+            this.txtCupo.MaxLength = 32767;
+            this.txtCupo.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtCupo.Name = "txtCupo";
+            this.txtCupo.PasswordChar = '\0';
+            this.txtCupo.PrefixSuffixText = null;
+            this.txtCupo.ReadOnly = false;
+            this.txtCupo.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtCupo.SelectedText = "";
+            this.txtCupo.SelectionLength = 0;
+            this.txtCupo.SelectionStart = 0;
+            this.txtCupo.ShortcutsEnabled = true;
+            this.txtCupo.Size = new System.Drawing.Size(250, 48);
+            this.txtCupo.TabIndex = 2;
+            this.txtCupo.TabStop = false;
+            this.txtCupo.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtCupo.TrailingIcon = null;
+            this.txtCupo.UseSystemPasswordChar = false;
+            // 
+            // sltAbono
+            // 
+            this.sltAbono.AutoResize = false;
+            this.sltAbono.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.sltAbono.Depth = 0;
+            this.sltAbono.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.sltAbono.DropDownHeight = 174;
+            this.sltAbono.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.sltAbono.DropDownWidth = 121;
+            this.sltAbono.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.sltAbono.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.sltAbono.FormattingEnabled = true;
+            this.sltAbono.Hint = "Seleccione abono";
+            this.sltAbono.IntegralHeight = false;
+            this.sltAbono.ItemHeight = 43;
+            this.sltAbono.Location = new System.Drawing.Point(21, 330);
+            this.sltAbono.MaxDropDownItems = 4;
+            this.sltAbono.MouseState = MaterialSkin.MouseState.OUT;
+            this.sltAbono.Name = "sltAbono";
+            this.sltAbono.Size = new System.Drawing.Size(250, 49);
+            this.sltAbono.StartIndex = 0;
+            this.sltAbono.TabIndex = 1;
+            // 
+            // txtCrearAbono
+            // 
+            this.txtCrearAbono.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.txtCrearAbono.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.txtCrearAbono.Depth = 0;
+            this.txtCrearAbono.HighEmphasis = true;
+            this.txtCrearAbono.Icon = null;
+            this.txtCrearAbono.Location = new System.Drawing.Point(316, 343);
+            this.txtCrearAbono.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.txtCrearAbono.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtCrearAbono.Name = "txtCrearAbono";
+            this.txtCrearAbono.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.txtCrearAbono.Size = new System.Drawing.Size(173, 36);
+            this.txtCrearAbono.TabIndex = 4;
+            this.txtCrearAbono.Text = "CREAR NUEVO ABONO";
+            this.txtCrearAbono.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.txtCrearAbono.UseAccentColor = false;
+            this.txtCrearAbono.UseVisualStyleBackColor = true;
             // 
             // FrmActividades
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.txtCrearAbono);
+            this.Controls.Add(this.sltAbono);
+            this.Controls.Add(this.txtCupo);
+            this.Controls.Add(this.txtHorario);
+            this.Controls.Add(this.txtNombreActividad);
             this.Name = "FrmActividades";
             this.Text = "Administrar actividades";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private DataGridView dataGridView1;
+        private MaterialSkin.Controls.MaterialTextBox2 txtNombreActividad;
+        private MaterialSkin.Controls.MaterialTextBox2 txtHorario;
+        private MaterialSkin.Controls.MaterialTextBox2 txtCupo;
+        private MaterialSkin.Controls.MaterialComboBox sltAbono;
+        private MaterialSkin.Controls.MaterialButton txtCrearAbono;
     }
 }

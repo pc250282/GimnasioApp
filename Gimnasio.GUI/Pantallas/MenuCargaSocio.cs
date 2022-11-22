@@ -64,6 +64,14 @@ namespace Gimnasio.GUI
 
                 int idPersona = securityServices.insertPersona(nuevaPersona);
                 int insertResult = securityServices.insertSocio(idPersona);
+                if (insertResult >= 1)
+                {
+                    MaterialMessageBox.Show($"Se registro al socio "+nuevaPersona.nombre+ " con exito");
+                }
+                else
+                {
+                    MaterialMessageBox.Show($"Ocurrió un error registrando al socio");
+                }
 
 
             }
