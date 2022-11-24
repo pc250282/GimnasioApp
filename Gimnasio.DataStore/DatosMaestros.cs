@@ -28,13 +28,11 @@ namespace Gimnasio.DataStore
             string sql = "SELECT PR.idProfesor,PR.fechaContratacion,PR.sueldo,"
                         + "P.nombre,P.apellido,"
                         + "E.nombreEstado, "
-                        + "A.nombreActividad, "
-                        + "AB.valorCuotaPura,porcentajeProfesor "
+                        + "A.nombreActividad "
                         + "FROM Profesor PR "
                         + "INNER JOIN Persona P ON PR.fk_idPersona = P.idPersona "
                         + "INNER JOIN Estado E ON PR.fk_IdEstado = E.IdEstado "
-                        + "INNER JOIN Actividad A ON PR.fk_idActividad = A.idActividad "
-                        + "INNER JOIN Abono AB on A.fk_idAbono= AB.idAbono";
+                        + "INNER JOIN Actividad A ON PR.fk_idActividad = A.idActividad ";
             LstProfesores = dbOperation.OperationQuery<ProfesorAdmin>(sql);
             return LstProfesores;
         }
@@ -166,7 +164,7 @@ namespace Gimnasio.DataStore
 
         public int EditarActividadProfesor(int idProfesor, int fk_idActividad, double sueldo)
         {
-            string sql = "UPDATE Profesor SET fk_idActividad = @fk_idActividad, sueldo=@sueldo WHERE idProfesor = @idProfesor";
+            string sql = "UPDATE Profesor SET fk_idActividad = @fk_idActividad, sueldo = @sueldo WHERE idProfesor = @idProfesor";
             Object paramList = new {idProfesor=idProfesor, fk_idActividad=fk_idActividad, sueldo=sueldo };
             int affectedRows = dbOperation.OperationExecute(sql, paramList);
             return affectedRows;

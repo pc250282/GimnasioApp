@@ -33,6 +33,7 @@
             this.txtCupo = new MaterialSkin.Controls.MaterialTextBox2();
             this.sltAbono = new MaterialSkin.Controls.MaterialComboBox();
             this.txtCrearAbono = new MaterialSkin.Controls.MaterialButton();
+            this.btnVolver = new MaterialSkin.Controls.MaterialButton();
             this.SuspendLayout();
             // 
             // txtNombreActividad
@@ -165,11 +166,32 @@
             this.txtCrearAbono.UseAccentColor = false;
             this.txtCrearAbono.UseVisualStyleBackColor = true;
             // 
+            // btnVolver
+            // 
+            this.btnVolver.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnVolver.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnVolver.Depth = 0;
+            this.btnVolver.HighEmphasis = true;
+            this.btnVolver.Icon = null;
+            this.btnVolver.Location = new System.Drawing.Point(577, 343);
+            this.btnVolver.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnVolver.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnVolver.Size = new System.Drawing.Size(158, 36);
+            this.btnVolver.TabIndex = 5;
+            this.btnVolver.Text = "VOLVER";
+            this.btnVolver.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnVolver.UseAccentColor = false;
+            this.btnVolver.UseVisualStyleBackColor = true;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
+            // 
             // FrmActividades
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.txtCrearAbono);
             this.Controls.Add(this.sltAbono);
             this.Controls.Add(this.txtCupo);
@@ -189,5 +211,6 @@
         private MaterialSkin.Controls.MaterialTextBox2 txtCupo;
         private MaterialSkin.Controls.MaterialComboBox sltAbono;
         private MaterialSkin.Controls.MaterialButton txtCrearAbono;
+        private MaterialSkin.Controls.MaterialButton btnVolver;
     }
 }
