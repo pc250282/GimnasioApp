@@ -16,7 +16,7 @@ namespace Gimnasio.GUI
             materialSkinManager = MaterialSkin.MaterialSkinManager.Instance;
             materialSkinManager.EnforceBackcolorOnAllComponents = true;
             materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.DARK;
+            materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Orange700, MaterialSkin.Primary.Orange600, MaterialSkin.Primary.Orange600, MaterialSkin.Accent.Orange400, MaterialSkin.TextShade.WHITE);
 
             obtenerEstados();
