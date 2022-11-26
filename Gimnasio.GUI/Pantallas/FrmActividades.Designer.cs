@@ -31,7 +31,7 @@
             this.txtNombreActividad = new MaterialSkin.Controls.MaterialTextBox2();
             this.txtHorario = new MaterialSkin.Controls.MaterialTextBox2();
             this.txtCupo = new MaterialSkin.Controls.MaterialTextBox2();
-            this.sltAbono = new MaterialSkin.Controls.MaterialComboBox();
+            this.seleccionAbono = new MaterialSkin.Controls.MaterialComboBox();
             this.txtCrearAbono = new MaterialSkin.Controls.MaterialButton();
             this.btnVolver = new MaterialSkin.Controls.MaterialButton();
             this.SuspendLayout();
@@ -124,28 +124,28 @@
             this.txtCupo.TrailingIcon = null;
             this.txtCupo.UseSystemPasswordChar = false;
             // 
-            // sltAbono
+            // seleccionAbono
             // 
-            this.sltAbono.AutoResize = false;
-            this.sltAbono.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.sltAbono.Depth = 0;
-            this.sltAbono.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.sltAbono.DropDownHeight = 174;
-            this.sltAbono.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.sltAbono.DropDownWidth = 121;
-            this.sltAbono.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.sltAbono.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.sltAbono.FormattingEnabled = true;
-            this.sltAbono.Hint = "Seleccione abono";
-            this.sltAbono.IntegralHeight = false;
-            this.sltAbono.ItemHeight = 43;
-            this.sltAbono.Location = new System.Drawing.Point(21, 330);
-            this.sltAbono.MaxDropDownItems = 4;
-            this.sltAbono.MouseState = MaterialSkin.MouseState.OUT;
-            this.sltAbono.Name = "sltAbono";
-            this.sltAbono.Size = new System.Drawing.Size(250, 49);
-            this.sltAbono.StartIndex = 0;
-            this.sltAbono.TabIndex = 1;
+            this.seleccionAbono.AutoResize = false;
+            this.seleccionAbono.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.seleccionAbono.Depth = 0;
+            this.seleccionAbono.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.seleccionAbono.DropDownHeight = 174;
+            this.seleccionAbono.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.seleccionAbono.DropDownWidth = 121;
+            this.seleccionAbono.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.seleccionAbono.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.seleccionAbono.FormattingEnabled = true;
+            this.seleccionAbono.Hint = "Seleccione abono";
+            this.seleccionAbono.IntegralHeight = false;
+            this.seleccionAbono.ItemHeight = 43;
+            this.seleccionAbono.Location = new System.Drawing.Point(21, 330);
+            this.seleccionAbono.MaxDropDownItems = 4;
+            this.seleccionAbono.MouseState = MaterialSkin.MouseState.OUT;
+            this.seleccionAbono.Name = "seleccionAbono";
+            this.seleccionAbono.Size = new System.Drawing.Size(250, 49);
+            this.seleccionAbono.StartIndex = 0;
+            this.seleccionAbono.TabIndex = 1;
             // 
             // txtCrearAbono
             // 
@@ -178,7 +178,7 @@
             this.btnVolver.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btnVolver.Size = new System.Drawing.Size(158, 36);
+            this.btnVolver.Size = new System.Drawing.Size(76, 36);
             this.btnVolver.TabIndex = 5;
             this.btnVolver.Text = "VOLVER";
             this.btnVolver.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -193,7 +193,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.txtCrearAbono);
-            this.Controls.Add(this.sltAbono);
+            this.Controls.Add(this.seleccionAbono);
             this.Controls.Add(this.txtCupo);
             this.Controls.Add(this.txtHorario);
             this.Controls.Add(this.txtNombreActividad);
@@ -209,7 +209,7 @@
         private MaterialSkin.Controls.MaterialTextBox2 txtNombreActividad;
         private MaterialSkin.Controls.MaterialTextBox2 txtHorario;
         private MaterialSkin.Controls.MaterialTextBox2 txtCupo;
-        private MaterialSkin.Controls.MaterialComboBox sltAbono;
+        private MaterialSkin.Controls.MaterialComboBox seleccionAbono;
         private MaterialSkin.Controls.MaterialButton txtCrearAbono;
         private MaterialSkin.Controls.MaterialButton btnVolver;
     }

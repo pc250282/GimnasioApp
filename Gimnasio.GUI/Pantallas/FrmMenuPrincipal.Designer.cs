@@ -42,7 +42,7 @@
             this.btnCrearSocio.Depth = 0;
             this.btnCrearSocio.HighEmphasis = true;
             this.btnCrearSocio.Icon = null;
-            this.btnCrearSocio.Location = new System.Drawing.Point(7, 108);
+            this.btnCrearSocio.Location = new System.Drawing.Point(146, 100);
             this.btnCrearSocio.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnCrearSocio.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnCrearSocio.Name = "btnCrearSocio";
@@ -62,7 +62,7 @@
             this.btnCrearProfesor.Depth = 0;
             this.btnCrearProfesor.HighEmphasis = true;
             this.btnCrearProfesor.Icon = null;
-            this.btnCrearProfesor.Location = new System.Drawing.Point(140, 108);
+            this.btnCrearProfesor.Location = new System.Drawing.Point(130, 160);
             this.btnCrearProfesor.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnCrearProfesor.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnCrearProfesor.Name = "btnCrearProfesor";
@@ -82,7 +82,7 @@
             this.btbBuscarSocio.Depth = 0;
             this.btbBuscarSocio.HighEmphasis = true;
             this.btbBuscarSocio.Icon = null;
-            this.btbBuscarSocio.Location = new System.Drawing.Point(6, 277);
+            this.btbBuscarSocio.Location = new System.Drawing.Point(62, 219);
             this.btbBuscarSocio.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btbBuscarSocio.MouseState = MaterialSkin.MouseState.HOVER;
             this.btbBuscarSocio.Name = "btbBuscarSocio";
@@ -102,7 +102,7 @@
             this.btnVerActividades.Depth = 0;
             this.btnVerActividades.HighEmphasis = true;
             this.btnVerActividades.Icon = null;
-            this.btnVerActividades.Location = new System.Drawing.Point(7, 334);
+            this.btnVerActividades.Location = new System.Drawing.Point(231, 338);
             this.btnVerActividades.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnVerActividades.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnVerActividades.Name = "btnVerActividades";
@@ -113,6 +113,7 @@
             this.btnVerActividades.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnVerActividades.UseAccentColor = false;
             this.btnVerActividades.UseVisualStyleBackColor = true;
+            this.btnVerActividades.Click += new System.EventHandler(this.btnVerActividades_Click);
             // 
             // btnCrearActividad
             // 
@@ -121,7 +122,7 @@
             this.btnCrearActividad.Depth = 0;
             this.btnCrearActividad.HighEmphasis = true;
             this.btnCrearActividad.Icon = null;
-            this.btnCrearActividad.Location = new System.Drawing.Point(303, 108);
+            this.btnCrearActividad.Location = new System.Drawing.Point(27, 338);
             this.btnCrearActividad.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnCrearActividad.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnCrearActividad.Name = "btnCrearActividad";

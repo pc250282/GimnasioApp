@@ -111,12 +111,23 @@ namespace Gimnasio.GUI
 
         private void btnConfirmaAlta_Click(object sender, EventArgs e)
         {
-            if (checkPago.Checked) {
-                ingresoSocioNuevo();
-                    }
-            else {
-                MaterialMessageBox.Show("Debe registrar el pago del socio");
-                   }
+            if (validacionDeCampos())
+            {
+                if (checkPago.Checked)
+                {
+                    ingresoSocioNuevo();
+                }
+                else
+                {
+                    MaterialMessageBox.Show("Debe registrar el pago del socio");
+                }
+            }
+            else
+            {
+                MaterialMessageBox.Show("Debe registrar todos los datos del socio para registrarlo");
+            }
+                
+            
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
@@ -128,6 +139,17 @@ namespace Gimnasio.GUI
         private void sltFechaNacimiento_MouseEnter_1(object sender, EventArgs e)
         {
             CalcularEdad(sltFechaNacimiento.Value);
+        }
+
+        private bool validacionDeCampos()
+        {
+            bool resultado = false;
+            if (txtNombre.Text.Trim().Length >= 1 && txtApellido.Text.Trim().Length >= 1 && txtDNI.Text.Trim().Length >= 1
+                && txtTelefono.Text.Trim().Length >= 1 && txtDireccion.Text.Trim().Length >= 1)
+            {
+                resultado = true;
+            }
+            return resultado;
         }
     }
 }

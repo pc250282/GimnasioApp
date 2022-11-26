@@ -53,5 +53,12 @@ namespace Gimnasio.GUI
             frmActividades.Show();
             this.Hide();
         }
+
+        private void btnVerActividades_Click(object sender, EventArgs e)
+        {
+            FrmConsultaActividadesAbonos frmConsultaActividadesAbonos=new FrmConsultaActividadesAbonos();
+            frmConsultaActividadesAbonos.Show();
+            this.Hide();
+        }
     }
 }

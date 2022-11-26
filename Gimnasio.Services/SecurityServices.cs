@@ -74,5 +74,10 @@ namespace Gimnasio.Services
         {
             return datosMaestros.ActualizarFechaPagoSocio(idSocio, fechaUltimoPago);
         }
+
+        public List<ActividadAdmin> getActividadesActivas()
+        {
+            return datosMaestros.GetActividadesActivas();
+        }
     }
 }

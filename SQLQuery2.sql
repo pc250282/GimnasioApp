@@ -1,6 +1,8 @@
-﻿SELECT S.idSocio,S.fechaDeInscripcion,P.dni, P.nombre, P.apellido,P.telefono,E.nombreEstado,
-PG.fechaPago
-FROM  Socio S 
-INNER JOIN Persona P ON S.fk_idPersona = P.idPersona
-INNER JOIN Estado E ON S.fk_idEstado = E.IdEstado
-INNER JOIN IngresosPagos PG ON PG.idPago = S.idSocio
+﻿SELECT ACT.idActividad, ACT.nombreActividad,ACT.cupo,ACT.horario,
+AB.valorCuotaPura,AB.nombreAbono,
+P.nombre,
+PR.fk_idPersona
+FROM Actividad ACT
+INNER JOIN Abono AB ON ACT.fk_idAbono = AB.idAbono
+INNER JOIN Persona P ON PR.fk_idPersona = P.idPersona 
+

@@ -89,7 +89,12 @@ namespace Gimnasio.GUI
 
         private void btnRegistro_Click(object sender, EventArgs e)
         {
-            ingresoProfesorNuevo();
+            if (validacionDeCampos())
+                ingresoProfesorNuevo();
+            else
+            {
+                MaterialMessageBox.Show("Debes completar todos los datos para registrar al profesor");
+            };
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
@@ -97,6 +102,17 @@ namespace Gimnasio.GUI
             this.Close();
             new MenuPrincipal().Show();
 
+        }
+
+        private bool validacionDeCampos()
+        {
+            bool resultado = false;
+            if (txtNombre.Text.Trim().Length>=1 && txtApellido.Text.Trim().Length>=1 && txtDNI.Text.Trim().Length>=1 
+                && txtTelefono.Text.Trim().Length>=1 && txtDireccion.Text.Trim().Length >= 1)
+            {
+                resultado = true;
+            }
+            return resultado;
         }
     }
 }

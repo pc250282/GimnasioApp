@@ -37,9 +37,9 @@ namespace Gimnasio.GUI.Pantallas
         {
             List<Abono> lstAbono = securityServices.getAbono();
 
-            sltAbono.DisplayMember = "nombreAbono";
-            sltAbono.ValueMember = "idAbono";
-            sltAbono.DataSource = lstAbono;
+            seleccionAbono.DisplayMember = "nombreAbono";
+            seleccionAbono.ValueMember = "idAbono";
+            seleccionAbono.DataSource = lstAbono;
         }
 
         
@@ -53,7 +53,7 @@ namespace Gimnasio.GUI.Pantallas
                     nombreActividad = txtNombreActividad.Text,
                     horario = txtHorario.Text,
                     cupo = int.Parse(txtCupo.Text),
-                    fk_idAbono = int.Parse(sltAbono.SelectedValue.ToString())
+                    fk_idAbono = int.Parse(seleccionAbono.SelectedValue.ToString())
 
                 };
 

@@ -37,7 +37,20 @@ namespace Gimnasio.DataStore
             return LstProfesores;
         }
 
-       
+        public List<ActividadAdmin> GetActividadesActivas()
+        {
+            List<ActividadAdmin> LstActividades = new List<ActividadAdmin>();
+            string sql = "SELECT ACT.idActividad, ACT.nombreActividad,ACT.cupo,ACT.horario,"
+                        + "AB.valorCuotaPura,AB.nombreAbono, "
+                        + "P.nombre, "
+                        + "PR.fk_idActividad "
+                        + "FROM Actividad ACT "
+                        + "INNER JOIN Abono AB ON ACT.fk_idAbono = AB.idAbono "
+                        + "INNER JOIN Persona P ON PR.fk_idPersona =P.idPersona ";
+            LstActividades = dbOperation.OperationQuery<ActividadAdmin>(sql);
+            return LstActividades;
+        }
+
 
 
         public List<Genero> GetGenero()

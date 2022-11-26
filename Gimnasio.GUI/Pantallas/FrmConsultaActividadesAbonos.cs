@@ -1,4 +1,6 @@
-﻿using Gimnasio.GUI;
+﻿using Gimnasio.Clases;
+using Gimnasio.GUI;
+using Gimnasio.Services;
 using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
@@ -15,6 +17,7 @@ namespace Gimnasio.GUI.Pantallas
     public partial class FrmConsultaActividadesAbonos : MaterialForm
     {
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
+        private SecurityServices securityServices = new SecurityServices();
         public FrmConsultaActividadesAbonos()
         {
 
@@ -26,6 +29,34 @@ namespace Gimnasio.GUI.Pantallas
             materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Orange700, MaterialSkin.Primary.Orange600, MaterialSkin.Primary.Orange600, MaterialSkin.Accent.Orange400, MaterialSkin.TextShade.WHITE);
 
             InitializeComponent();
+        }
+
+        private void llenarTableActividades(ActividadAdmin actividad)
+        {
+            int rowIndex = tablaActividades.Rows.Add();
+
+
+            tablaActividades.Rows[rowIndex].Cells[0].Value = actividad.nombreActividad;
+            tablaActividades.Rows[rowIndex].Cells[1].Value = actividad.horario;
+            tablaActividades.Rows[rowIndex].Cells[2].Value = actividad.nombreProfesor;
+            tablaActividades.Rows[rowIndex].Cells[3].Value = actividad.valorActividad;
+            tablaActividades.Rows[rowIndex].Cells[4].Value = actividad.cupoDisponible;
+        }
+
+        private void obtenerActividades()
+        {
+            List<ActividadAdmin> lstActividad = securityServices.getActividadesActivas();
+            tablaActividades.Rows.Clear();
+            foreach (ActividadAdmin actividadAdmin in lstActividad)
+            {
+                llenarTableActividades(actividadAdmin);
+            }
+        }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            new MenuPrincipal().Show();
         }
     }
 }
