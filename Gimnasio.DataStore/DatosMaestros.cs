@@ -166,6 +166,25 @@ namespace Gimnasio.DataStore
 
         }
 
+        
+        public int InsertAbono(Abono nuevoAbono) { 
+            string sql = "INSERT INTO Abono (nombreAbono,valorCuotaPura,porcentajeEstablecimiento,porcentajeProfesor)" +
+                "OUTPUT INSERTED.idAbono " +
+                "VALUES(@nombreAbono,@valorCuotaPura,@porcentajeEstablecimiento,@porcentajeProfesor) ";
+
+            object paramList = new
+            {
+                nombreAbono = nuevoAbono.nombreAbono,
+                valorCuotaPura = nuevoAbono.valorCuotaPura,
+                porcentajeEstablecimiento = nuevoAbono.porcentajeEstablecimiento,
+                porcentajeProfesor = nuevoAbono.porcentajeProfesor
+            };
+
+            int result = dbOperation.OperationExecuteWithIdentity(sql, paramList);
+
+            return result;
+        }
+
         public int EditarEstadoSocio(int idSocio, int idEstado)
         {
             string sql = "UPDATE Socio SET fk_IdEstado = @idEstado WHERE idSocio = @idSocio";

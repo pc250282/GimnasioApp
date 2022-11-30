@@ -21,7 +21,6 @@ namespace Gimnasio.GUI.Pantallas
         public FrmActividades()
         {
             InitializeComponent();
-            InitializeComponent();
             materialSkinManager = MaterialSkin.MaterialSkinManager.Instance;
             materialSkinManager.EnforceBackcolorOnAllComponents = true;
             materialSkinManager.AddFormToManage(this);
@@ -81,6 +80,13 @@ namespace Gimnasio.GUI.Pantallas
         {
             this.Close();
             new MenuPrincipal().Show();
+        }
+
+        private void txtCrearAbono_Click(object sender, EventArgs e)
+        {
+            FrmCrearAbono frmCrearAbono = new FrmCrearAbono();
+            frmCrearAbono.Show();
+            this.Hide();
         }
     }
 }

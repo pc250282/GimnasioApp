@@ -165,6 +165,7 @@
             this.txtCrearAbono.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.txtCrearAbono.UseAccentColor = false;
             this.txtCrearAbono.UseVisualStyleBackColor = true;
+            this.txtCrearAbono.Click += new System.EventHandler(this.txtCrearAbono_Click);
             // 
             // btnVolver
             // 
