@@ -36,12 +36,19 @@ namespace Gimnasio.GUI.Pantallas
         {
             List<Abono> lstAbono = securityServices.getAbono();
 
+            //Mostrar Actividades existentes
             seleccionAbono.DisplayMember = "nombreAbono";
             seleccionAbono.ValueMember = "idAbono";
             seleccionAbono.DataSource = lstAbono;
+
+            //Mostrar abono de la actividad seleccionada
+            sltAbono.DisplayMember = "valorCuotaPura";
+            sltAbono.ValueMember = "idAbono";
+            sltAbono.DataSource = lstAbono;
+            
+
         }
 
-        
 
         private void crearActividad()
         {

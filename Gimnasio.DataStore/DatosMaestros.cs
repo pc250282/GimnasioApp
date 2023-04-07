@@ -72,7 +72,7 @@ namespace Gimnasio.DataStore
         public List<Abono> GetAbono()
         {
             List<Abono> LstAbono = new List<Abono>();
-            string sql = "SELECT idAbono,nombreAbono FROM Abono";
+            string sql = "SELECT idAbono,nombreAbono,valorCuotaPura FROM Abono";
             LstAbono = dbOperation.OperationQuery<Abono>(sql);
             return LstAbono;
         }
