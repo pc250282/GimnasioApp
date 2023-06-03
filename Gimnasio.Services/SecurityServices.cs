@@ -60,6 +60,11 @@ namespace Gimnasio.Services
             return datosMaestros.GetSocios();
         }
 
+        public SocioAdmin? getSocioById(int idSocio)
+        {
+            return datosMaestros.GetSocioById(idSocio);
+        }
+
         public List<ProfesorAdmin> getProfesores()
         {
             return datosMaestros.GetProfesores();

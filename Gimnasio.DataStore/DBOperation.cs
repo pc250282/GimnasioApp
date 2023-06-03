@@ -32,6 +32,15 @@ namespace DataStore
             }
             return result;
         }
+        public T OperationQueryById2<T>(string sqlQuery, object paramList)
+        {
+            T result;
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                result = connection.Query<T>(sqlQuery).First();
+            }
+            return result;
+        }
 
         public int OperationExecute(string SQLExecute, object paramList)
         {

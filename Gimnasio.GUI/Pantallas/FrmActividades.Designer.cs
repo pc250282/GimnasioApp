@@ -35,6 +35,7 @@
             txtCrearAbono = new MaterialSkin.Controls.MaterialButton();
             btnVolver = new MaterialSkin.Controls.MaterialButton();
             sltAbono = new MaterialSkin.Controls.MaterialComboBox();
+            btnCreaActividad = new MaterialSkin.Controls.MaterialButton();
             SuspendLayout();
             // 
             // txtNombreActividad
@@ -155,7 +156,7 @@
             txtCrearAbono.Depth = 0;
             txtCrearAbono.HighEmphasis = true;
             txtCrearAbono.Icon = null;
-            txtCrearAbono.Location = new Point(316, 343);
+            txtCrearAbono.Location = new Point(558, 108);
             txtCrearAbono.Margin = new Padding(4, 6, 4, 6);
             txtCrearAbono.MouseState = MaterialSkin.MouseState.HOVER;
             txtCrearAbono.Name = "txtCrearAbono";
@@ -175,7 +176,7 @@
             btnVolver.Depth = 0;
             btnVolver.HighEmphasis = true;
             btnVolver.Icon = null;
-            btnVolver.Location = new Point(577, 343);
+            btnVolver.Location = new Point(252, 343);
             btnVolver.Margin = new Padding(4, 6, 4, 6);
             btnVolver.MouseState = MaterialSkin.MouseState.HOVER;
             btnVolver.Name = "btnVolver";
@@ -212,11 +213,32 @@
             sltAbono.StartIndex = 0;
             sltAbono.TabIndex = 6;
             // 
+            // btnCreaActividad
+            // 
+            btnCreaActividad.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnCreaActividad.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnCreaActividad.Depth = 0;
+            btnCreaActividad.HighEmphasis = true;
+            btnCreaActividad.Icon = null;
+            btnCreaActividad.Location = new Point(21, 343);
+            btnCreaActividad.Margin = new Padding(4, 6, 4, 6);
+            btnCreaActividad.MouseState = MaterialSkin.MouseState.HOVER;
+            btnCreaActividad.Name = "btnCreaActividad";
+            btnCreaActividad.NoAccentTextColor = Color.Empty;
+            btnCreaActividad.Size = new Size(167, 36);
+            btnCreaActividad.TabIndex = 7;
+            btnCreaActividad.Text = "GUARDAR ACTIVIDAD";
+            btnCreaActividad.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnCreaActividad.UseAccentColor = false;
+            btnCreaActividad.UseVisualStyleBackColor = true;
+            btnCreaActividad.Click += btnCreaActividad_Click;
+            // 
             // FrmActividades
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnCreaActividad);
             Controls.Add(sltAbono);
             Controls.Add(btnVolver);
             Controls.Add(txtCrearAbono);
@@ -239,5 +261,6 @@
         private MaterialSkin.Controls.MaterialButton txtCrearAbono;
         private MaterialSkin.Controls.MaterialButton btnVolver;
         private MaterialSkin.Controls.MaterialComboBox sltAbono;
+        private MaterialSkin.Controls.MaterialButton btnCreaActividad;
     }
 }

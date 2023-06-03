@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gimnasio.Clases", "Gimnasio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gimnasio.DataStore", "Gimnasio.DataStore\Gimnasio.DataStore.csproj", "{847F9D1E-A90B-4575-AADC-BBAA474E5D30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gimnasio.GUI", "Gimnasio.GUI\Gimnasio.GUI.csproj", "{573C4D96-CD04-4C50-8C0D-EC6F1C1EBEE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gimnasio.GUI", "Gimnasio.GUI\Gimnasio.GUI.csproj", "{573C4D96-CD04-4C50-8C0D-EC6F1C1EBEE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gimnasio.Services", "Gimnasio.Services\Gimnasio.Services.csproj", "{723148F9-CB85-4C7F-9DD9-C6AD7A4A8C62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gimnasio.Services", "Gimnasio.Services\Gimnasio.Services.csproj", "{723148F9-CB85-4C7F-9DD9-C6AD7A4A8C62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GimnasioApp.WebApi", "GimnasioApp.WebApi\GimnasioApp.WebApi.csproj", "{5B0FD199-069F-451A-BF83-A4B195B034D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{723148F9-CB85-4C7F-9DD9-C6AD7A4A8C62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{723148F9-CB85-4C7F-9DD9-C6AD7A4A8C62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{723148F9-CB85-4C7F-9DD9-C6AD7A4A8C62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B0FD199-069F-451A-BF83-A4B195B034D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B0FD199-069F-451A-BF83-A4B195B034D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B0FD199-069F-451A-BF83-A4B195B034D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B0FD199-069F-451A-BF83-A4B195B034D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

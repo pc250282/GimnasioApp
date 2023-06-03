@@ -7,6 +7,8 @@
         public Estado fk_IdEstado { get; set; }
         public DateTime fechaUltimoPago { get; set; }
         public int fk_idPersona { get; set; }
+        public int fk_IdAbonoSocio { get; set; }
+
 
 
 

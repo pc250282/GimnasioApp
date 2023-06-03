@@ -45,7 +45,7 @@ namespace Gimnasio.GUI.Pantallas
             sltAbono.DisplayMember = "valorCuotaPura";
             sltAbono.ValueMember = "idAbono";
             sltAbono.DataSource = lstAbono;
-            
+
 
         }
 
@@ -70,7 +70,7 @@ namespace Gimnasio.GUI.Pantallas
                 }
                 else
                 {
-                    MaterialMessageBox.Show($"Ocurrió un error registrando al socio");
+                    MaterialMessageBox.Show($"Ocurrió un error registrando la actividad");
                 }
 
 
@@ -94,6 +94,11 @@ namespace Gimnasio.GUI.Pantallas
             FrmCrearAbono frmCrearAbono = new FrmCrearAbono();
             frmCrearAbono.Show();
             this.Hide();
+        }
+
+        private void btnCreaActividad_Click(object sender, EventArgs e)
+        {
+            crearActividad();
         }
     }
 }

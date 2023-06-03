@@ -8,7 +8,7 @@ namespace Gimnasio.Clases
 {
     public class SocioAdmin
     {
-        public int idSocio { get; set; }
+        public int IdSocio { get; set; }
         public string nombre { get; set; }
         public string apellido { get; set; }
         public string dni { get; set; }
@@ -18,5 +18,7 @@ namespace Gimnasio.Clases
         public DateTime fechaDeInscripcion { get; set; }
         public string nombreEstado { get; set; }
         public DateTime fechaUltimoPago { get; set; }
+        public string nombreAbono { get; set; }
+
     }
 }

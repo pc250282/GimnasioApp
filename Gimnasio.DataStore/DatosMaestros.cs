@@ -13,13 +13,36 @@ namespace Gimnasio.DataStore
         {
             List<SocioAdmin> LstSocios = new List<SocioAdmin>();
             string sql = "SELECT S.IdSocio,S.fechaDeInscripcion,S.fechaUltimoPago,"
-                        + "P.dni,P.nombre,P.apellido,P.telefono,"
-                        + "E.nombreEstado "
+                        + "P.dni,P.nombre,P.apellido,P.telefono,P.direccion,"
+                        + "E.nombreEstado,"
+                        + "G.nombreGenero,"
+                        + "ASO.nombreAbono "
                         + "FROM Socio S "
                         + "INNER JOIN Persona P ON S.fk_idPersona = P.idPersona "
-                        + "INNER JOIN Estado E ON S.fk_IdEstado = E.IdEstado";
+                        + "INNER JOIN Estado E ON S.fk_IdEstado = E.IdEstado "
+                        + "INNER JOIN Genero G ON P.fk_IdGenero = G.IdGenero "
+                        + "INNER JOIN AbonoSocio ASO ON S.fk_IdAbonoSocio = ASO.IdAbonoSocio";
             LstSocios = dbOperation.OperationQuery<SocioAdmin>(sql);
             return LstSocios;
+        }
+
+        public SocioAdmin? GetSocioById(int idSocio)
+        {
+            SocioAdmin socio;
+            string sql = "SELECT S.IdSocio,S.fechaDeInscripcion,S.fechaUltimoPago,"
+                        + "P.dni,P.nombre,P.apellido,P.telefono,P.direccion,"
+                        + "E.nombreEstado,"
+                        + "G.nombreGenero,"
+                        + "ASO.nombreAbono "
+                        + "FROM Socio S "
+                        + "INNER JOIN Persona P ON S.fk_idPersona = P.idPersona "
+                        + "INNER JOIN Estado E ON S.fk_IdEstado = E.IdEstado "
+                        + "INNER JOIN Genero G ON P.fk_IdGenero = G.IdGenero "
+                        + "INNER JOIN AbonoSocio ASO ON S.fk_IdAbonoSocio = ASO.IdAbonoSocio "
+                        + "WHERE S.IdSocio ="+idSocio;
+            //socio = dbOperation.OperationQueryById2<SocioAdmin>(sql, new {IdSocio = idSocio});
+            socio = dbOperation.OperationQueryById<SocioAdmin>(sql);
+            return socio;
         }
 
         public List<ProfesorAdmin> GetProfesores()
@@ -205,6 +228,16 @@ namespace Gimnasio.DataStore
         {
             string sql = "UPDATE Socio SET fk_IdEstado = 1, fechaUltimoPago=@fechaUltimoPago WHERE idSocio = @idSocio";
             Object paramList = new { idSocio = idSocio, fechaUltimoPago=fechaUltimoPago };
+            int affectedRows = dbOperation.OperationExecute(sql, paramList);
+
+            return affectedRows;
+
+        }
+
+        public int ActualizarAbonoSocio(int idSocio, int IdAbonoSocio)
+        {
+            string sql = "UPDATE Socio SET fk_IdEstado = 1, fk_IdAbonoSocio=@IdAbonoSocio WHERE idSocio = @idSocio";
+            Object paramList = new { idSocio = idSocio, fk_IdAbonoSocio=IdAbonoSocio };
             int affectedRows = dbOperation.OperationExecute(sql, paramList);
 
             return affectedRows;
