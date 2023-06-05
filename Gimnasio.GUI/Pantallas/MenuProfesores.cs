@@ -17,7 +17,7 @@ namespace Gimnasio.GUI
     public partial class MenuProfesores : MaterialForm
     {
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
-        SecurityServices securityServices=new SecurityServices();
+        APISocioServices securityServices=new APISocioServices();
 
         public MenuProfesores()
         {

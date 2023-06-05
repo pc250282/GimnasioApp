@@ -9,7 +9,7 @@ namespace Gimnasio.GUI
     public partial class MenuCargaSocio : MaterialForm
     {
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
-        SecurityServices securityServices = new SecurityServices();
+        APISocioServices securityServices = new APISocioServices();
         public MenuCargaSocio()
         {
             InitializeComponent();

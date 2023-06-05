@@ -1,5 +1,5 @@
-﻿using DataStore;
-using Gimnasio.Clases;
+﻿using Gimnasio.Clases;
+using Gimnasio.Clases.Dto;
 using System;
 
 namespace Gimnasio.DataStore
@@ -44,6 +44,7 @@ namespace Gimnasio.DataStore
             socio = dbOperation.OperationQueryById<SocioAdmin>(sql);
             return socio;
         }
+
 
         public List<ProfesorAdmin> GetProfesores()
         {
@@ -234,15 +235,41 @@ namespace Gimnasio.DataStore
 
         }
 
-        public int ActualizarAbonoSocio(int idSocio, int IdAbonoSocio)
+        public int EditarAbonoSocio(int idSocio, SocioDto socio )
         {
-            string sql = "UPDATE Socio SET fk_IdEstado = 1, fk_IdAbonoSocio=@IdAbonoSocio WHERE idSocio = @idSocio";
-            Object paramList = new { idSocio = idSocio, fk_IdAbonoSocio=IdAbonoSocio };
+            string sql = "UPDATE Socio SET fk_IdAbonoSocio = @fk_IdAbonoSocio, fk_IdEstado = @fk_IdEstado WHERE idSocio = @idSocio";
+            Object paramList = new { 
+                idSocio = idSocio,
+                fk_IdEstado=socio.fk_IdEstado,
+                fk_IdAbonoSocio=socio.fk_IdAbonoSocio 
+                };
+
             int affectedRows = dbOperation.OperationExecute(sql, paramList);
 
             return affectedRows;
 
         }
+
+        public int InsertPago(Pago nuevoPago)
+        {
+            string sql = "INSERT INTO Pago (montoPago,fechaPago,fk_idSocio,fk_idMdp)" +
+                "OUTPUT INSERTED.idPago " +
+                "VALUES(@montoPago,@fechaPago,@fk_idSocio,@fk_idMdp) ";
+
+            object paramList = new
+            {
+                montoPago = nuevoPago.montoPago,
+                fechaPago = nuevoPago.fechaPago,
+                fk_idSocio=nuevoPago.fk_idSocio,
+                fk_idMdp=nuevoPago.fk_idMdp
+            };
+
+            int result = dbOperation.OperationExecuteWithIdentity(sql, paramList);
+
+            return result;
+        }
+
+
     }
 }
 

@@ -17,7 +17,7 @@ namespace Gimnasio.GUI.Pantallas
     public partial class FrmActividades : MaterialForm
     {
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
-        private SecurityServices securityServices = new SecurityServices();
+        private APISocioServices securityServices = new APISocioServices();
         public FrmActividades()
         {
             InitializeComponent();

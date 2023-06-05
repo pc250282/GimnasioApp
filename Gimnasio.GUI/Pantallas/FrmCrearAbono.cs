@@ -16,7 +16,7 @@ namespace Gimnasio.GUI.Pantallas
     public partial class FrmCrearAbono : MaterialForm
     {
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
-        SecurityServices securityServices = new SecurityServices();
+        APISocioServices securityServices = new APISocioServices();
         public FrmCrearAbono()
         {
             InitializeComponent();

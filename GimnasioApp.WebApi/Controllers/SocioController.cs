@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Gimnasio.Clases;
 using Gimnasio.Services;
-using GimnasioApp.WebApi.Dto;
+using Gimnasio.Clases.Dto;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace GimnasioApp.WebApi.Controllers
@@ -10,17 +10,19 @@ namespace GimnasioApp.WebApi.Controllers
     [ApiController]
     public class SocioController : ControllerBase
     {
-        SecurityServices sociosService = new SecurityServices();
+        APISocioServices sociosService = new APISocioServices();
         // GET: api/<SocioController>
         [HttpGet]
+        [Route("/Socios/Todos")]
         public IEnumerable<SocioAdmin> GetAllSocios()
         {
             return sociosService.getSocios();
         }
 
         // GET by Id action
-        [HttpGet("{id}")]
-        public ActionResult<SocioAdmin> Get(int id)
+        [HttpGet("/Socios/{id}")]
+        //[Route("/BuscarSociosPorID")]
+        public ActionResult<SocioAdmin> GetById(int id)
         {
             var socio = sociosService.getSocioById(id);
 
@@ -30,8 +32,10 @@ namespace GimnasioApp.WebApi.Controllers
             return socio;
         }
 
+
         // POST api/<SocioController>
         [HttpPost]
+        //[Route("CrearSocio")]
         public void crearSocio(Persona newPerson)
         {
             int idPerson=sociosService.insertPersona(newPerson);
@@ -39,9 +43,11 @@ namespace GimnasioApp.WebApi.Controllers
 
         }
 
-        // PUT api/<SocioController>/5
+
+        //PUT api/<SocioController>/5
         [HttpPut("{id}")]
-        public IActionResult updateSocio(SocioDto socio, int id)
+        //[Route("CambiarAbono")]
+        public IActionResult updateAbonoSocio(SocioDto socio, int id)
         {
             if (id != socio.IdSocio)
                 return BadRequest();
@@ -50,7 +56,7 @@ namespace GimnasioApp.WebApi.Controllers
             if (existingSocio is null)
                 return NotFound();
 
-            sociosService.actualizarFechaPagoSocio(id,DateTime.Now);
+            sociosService.editarAbonoSocio(id, socio);
 
             return NoContent();
         }

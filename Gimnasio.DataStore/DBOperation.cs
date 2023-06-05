@@ -6,13 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataStore
+namespace Gimnasio.DataStore
 {
     public class DBOperation
     {
         private string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\pc250282\source\repos\GimnasioApp\Gimnasio.DataStore\BBDD\DBGym.mdf;Integrated Security=True;Connect Timeout=30";
         //private string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Pablo\source\repos\GimnasioApp\Gimnasio.DataStore\BBDD\DBGym.mdf;Integrated Security=True;Connect Timeout=30";
-      
+        //private string ConnectionString = @"workstation id=DBGymPablo.mssql.somee.com;packet size=4096;user id=pabloelgranate_SQLLogin_2;pwd=63ao6wcu9f;data source=DBGymPablo.mssql.somee.com;persist security info=False;initial catalog=DBGymPablo";
         public List<T> OperationQuery<T>(string sqlQuery)
         {
             List<T> LstResult;

@@ -19,7 +19,7 @@ namespace Gimnasio.GUI
     public partial class FrmConsultaSociosYProfesores : MaterialForm
     {
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
-        private SecurityServices securityServices = new SecurityServices();
+        private APISocioServices securityServices = new APISocioServices();
         private List<string> lstIds = new List<string>();
         private List<string> lstIdsProfesores = new List<string>();
         public FrmConsultaSociosYProfesores()
@@ -53,7 +53,7 @@ namespace Gimnasio.GUI
             foreach (SocioAdmin socio in lstSocios)
             {
                 llenarTablaSocios(socio);
-                lstIds.Add(socio.idSocio.ToString());
+                lstIds.Add(socio.IdSocio.ToString());
             }
         }
 
@@ -72,7 +72,7 @@ namespace Gimnasio.GUI
         {
             int rowIndex = tablaSocios.Rows.Add();
 
-            tablaSocios.Rows[rowIndex].Cells[0].Value = socio.idSocio;
+            tablaSocios.Rows[rowIndex].Cells[0].Value = socio.IdSocio;
             tablaSocios.Rows[rowIndex].Cells[1].Value = socio.fechaDeInscripcion.ToShortDateString();
             tablaSocios.Rows[rowIndex].Cells[2].Value = socio.nombreEstado;
             tablaSocios.Rows[rowIndex].Cells[3].Value = socio.nombre;
