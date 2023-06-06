@@ -1,4 +1,5 @@
 ﻿using Gimnasio.Clases;
+using Gimnasio.GUI.Pantallas;
 using Gimnasio.Services;
 using MaterialSkin;
 using MaterialSkin.Controls;
@@ -22,6 +23,7 @@ namespace Gimnasio.GUI
         private APISocioServices securityServices = new APISocioServices();
         private List<string> lstIds = new List<string>();
         private List<string> lstIdsProfesores = new List<string>();
+        private DateTime fechaActual = DateTime.Now;
         public FrmConsultaSociosYProfesores()
         {
             InitializeComponent();
@@ -34,7 +36,7 @@ namespace Gimnasio.GUI
 
             obtenerSocios();
             obtenerProfesores();
-            obtenerEstados();
+            //obtenerEstados();
             llenarIds();
             obtenerActividades();
 
@@ -59,7 +61,7 @@ namespace Gimnasio.GUI
 
         private void obtenerProfesores()
         {
-            List<ProfesorAdmin>lstProfes=securityServices.getProfesores();
+            List<ProfesorAdmin> lstProfes = securityServices.getProfesores();
             tablaProfesores.Rows.Clear();
             foreach (ProfesorAdmin profesor in lstProfes)
             {
@@ -73,20 +75,24 @@ namespace Gimnasio.GUI
             int rowIndex = tablaSocios.Rows.Add();
 
             tablaSocios.Rows[rowIndex].Cells[0].Value = socio.IdSocio;
-            tablaSocios.Rows[rowIndex].Cells[1].Value = socio.fechaDeInscripcion.ToShortDateString();
-            tablaSocios.Rows[rowIndex].Cells[2].Value = socio.nombreEstado;
-            tablaSocios.Rows[rowIndex].Cells[3].Value = socio.nombre;
-            tablaSocios.Rows[rowIndex].Cells[4].Value = socio.apellido;
-            tablaSocios.Rows[rowIndex].Cells[5].Value = socio.telefono;
-            tablaSocios.Rows[rowIndex].Cells[6].Value = socio.fechaUltimoPago.ToShortDateString();
-            if (socio.fechaUltimoPago <= DateTime.Now) {
-                tablaSocios.Rows[rowIndex].Cells[6].Style.BackColor = Color.Green;
+            tablaSocios.Rows[rowIndex].Cells[1].Value = socio.nombreAbono;
+            tablaSocios.Rows[rowIndex].Cells[2].Value = socio.fechaDeInscripcion.ToShortDateString();
+            tablaSocios.Rows[rowIndex].Cells[3].Value = socio.nombreEstado;
+            tablaSocios.Rows[rowIndex].Cells[4].Value = socio.nombre;
+            tablaSocios.Rows[rowIndex].Cells[5].Value = socio.apellido;
+            tablaSocios.Rows[rowIndex].Cells[6].Value = socio.telefono;
+            tablaSocios.Rows[rowIndex].Cells[7].Value = socio.fechaUltimoPago.ToShortDateString();
+            // Comparo fechas, si la fecha de ultimo pago es mayor a 30 dias existe pago pendiente pinto en rojo
+            TimeSpan diferencia = fechaActual.Subtract(socio.fechaUltimoPago);
+            if (diferencia.TotalDays <= 30)
+            {
+                tablaSocios.Rows[rowIndex].Cells[7].Style.BackColor = Color.Green;
             }
             else
             {
-                tablaSocios.Rows[rowIndex].Cells[6].Style.BackColor = Color.Red;
+                tablaSocios.Rows[rowIndex].Cells[7].Style.BackColor = Color.Red;
             }
-            
+
         }
 
 
@@ -101,7 +107,7 @@ namespace Gimnasio.GUI
             tablaProfesores.Rows[rowIndex].Cells[3].Value = profesor.apellido;
             tablaProfesores.Rows[rowIndex].Cells[4].Value = profesor.nombreActividad;
             tablaProfesores.Rows[rowIndex].Cells[5].Value = profesor.fechaContratacion.ToShortDateString();
-            tablaProfesores.Rows[rowIndex].Cells[6].Value = ((profesor.valorCuotaPura*profesor.porcentajeProfesor)/100).ToString();
+            tablaProfesores.Rows[rowIndex].Cells[6].Value = ((profesor.valorCuotaPura * profesor.porcentajeProfesor) / 100).ToString();
         }
         private void llenarIds()
         {
@@ -109,60 +115,63 @@ namespace Gimnasio.GUI
             sltNumProfesor.DataSource = lstIdsProfesores;
         }
 
-        public void obtenerEstados()
-        {
-            List<Estado> lstEstado = securityServices.getEstado();
+        //public void obtenerEstados()
+        //{
+        //    List<Estado> lstEstado = securityServices.getEstado();
 
-            sltEstado.DisplayMember = "nombreEstado";
-            sltEstado.ValueMember = "idEstado";
-            sltEstado.DataSource = lstEstado;
-        }
+        //    sltEstado.DisplayMember = "nombreEstado";
+        //    sltEstado.ValueMember = "idEstado";
+        //    sltEstado.DataSource = lstEstado;
+        //}
 
         public void obtenerActividades()
         {
             List<Actividad> lstActividad = securityServices.getActividad();
-            
+
             sltActividades.DisplayMember = "nombreActividad";
             sltActividades.ValueMember = "idActividad";
             sltActividades.DataSource = lstActividad;
 
         }
-        
 
-        private void btnActualizarEstado_Click(object sender, EventArgs e)
-        {
-            int idEstado = int.Parse(sltEstado.SelectedValue.ToString());
-            int idSocio = int.Parse(sltNumSocio.SelectedValue.ToString());
 
-            int resultado = securityServices.editarEstadoSocio(idSocio, idEstado);
-            if (resultado >= 1)
-            {
-                obtenerSocios();
-                MaterialMessageBox.Show($"Se actualizó con exito el estado del socio N° {idSocio.ToString()}");
-            }
-            else
-            {
-                MaterialMessageBox.Show($"Ocurrió un error cambiando el estado del socio N°: {idSocio.ToString()}");
-            }
-        }
+        //private void btnActualizarEstado_Click(object sender, EventArgs e)
+        //{
+        //    int idEstado = int.Parse(sltEstado.SelectedValue.ToString());
+        //    int idSocio = int.Parse(sltNumSocio.SelectedValue.ToString());
+
+        //    int resultado = securityServices.editarEstadoSocio(idSocio, idEstado);
+        //    if (resultado >= 1)
+        //    {
+        //        obtenerSocios();
+        //        MaterialMessageBox.Show($"Se actualizó con exito el estado del socio N° {idSocio.ToString()}");
+        //    }
+        //    else
+        //    {
+        //        MaterialMessageBox.Show($"Ocurrió un error cambiando el estado del socio N°: {idSocio.ToString()}");
+        //    }
+        //}
 
         private void btnRegistrarPago_Click(object sender, EventArgs e)
         {
-
             int idSocio = int.Parse(sltNumSocio.SelectedValue.ToString());
-            DateTime fechaActual = DateTime.Now;
+            SocioAdmin socio = securityServices.getSocioById(idSocio);
 
-            int resultado = securityServices.actualizarFechaPagoSocio(idSocio, fechaActual);
-               if (resultado >= 1)
-                {
-                    obtenerSocios();
-                    MaterialMessageBox.Show($"Se registro la fecha de pago del socio N° {idSocio.ToString()}");
-                }
-                else
-                {
-                    MaterialMessageBox.Show($"Ocurrió un error registrando la fecha de pago del socio N°: {idSocio.ToString()}");
-                }
-            
+            // Comparo fechas, si la fecha de ultimo pago es mayor a 30 dias existe pago pendiente
+            TimeSpan diferencia = fechaActual.Subtract(socio.fechaUltimoPago);
+            if (diferencia.TotalDays >= 30)
+            {
+                FrmRegistrarPago frmRegistrarPago = new FrmRegistrarPago(socio);
+                frmRegistrarPago.Show();
+                this.Hide();
+            }
+            //No tiene que pagar aun, el valor obtenido es sobre la fecha actual por eso le sumo 30 dias para obtener dias que restan de abono
+            else
+            {
+                MaterialMessageBox.Show($"El socio seleccionado no posee deuda, le restan " + Math.Round(30 - (diferencia.TotalDays)) + " dias.");
+            }
+
+
         }
 
         private void btbAsignarActividad_Click(object sender, EventArgs e)
@@ -170,9 +179,9 @@ namespace Gimnasio.GUI
             int fk_idActividad = int.Parse(sltActividades.SelectedValue.ToString());
             int idProfesor = int.Parse(sltNumProfesor.SelectedValue.ToString());
             double sueldo = 0.0;
-            
 
-            int resultado = securityServices.editarActividadProfesor(idProfesor, fk_idActividad,sueldo);
+
+            int resultado = securityServices.editarActividadProfesor(idProfesor, fk_idActividad, sueldo);
             if (resultado >= 1)
             {
                 obtenerProfesores();

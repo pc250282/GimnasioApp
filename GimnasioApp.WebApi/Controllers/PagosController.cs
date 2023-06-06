@@ -13,9 +13,9 @@ namespace GimnasioApp.WebApi.Controllers
         APIPagosServices pagosServices= new APIPagosServices();
         // GET: api/<PagosController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Pagos> GetAllPagos()
         {
-            return new string[] { "value1", "value2" };
+            return pagosServices.getHistorialDePagos();
         }
 
         // GET api/<PagosController>/5
@@ -27,7 +27,7 @@ namespace GimnasioApp.WebApi.Controllers
 
         // POST api/<PagosController>
         [HttpPost]
-        public void registrarPago(Pago nuevoPago)
+        public void registrarPago(Pagos nuevoPago)
         {
             pagosServices.insertPago(nuevoPago);
         }

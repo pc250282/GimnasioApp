@@ -12,7 +12,7 @@ namespace Gimnasio.DataStore
         public List<SocioAdmin> GetSocios()
         {
             List<SocioAdmin> LstSocios = new List<SocioAdmin>();
-            string sql = "SELECT S.IdSocio,S.fechaDeInscripcion,S.fechaUltimoPago,"
+            string sql = "SELECT S.IdSocio,S.fechaDeInscripcion,S.fechaUltimoPago,S.fk_IdAbonoSocio, "
                         + "P.dni,P.nombre,P.apellido,P.telefono,P.direccion,"
                         + "E.nombreEstado,"
                         + "G.nombreGenero,"
@@ -29,11 +29,11 @@ namespace Gimnasio.DataStore
         public SocioAdmin? GetSocioById(int idSocio)
         {
             SocioAdmin socio;
-            string sql = "SELECT S.IdSocio,S.fechaDeInscripcion,S.fechaUltimoPago,"
+            string sql = "SELECT S.IdSocio,S.fechaDeInscripcion,S.fechaUltimoPago,S.fk_IdAbonoSocio, "
                         + "P.dni,P.nombre,P.apellido,P.telefono,P.direccion,"
                         + "E.nombreEstado,"
                         + "G.nombreGenero,"
-                        + "ASO.nombreAbono "
+                        + "ASO.nombreAbono,valor "
                         + "FROM Socio S "
                         + "INNER JOIN Persona P ON S.fk_idPersona = P.idPersona "
                         + "INNER JOIN Estado E ON S.fk_IdEstado = E.IdEstado "
@@ -44,6 +44,7 @@ namespace Gimnasio.DataStore
             socio = dbOperation.OperationQueryById<SocioAdmin>(sql);
             return socio;
         }
+        
 
 
         public List<ProfesorAdmin> GetProfesores()
@@ -99,6 +100,14 @@ namespace Gimnasio.DataStore
             string sql = "SELECT idAbono,nombreAbono,valorCuotaPura FROM Abono";
             LstAbono = dbOperation.OperationQuery<Abono>(sql);
             return LstAbono;
+        }
+
+        public List<AbonoSocio> GetAbonoSocios()
+        {
+            List<AbonoSocio> LstAbonoSocio = new List<AbonoSocio>();
+            string sql = "SELECT idAbonoSocio,nombreAbono,valor FROM AbonoSocio";
+            LstAbonoSocio = dbOperation.OperationQuery<AbonoSocio>(sql);
+            return LstAbonoSocio;
         }
         public List<Actividad> GetActividad()
         {
@@ -250,18 +259,35 @@ namespace Gimnasio.DataStore
 
         }
 
-        public int InsertPago(Pago nuevoPago)
+        
+        public List<MedioDePago> GetMediosDePago()
         {
-            string sql = "INSERT INTO Pago (montoPago,fechaPago,fk_idSocio,fk_idMdp)" +
-                "OUTPUT INSERTED.idPago " +
-                "VALUES(@montoPago,@fechaPago,@fk_idSocio,@fk_idMdp) ";
+            List<MedioDePago> LstMdp = new List<MedioDePago>();
+            string sql = "SELECT idMdp, nombreMdp FROM MediosDePagos";
+            LstMdp = dbOperation.OperationQuery<MedioDePago>(sql);
+            return LstMdp;
+        }
+
+        public List<Pagos> GetHistorialDePagos()
+        {
+            List<Pagos> lstHistorialPagos = new List<Pagos>();
+            string sql = "SELECT IdPago, montoPago, fechaPago, fk_socio_id, fk_Mdp_id, fk_AbonoCobrado_id FROM Pagos";
+            lstHistorialPagos=dbOperation.OperationQuery<Pagos>(sql);
+            return lstHistorialPagos;
+        }
+        public int InsertPago(Pagos nuevoPago)
+        {
+            string sql = "INSERT INTO Pagos (montoPago,fechaPago,fk_Socio_id,fk_Mdp_id,fk_AbonoCobrado_id)" +
+                "OUTPUT INSERTED.IdPago " +
+                "VALUES(@montoPago,@fechaPago,@fk_Socio_id,@fk_Mdp_id,@fk_AbonoCobrado_id) ";
 
             object paramList = new
             {
                 montoPago = nuevoPago.montoPago,
                 fechaPago = nuevoPago.fechaPago,
-                fk_idSocio=nuevoPago.fk_idSocio,
-                fk_idMdp=nuevoPago.fk_idMdp
+                fk_Socio_id=nuevoPago.fk_Socio_id,
+                fk_Mdp_id=nuevoPago.fk_idMdp,
+                fk_AbonoCobrado_id=nuevoPago.fk_AbonoCobrado_id
             };
 
             int result = dbOperation.OperationExecuteWithIdentity(sql, paramList);
@@ -269,7 +295,7 @@ namespace Gimnasio.DataStore
             return result;
         }
 
-
+        
     }
 }
 

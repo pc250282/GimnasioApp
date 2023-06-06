@@ -13,9 +13,18 @@ namespace Gimnasio.Services
     {
         DatosMaestros datosMaestros = new DatosMaestros();
 
-        public int insertPago(Pago nuevoPago)
+        public List<MedioDePago> getMediosDePago()
+        {
+            return datosMaestros.GetMediosDePago();
+        }
+        public int insertPago(Pagos nuevoPago)
         {
             return datosMaestros.InsertPago(nuevoPago);
+        }
+
+        public List<Pagos> getHistorialDePagos()
+        {
+            return datosMaestros.GetHistorialDePagos();
         }
 
     }

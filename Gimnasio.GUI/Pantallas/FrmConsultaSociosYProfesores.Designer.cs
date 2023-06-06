@@ -28,456 +28,384 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tablaSocios = new System.Windows.Forms.DataGridView();
-            this.idSocio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fechaDeInscripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fk_IdEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fechaUltimoPago = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblNumSocio = new MaterialSkin.Controls.MaterialLabel();
-            this.lblApellido = new MaterialSkin.Controls.MaterialLabel();
-            this.btnActualizarEstado = new MaterialSkin.Controls.MaterialButton();
-            this.btnVolver = new MaterialSkin.Controls.MaterialButton();
-            this.sltNumSocio = new MaterialSkin.Controls.MaterialComboBox();
-            this.sltEstado = new MaterialSkin.Controls.MaterialComboBox();
-            this.tbForm = new MaterialSkin.Controls.MaterialTabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.btnRegistrarPago = new MaterialSkin.Controls.MaterialButton();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.sltNumProfesor = new MaterialSkin.Controls.MaterialComboBox();
-            this.btbAsignarActividad = new MaterialSkin.Controls.MaterialButton();
-            this.sltActividades = new MaterialSkin.Controls.MaterialComboBox();
-            this.tablaProfesores = new System.Windows.Forms.DataGridView();
-            this.idProfesor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreActividad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fechaContratacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sueldo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaSocios)).BeginInit();
-            this.tbForm.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaProfesores)).BeginInit();
-            this.SuspendLayout();
+            tablaSocios = new DataGridView();
+            idSocio = new DataGridViewTextBoxColumn();
+            nombreAbono = new DataGridViewTextBoxColumn();
+            fechaDeInscripcion = new DataGridViewTextBoxColumn();
+            fk_IdEstado = new DataGridViewTextBoxColumn();
+            nombre = new DataGridViewTextBoxColumn();
+            apellido = new DataGridViewTextBoxColumn();
+            telefono = new DataGridViewTextBoxColumn();
+            fechaUltimoPago = new DataGridViewTextBoxColumn();
+            lblNumSocio = new MaterialSkin.Controls.MaterialLabel();
+            btnVolver = new MaterialSkin.Controls.MaterialButton();
+            sltNumSocio = new MaterialSkin.Controls.MaterialComboBox();
+            tbForm = new MaterialSkin.Controls.MaterialTabControl();
+            tabPage1 = new TabPage();
+            btnRegistrarPago = new MaterialSkin.Controls.MaterialButton();
+            tabPage2 = new TabPage();
+            sltNumProfesor = new MaterialSkin.Controls.MaterialComboBox();
+            btbAsignarActividad = new MaterialSkin.Controls.MaterialButton();
+            sltActividades = new MaterialSkin.Controls.MaterialComboBox();
+            tablaProfesores = new DataGridView();
+            idProfesor = new DataGridViewTextBoxColumn();
+            nombreEstado = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            nombreActividad = new DataGridViewTextBoxColumn();
+            fechaContratacion = new DataGridViewTextBoxColumn();
+            sueldo = new DataGridViewTextBoxColumn();
+            TabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
+            ((System.ComponentModel.ISupportInitialize)tablaSocios).BeginInit();
+            tbForm.SuspendLayout();
+            tabPage1.SuspendLayout();
+            tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)tablaProfesores).BeginInit();
+            SuspendLayout();
             // 
             // tablaSocios
             // 
-            this.tablaSocios.AllowUserToAddRows = false;
-            this.tablaSocios.AllowUserToDeleteRows = false;
-            this.tablaSocios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tablaSocios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idSocio,
-            this.fechaDeInscripcion,
-            this.fk_IdEstado,
-            this.nombre,
-            this.apellido,
-            this.telefono,
-            this.fechaUltimoPago});
-            this.tablaSocios.Location = new System.Drawing.Point(23, 6);
-            this.tablaSocios.Name = "tablaSocios";
-            this.tablaSocios.ReadOnly = true;
-            this.tablaSocios.RowTemplate.Height = 25;
-            this.tablaSocios.Size = new System.Drawing.Size(743, 238);
-            this.tablaSocios.TabIndex = 0;
+            tablaSocios.AllowUserToAddRows = false;
+            tablaSocios.AllowUserToDeleteRows = false;
+            tablaSocios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            tablaSocios.Columns.AddRange(new DataGridViewColumn[] { idSocio, nombreAbono, fechaDeInscripcion, fk_IdEstado, nombre, apellido, telefono, fechaUltimoPago });
+            tablaSocios.Location = new Point(23, 6);
+            tablaSocios.Name = "tablaSocios";
+            tablaSocios.ReadOnly = true;
+            tablaSocios.RowTemplate.Height = 25;
+            tablaSocios.Size = new Size(845, 246);
+            tablaSocios.TabIndex = 0;
             // 
             // idSocio
             // 
-            this.idSocio.HeaderText = "N° Socio";
-            this.idSocio.Name = "idSocio";
-            this.idSocio.ReadOnly = true;
+            idSocio.HeaderText = "N° Socio";
+            idSocio.Name = "idSocio";
+            idSocio.ReadOnly = true;
+            // 
+            // nombreAbono
+            // 
+            nombreAbono.HeaderText = "Tipo de socio";
+            nombreAbono.Name = "nombreAbono";
+            nombreAbono.ReadOnly = true;
             // 
             // fechaDeInscripcion
             // 
-            this.fechaDeInscripcion.HeaderText = "Socio desde:";
-            this.fechaDeInscripcion.Name = "fechaDeInscripcion";
-            this.fechaDeInscripcion.ReadOnly = true;
+            fechaDeInscripcion.HeaderText = "Socio desde:";
+            fechaDeInscripcion.Name = "fechaDeInscripcion";
+            fechaDeInscripcion.ReadOnly = true;
             // 
             // fk_IdEstado
             // 
-            this.fk_IdEstado.HeaderText = "Estado del socio";
-            this.fk_IdEstado.Name = "fk_IdEstado";
-            this.fk_IdEstado.ReadOnly = true;
+            fk_IdEstado.HeaderText = "Estado del socio";
+            fk_IdEstado.Name = "fk_IdEstado";
+            fk_IdEstado.ReadOnly = true;
             // 
             // nombre
             // 
-            this.nombre.HeaderText = "Nombre";
-            this.nombre.Name = "nombre";
-            this.nombre.ReadOnly = true;
+            nombre.HeaderText = "Nombre";
+            nombre.Name = "nombre";
+            nombre.ReadOnly = true;
             // 
             // apellido
             // 
-            this.apellido.HeaderText = "Apellido";
-            this.apellido.Name = "apellido";
-            this.apellido.ReadOnly = true;
+            apellido.HeaderText = "Apellido";
+            apellido.Name = "apellido";
+            apellido.ReadOnly = true;
             // 
             // telefono
             // 
-            this.telefono.HeaderText = "Telefono";
-            this.telefono.Name = "telefono";
-            this.telefono.ReadOnly = true;
+            telefono.HeaderText = "Telefono";
+            telefono.Name = "telefono";
+            telefono.ReadOnly = true;
             // 
             // fechaUltimoPago
             // 
-            this.fechaUltimoPago.DataPropertyName = "fechaUltimoPago";
-            this.fechaUltimoPago.HeaderText = "Fecha ultimo pago";
-            this.fechaUltimoPago.Name = "fechaUltimoPago";
-            this.fechaUltimoPago.ReadOnly = true;
+            fechaUltimoPago.DataPropertyName = "fechaUltimoPago";
+            fechaUltimoPago.HeaderText = "Fecha ultimo pago";
+            fechaUltimoPago.Name = "fechaUltimoPago";
+            fechaUltimoPago.ReadOnly = true;
             // 
             // lblNumSocio
             // 
-            this.lblNumSocio.AutoSize = true;
-            this.lblNumSocio.Depth = 0;
-            this.lblNumSocio.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblNumSocio.Location = new System.Drawing.Point(23, 255);
-            this.lblNumSocio.MouseState = MaterialSkin.MouseState.HOVER;
-            this.lblNumSocio.Name = "lblNumSocio";
-            this.lblNumSocio.Size = new System.Drawing.Size(204, 19);
-            this.lblNumSocio.TabIndex = 2;
-            this.lblNumSocio.Text = "Seleccionar numero de socio";
-            // 
-            // lblApellido
-            // 
-            this.lblApellido.AutoSize = true;
-            this.lblApellido.Depth = 0;
-            this.lblApellido.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblApellido.Location = new System.Drawing.Point(282, 255);
-            this.lblApellido.MouseState = MaterialSkin.MouseState.HOVER;
-            this.lblApellido.Name = "lblApellido";
-            this.lblApellido.Size = new System.Drawing.Size(135, 19);
-            this.lblApellido.TabIndex = 4;
-            this.lblApellido.Text = "Seleccionar estado";
-            // 
-            // btnActualizarEstado
-            // 
-            this.btnActualizarEstado.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnActualizarEstado.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.btnActualizarEstado.Depth = 0;
-            this.btnActualizarEstado.HighEmphasis = true;
-            this.btnActualizarEstado.Icon = null;
-            this.btnActualizarEstado.Location = new System.Drawing.Point(282, 370);
-            this.btnActualizarEstado.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnActualizarEstado.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnActualizarEstado.Name = "btnActualizarEstado";
-            this.btnActualizarEstado.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btnActualizarEstado.Size = new System.Drawing.Size(109, 36);
-            this.btnActualizarEstado.TabIndex = 5;
-            this.btnActualizarEstado.Text = "Actualizar";
-            this.btnActualizarEstado.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.btnActualizarEstado.UseAccentColor = false;
-            this.btnActualizarEstado.UseVisualStyleBackColor = true;
-            this.btnActualizarEstado.Click += new System.EventHandler(this.btnActualizarEstado_Click);
+            lblNumSocio.AutoSize = true;
+            lblNumSocio.Depth = 0;
+            lblNumSocio.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblNumSocio.Location = new Point(23, 276);
+            lblNumSocio.MouseState = MaterialSkin.MouseState.HOVER;
+            lblNumSocio.Name = "lblNumSocio";
+            lblNumSocio.Size = new Size(204, 19);
+            lblNumSocio.TabIndex = 2;
+            lblNumSocio.Text = "Seleccionar numero de socio";
             // 
             // btnVolver
             // 
-            this.btnVolver.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnVolver.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.btnVolver.Depth = 0;
-            this.btnVolver.HighEmphasis = true;
-            this.btnVolver.Icon = null;
-            this.btnVolver.Location = new System.Drawing.Point(23, 370);
-            this.btnVolver.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnVolver.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnVolver.Name = "btnVolver";
-            this.btnVolver.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btnVolver.Size = new System.Drawing.Size(76, 36);
-            this.btnVolver.TabIndex = 6;
-            this.btnVolver.Text = "Volver";
-            this.btnVolver.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.btnVolver.UseAccentColor = false;
-            this.btnVolver.UseVisualStyleBackColor = true;
-            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
+            btnVolver.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnVolver.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnVolver.Depth = 0;
+            btnVolver.HighEmphasis = true;
+            btnVolver.Icon = null;
+            btnVolver.Location = new Point(792, 328);
+            btnVolver.Margin = new Padding(4, 6, 4, 6);
+            btnVolver.MouseState = MaterialSkin.MouseState.HOVER;
+            btnVolver.Name = "btnVolver";
+            btnVolver.NoAccentTextColor = Color.Empty;
+            btnVolver.Size = new Size(76, 36);
+            btnVolver.TabIndex = 6;
+            btnVolver.Text = "Volver";
+            btnVolver.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnVolver.UseAccentColor = false;
+            btnVolver.UseVisualStyleBackColor = true;
+            btnVolver.Click += btnVolver_Click;
             // 
             // sltNumSocio
             // 
-            this.sltNumSocio.AutoResize = false;
-            this.sltNumSocio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.sltNumSocio.Depth = 0;
-            this.sltNumSocio.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.sltNumSocio.DropDownHeight = 174;
-            this.sltNumSocio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.sltNumSocio.DropDownWidth = 121;
-            this.sltNumSocio.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.sltNumSocio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.sltNumSocio.FormattingEnabled = true;
-            this.sltNumSocio.Hint = "N°Socio";
-            this.sltNumSocio.IntegralHeight = false;
-            this.sltNumSocio.ItemHeight = 43;
-            this.sltNumSocio.Location = new System.Drawing.Point(23, 296);
-            this.sltNumSocio.MaxDropDownItems = 4;
-            this.sltNumSocio.MouseState = MaterialSkin.MouseState.OUT;
-            this.sltNumSocio.Name = "sltNumSocio";
-            this.sltNumSocio.Size = new System.Drawing.Size(204, 49);
-            this.sltNumSocio.StartIndex = 0;
-            this.sltNumSocio.TabIndex = 7;
-            // 
-            // sltEstado
-            // 
-            this.sltEstado.AutoResize = false;
-            this.sltEstado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.sltEstado.Depth = 0;
-            this.sltEstado.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.sltEstado.DropDownHeight = 174;
-            this.sltEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.sltEstado.DropDownWidth = 121;
-            this.sltEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.sltEstado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.sltEstado.FormattingEnabled = true;
-            this.sltEstado.Hint = "Estado";
-            this.sltEstado.IntegralHeight = false;
-            this.sltEstado.ItemHeight = 43;
-            this.sltEstado.Location = new System.Drawing.Point(282, 296);
-            this.sltEstado.MaxDropDownItems = 4;
-            this.sltEstado.MouseState = MaterialSkin.MouseState.OUT;
-            this.sltEstado.Name = "sltEstado";
-            this.sltEstado.Size = new System.Drawing.Size(204, 49);
-            this.sltEstado.StartIndex = 0;
-            this.sltEstado.TabIndex = 8;
+            sltNumSocio.AutoResize = false;
+            sltNumSocio.BackColor = Color.FromArgb(255, 255, 255);
+            sltNumSocio.Depth = 0;
+            sltNumSocio.DrawMode = DrawMode.OwnerDrawVariable;
+            sltNumSocio.DropDownHeight = 174;
+            sltNumSocio.DropDownStyle = ComboBoxStyle.DropDownList;
+            sltNumSocio.DropDownWidth = 121;
+            sltNumSocio.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            sltNumSocio.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            sltNumSocio.FormattingEnabled = true;
+            sltNumSocio.Hint = "N°Socio";
+            sltNumSocio.IntegralHeight = false;
+            sltNumSocio.ItemHeight = 43;
+            sltNumSocio.Location = new Point(23, 315);
+            sltNumSocio.MaxDropDownItems = 4;
+            sltNumSocio.MouseState = MaterialSkin.MouseState.OUT;
+            sltNumSocio.Name = "sltNumSocio";
+            sltNumSocio.Size = new Size(204, 49);
+            sltNumSocio.StartIndex = 0;
+            sltNumSocio.TabIndex = 7;
             // 
             // tbForm
             // 
-            this.tbForm.Controls.Add(this.tabPage1);
-            this.tbForm.Controls.Add(this.tabPage2);
-            this.tbForm.Depth = 0;
-            this.tbForm.Location = new System.Drawing.Point(6, 67);
-            this.tbForm.MouseState = MaterialSkin.MouseState.HOVER;
-            this.tbForm.Multiline = true;
-            this.tbForm.Name = "tbForm";
-            this.tbForm.SelectedIndex = 0;
-            this.tbForm.Size = new System.Drawing.Size(809, 490);
-            this.tbForm.TabIndex = 9;
+            tbForm.Controls.Add(tabPage1);
+            tbForm.Controls.Add(tabPage2);
+            tbForm.Depth = 0;
+            tbForm.Location = new Point(6, 67);
+            tbForm.MouseState = MaterialSkin.MouseState.HOVER;
+            tbForm.Multiline = true;
+            tbForm.Name = "tbForm";
+            tbForm.SelectedIndex = 0;
+            tbForm.Size = new Size(902, 415);
+            tbForm.TabIndex = 9;
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.btnRegistrarPago);
-            this.tabPage1.Controls.Add(this.tablaSocios);
-            this.tabPage1.Controls.Add(this.btnVolver);
-            this.tabPage1.Controls.Add(this.sltEstado);
-            this.tabPage1.Controls.Add(this.btnActualizarEstado);
-            this.tabPage1.Controls.Add(this.lblNumSocio);
-            this.tabPage1.Controls.Add(this.sltNumSocio);
-            this.tabPage1.Controls.Add(this.lblApellido);
-            this.tabPage1.Location = new System.Drawing.Point(4, 24);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(801, 462);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Datos Socios";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            tabPage1.Controls.Add(btnRegistrarPago);
+            tabPage1.Controls.Add(tablaSocios);
+            tabPage1.Controls.Add(btnVolver);
+            tabPage1.Controls.Add(lblNumSocio);
+            tabPage1.Controls.Add(sltNumSocio);
+            tabPage1.Location = new Point(4, 24);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(894, 387);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "Datos Socios";
+            tabPage1.UseVisualStyleBackColor = true;
             // 
             // btnRegistrarPago
             // 
-            this.btnRegistrarPago.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnRegistrarPago.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.btnRegistrarPago.Depth = 0;
-            this.btnRegistrarPago.HighEmphasis = true;
-            this.btnRegistrarPago.Icon = null;
-            this.btnRegistrarPago.Location = new System.Drawing.Point(612, 290);
-            this.btnRegistrarPago.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnRegistrarPago.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnRegistrarPago.Name = "btnRegistrarPago";
-            this.btnRegistrarPago.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btnRegistrarPago.Size = new System.Drawing.Size(142, 36);
-            this.btnRegistrarPago.TabIndex = 9;
-            this.btnRegistrarPago.Text = "Registrar Pago";
-            this.btnRegistrarPago.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.btnRegistrarPago.UseAccentColor = false;
-            this.btnRegistrarPago.UseVisualStyleBackColor = true;
-            this.btnRegistrarPago.Click += new System.EventHandler(this.btnRegistrarPago_Click);
+            btnRegistrarPago.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnRegistrarPago.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnRegistrarPago.Depth = 0;
+            btnRegistrarPago.HighEmphasis = true;
+            btnRegistrarPago.Icon = null;
+            btnRegistrarPago.Location = new Point(253, 328);
+            btnRegistrarPago.Margin = new Padding(4, 6, 4, 6);
+            btnRegistrarPago.MouseState = MaterialSkin.MouseState.HOVER;
+            btnRegistrarPago.Name = "btnRegistrarPago";
+            btnRegistrarPago.NoAccentTextColor = Color.Empty;
+            btnRegistrarPago.Size = new Size(142, 36);
+            btnRegistrarPago.TabIndex = 9;
+            btnRegistrarPago.Text = "Registrar Pago";
+            btnRegistrarPago.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnRegistrarPago.UseAccentColor = false;
+            btnRegistrarPago.UseVisualStyleBackColor = true;
+            btnRegistrarPago.Click += btnRegistrarPago_Click;
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.sltNumProfesor);
-            this.tabPage2.Controls.Add(this.btbAsignarActividad);
-            this.tabPage2.Controls.Add(this.sltActividades);
-            this.tabPage2.Controls.Add(this.tablaProfesores);
-            this.tabPage2.Location = new System.Drawing.Point(4, 24);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(801, 462);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Datos Profesores";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            tabPage2.Controls.Add(sltNumProfesor);
+            tabPage2.Controls.Add(btbAsignarActividad);
+            tabPage2.Controls.Add(sltActividades);
+            tabPage2.Controls.Add(tablaProfesores);
+            tabPage2.Location = new Point(4, 24);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(894, 455);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "Datos Profesores";
+            tabPage2.UseVisualStyleBackColor = true;
             // 
             // sltNumProfesor
             // 
-            this.sltNumProfesor.AutoResize = false;
-            this.sltNumProfesor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.sltNumProfesor.Depth = 0;
-            this.sltNumProfesor.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.sltNumProfesor.DropDownHeight = 174;
-            this.sltNumProfesor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.sltNumProfesor.DropDownWidth = 121;
-            this.sltNumProfesor.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.sltNumProfesor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.sltNumProfesor.FormattingEnabled = true;
-            this.sltNumProfesor.Hint = "Legajo Profesor";
-            this.sltNumProfesor.IntegralHeight = false;
-            this.sltNumProfesor.ItemHeight = 43;
-            this.sltNumProfesor.Location = new System.Drawing.Point(25, 320);
-            this.sltNumProfesor.MaxDropDownItems = 4;
-            this.sltNumProfesor.MouseState = MaterialSkin.MouseState.OUT;
-            this.sltNumProfesor.Name = "sltNumProfesor";
-            this.sltNumProfesor.Size = new System.Drawing.Size(189, 49);
-            this.sltNumProfesor.StartIndex = 0;
-            this.sltNumProfesor.TabIndex = 3;
+            sltNumProfesor.AutoResize = false;
+            sltNumProfesor.BackColor = Color.FromArgb(255, 255, 255);
+            sltNumProfesor.Depth = 0;
+            sltNumProfesor.DrawMode = DrawMode.OwnerDrawVariable;
+            sltNumProfesor.DropDownHeight = 174;
+            sltNumProfesor.DropDownStyle = ComboBoxStyle.DropDownList;
+            sltNumProfesor.DropDownWidth = 121;
+            sltNumProfesor.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            sltNumProfesor.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            sltNumProfesor.FormattingEnabled = true;
+            sltNumProfesor.Hint = "Legajo Profesor";
+            sltNumProfesor.IntegralHeight = false;
+            sltNumProfesor.ItemHeight = 43;
+            sltNumProfesor.Location = new Point(25, 320);
+            sltNumProfesor.MaxDropDownItems = 4;
+            sltNumProfesor.MouseState = MaterialSkin.MouseState.OUT;
+            sltNumProfesor.Name = "sltNumProfesor";
+            sltNumProfesor.Size = new Size(189, 49);
+            sltNumProfesor.StartIndex = 0;
+            sltNumProfesor.TabIndex = 3;
             // 
             // btbAsignarActividad
             // 
-            this.btbAsignarActividad.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btbAsignarActividad.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.btbAsignarActividad.Depth = 0;
-            this.btbAsignarActividad.HighEmphasis = true;
-            this.btbAsignarActividad.Icon = null;
-            this.btbAsignarActividad.Location = new System.Drawing.Point(25, 403);
-            this.btbAsignarActividad.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btbAsignarActividad.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btbAsignarActividad.Name = "btbAsignarActividad";
-            this.btbAsignarActividad.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btbAsignarActividad.Size = new System.Drawing.Size(83, 36);
-            this.btbAsignarActividad.TabIndex = 2;
-            this.btbAsignarActividad.Text = "Asignar";
-            this.btbAsignarActividad.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.btbAsignarActividad.UseAccentColor = false;
-            this.btbAsignarActividad.UseVisualStyleBackColor = true;
-            this.btbAsignarActividad.Click += new System.EventHandler(this.btbAsignarActividad_Click);
+            btbAsignarActividad.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btbAsignarActividad.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btbAsignarActividad.Depth = 0;
+            btbAsignarActividad.HighEmphasis = true;
+            btbAsignarActividad.Icon = null;
+            btbAsignarActividad.Location = new Point(25, 403);
+            btbAsignarActividad.Margin = new Padding(4, 6, 4, 6);
+            btbAsignarActividad.MouseState = MaterialSkin.MouseState.HOVER;
+            btbAsignarActividad.Name = "btbAsignarActividad";
+            btbAsignarActividad.NoAccentTextColor = Color.Empty;
+            btbAsignarActividad.Size = new Size(83, 36);
+            btbAsignarActividad.TabIndex = 2;
+            btbAsignarActividad.Text = "Asignar";
+            btbAsignarActividad.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btbAsignarActividad.UseAccentColor = false;
+            btbAsignarActividad.UseVisualStyleBackColor = true;
+            btbAsignarActividad.Click += btbAsignarActividad_Click;
             // 
             // sltActividades
             // 
-            this.sltActividades.AutoResize = false;
-            this.sltActividades.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.sltActividades.Depth = 0;
-            this.sltActividades.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.sltActividades.DropDownHeight = 174;
-            this.sltActividades.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.sltActividades.DropDownWidth = 121;
-            this.sltActividades.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.sltActividades.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.sltActividades.FormattingEnabled = true;
-            this.sltActividades.Hint = "Actividades";
-            this.sltActividades.IntegralHeight = false;
-            this.sltActividades.ItemHeight = 43;
-            this.sltActividades.Location = new System.Drawing.Point(239, 320);
-            this.sltActividades.MaxDropDownItems = 4;
-            this.sltActividades.MouseState = MaterialSkin.MouseState.OUT;
-            this.sltActividades.Name = "sltActividades";
-            this.sltActividades.Size = new System.Drawing.Size(158, 49);
-            this.sltActividades.StartIndex = 0;
-            this.sltActividades.TabIndex = 1;
+            sltActividades.AutoResize = false;
+            sltActividades.BackColor = Color.FromArgb(255, 255, 255);
+            sltActividades.Depth = 0;
+            sltActividades.DrawMode = DrawMode.OwnerDrawVariable;
+            sltActividades.DropDownHeight = 174;
+            sltActividades.DropDownStyle = ComboBoxStyle.DropDownList;
+            sltActividades.DropDownWidth = 121;
+            sltActividades.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            sltActividades.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            sltActividades.FormattingEnabled = true;
+            sltActividades.Hint = "Actividades";
+            sltActividades.IntegralHeight = false;
+            sltActividades.ItemHeight = 43;
+            sltActividades.Location = new Point(239, 320);
+            sltActividades.MaxDropDownItems = 4;
+            sltActividades.MouseState = MaterialSkin.MouseState.OUT;
+            sltActividades.Name = "sltActividades";
+            sltActividades.Size = new Size(158, 49);
+            sltActividades.StartIndex = 0;
+            sltActividades.TabIndex = 1;
             // 
             // tablaProfesores
             // 
-            this.tablaProfesores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tablaProfesores.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idProfesor,
-            this.nombreEstado,
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.nombreActividad,
-            this.fechaContratacion,
-            this.sueldo});
-            this.tablaProfesores.Location = new System.Drawing.Point(25, 28);
-            this.tablaProfesores.Name = "tablaProfesores";
-            this.tablaProfesores.ReadOnly = true;
-            this.tablaProfesores.RowTemplate.Height = 25;
-            this.tablaProfesores.Size = new System.Drawing.Size(746, 268);
-            this.tablaProfesores.TabIndex = 0;
+            tablaProfesores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            tablaProfesores.Columns.AddRange(new DataGridViewColumn[] { idProfesor, nombreEstado, dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, nombreActividad, fechaContratacion, sueldo });
+            tablaProfesores.Location = new Point(25, 28);
+            tablaProfesores.Name = "tablaProfesores";
+            tablaProfesores.ReadOnly = true;
+            tablaProfesores.RowTemplate.Height = 25;
+            tablaProfesores.Size = new Size(746, 268);
+            tablaProfesores.TabIndex = 0;
             // 
             // idProfesor
             // 
-            this.idProfesor.DataPropertyName = "idProfesor";
-            this.idProfesor.HeaderText = "Legajo N°";
-            this.idProfesor.Name = "idProfesor";
-            this.idProfesor.ReadOnly = true;
+            idProfesor.DataPropertyName = "idProfesor";
+            idProfesor.HeaderText = "Legajo N°";
+            idProfesor.Name = "idProfesor";
+            idProfesor.ReadOnly = true;
             // 
             // nombreEstado
             // 
-            this.nombreEstado.DataPropertyName = "nombreEstado";
-            this.nombreEstado.HeaderText = "Estado";
-            this.nombreEstado.Name = "nombreEstado";
-            this.nombreEstado.ReadOnly = true;
+            nombreEstado.DataPropertyName = "nombreEstado";
+            nombreEstado.HeaderText = "Estado";
+            nombreEstado.Name = "nombreEstado";
+            nombreEstado.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn1
             // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "nombre";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Nombre";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            dataGridViewTextBoxColumn1.DataPropertyName = "nombre";
+            dataGridViewTextBoxColumn1.HeaderText = "Nombre";
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn2
             // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "apellido";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Apellido";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            dataGridViewTextBoxColumn2.DataPropertyName = "apellido";
+            dataGridViewTextBoxColumn2.HeaderText = "Apellido";
+            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
             // nombreActividad
             // 
-            this.nombreActividad.DataPropertyName = "nombreActividad";
-            this.nombreActividad.HeaderText = "Actividad Asignada";
-            this.nombreActividad.Name = "nombreActividad";
-            this.nombreActividad.ReadOnly = true;
+            nombreActividad.DataPropertyName = "nombreActividad";
+            nombreActividad.HeaderText = "Actividad Asignada";
+            nombreActividad.Name = "nombreActividad";
+            nombreActividad.ReadOnly = true;
             // 
             // fechaContratacion
             // 
-            this.fechaContratacion.DataPropertyName = "fechaContratacion";
-            this.fechaContratacion.HeaderText = "F. Contratacion";
-            this.fechaContratacion.Name = "fechaContratacion";
-            this.fechaContratacion.ReadOnly = true;
+            fechaContratacion.DataPropertyName = "fechaContratacion";
+            fechaContratacion.HeaderText = "F. Contratacion";
+            fechaContratacion.Name = "fechaContratacion";
+            fechaContratacion.ReadOnly = true;
             // 
             // sueldo
             // 
-            this.sueldo.DataPropertyName = "sueldo";
-            this.sueldo.HeaderText = "Sueldo";
-            this.sueldo.Name = "sueldo";
-            this.sueldo.ReadOnly = true;
+            sueldo.DataPropertyName = "sueldo";
+            sueldo.HeaderText = "Sueldo";
+            sueldo.Name = "sueldo";
+            sueldo.ReadOnly = true;
             // 
             // TabSelector1
             // 
-            this.TabSelector1.BaseTabControl = this.tbForm;
-            this.TabSelector1.CharacterCasing = MaterialSkin.Controls.MaterialTabSelector.CustomCharacterCasing.Normal;
-            this.TabSelector1.Depth = 0;
-            this.TabSelector1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.TabSelector1.Location = new System.Drawing.Point(357, 47);
-            this.TabSelector1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.TabSelector1.Name = "TabSelector1";
-            this.TabSelector1.Size = new System.Drawing.Size(390, 27);
-            this.TabSelector1.TabIndex = 9;
-            this.TabSelector1.Text = "materialTabSelector1";
+            TabSelector1.BaseTabControl = tbForm;
+            TabSelector1.CharacterCasing = MaterialSkin.Controls.MaterialTabSelector.CustomCharacterCasing.Normal;
+            TabSelector1.Depth = 0;
+            TabSelector1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            TabSelector1.Location = new Point(357, 47);
+            TabSelector1.MouseState = MaterialSkin.MouseState.HOVER;
+            TabSelector1.Name = "TabSelector1";
+            TabSelector1.Size = new Size(390, 27);
+            TabSelector1.TabIndex = 9;
+            TabSelector1.Text = "materialTabSelector1";
             // 
             // FrmConsultaSociosYProfesores
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(821, 578);
-            this.Controls.Add(this.TabSelector1);
-            this.Controls.Add(this.tbForm);
-            this.Name = "FrmConsultaSociosYProfesores";
-            this.Text = "Ver Socios";
-            ((System.ComponentModel.ISupportInitialize)(this.tablaSocios)).EndInit();
-            this.tbForm.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaProfesores)).EndInit();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(927, 484);
+            Controls.Add(TabSelector1);
+            Controls.Add(tbForm);
+            Name = "FrmConsultaSociosYProfesores";
+            Text = "Ver Socios";
+            ((System.ComponentModel.ISupportInitialize)tablaSocios).EndInit();
+            tbForm.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
+            tabPage1.PerformLayout();
+            tabPage2.ResumeLayout(false);
+            tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)tablaProfesores).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
 
         private DataGridView tablaSocios;
         private MaterialSkin.Controls.MaterialLabel lblNumSocio;
-        private MaterialSkin.Controls.MaterialLabel lblApellido;
-        private MaterialSkin.Controls.MaterialButton btnActualizarEstado;
         private MaterialSkin.Controls.MaterialButton btnVolver;
         private MaterialSkin.Controls.MaterialComboBox sltNumSocio;
-        private MaterialSkin.Controls.MaterialComboBox sltEstado;
         private MaterialSkin.Controls.MaterialTabControl tbForm;
         private TabPage tabPage1;
         private TabPage tabPage2;
@@ -490,16 +418,17 @@
         private DataGridViewTextBoxColumn nombreActividad;
         private DataGridViewTextBoxColumn fechaContratacion;
         private DataGridViewTextBoxColumn sueldo;
+        private MaterialSkin.Controls.MaterialButton btnRegistrarPago;
+        private MaterialSkin.Controls.MaterialComboBox sltNumProfesor;
+        private MaterialSkin.Controls.MaterialButton btbAsignarActividad;
+        private MaterialSkin.Controls.MaterialComboBox sltActividades;
         private DataGridViewTextBoxColumn idSocio;
+        private DataGridViewTextBoxColumn nombreAbono;
         private DataGridViewTextBoxColumn fechaDeInscripcion;
         private DataGridViewTextBoxColumn fk_IdEstado;
         private DataGridViewTextBoxColumn nombre;
         private DataGridViewTextBoxColumn apellido;
         private DataGridViewTextBoxColumn telefono;
         private DataGridViewTextBoxColumn fechaUltimoPago;
-        private MaterialSkin.Controls.MaterialButton btnRegistrarPago;
-        private MaterialSkin.Controls.MaterialComboBox sltNumProfesor;
-        private MaterialSkin.Controls.MaterialButton btbAsignarActividad;
-        private MaterialSkin.Controls.MaterialComboBox sltActividades;
     }
 }
