@@ -29,6 +29,8 @@ namespace Gimnasio.GUI.Pantallas
             materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Orange700, MaterialSkin.Primary.Orange600, MaterialSkin.Primary.Orange600, MaterialSkin.Accent.Orange400, MaterialSkin.TextShade.WHITE);
 
             InitializeComponent();
+
+            obtenerActividades();
         }
 
         private void llenarTableActividades(ActividadAdmin actividad)

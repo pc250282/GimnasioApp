@@ -33,11 +33,13 @@
             lblNumSocio = new MaterialSkin.Controls.MaterialLabel();
             materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             sltMdp = new MaterialSkin.Controls.MaterialComboBox();
-            materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            lblTitulo = new MaterialSkin.Controls.MaterialLabel();
             lblMontoPago = new MaterialSkin.Controls.MaterialLabel();
             btnVolver = new MaterialSkin.Controls.MaterialButton();
             btnRegistrarPago = new MaterialSkin.Controls.MaterialButton();
             lblNombre = new MaterialSkin.Controls.MaterialLabel();
+            lblAbonoNuevo = new MaterialSkin.Controls.MaterialLabel();
+            lblNuevoValor = new MaterialSkin.Controls.MaterialLabel();
             SuspendLayout();
             // 
             // lblApellidoSocio
@@ -111,17 +113,17 @@
             sltMdp.StartIndex = 0;
             sltMdp.TabIndex = 9;
             // 
-            // materialLabel2
+            // lblTitulo
             // 
-            materialLabel2.AutoSize = true;
-            materialLabel2.Depth = 0;
-            materialLabel2.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel2.Location = new Point(260, 228);
-            materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel2.Name = "materialLabel2";
-            materialLabel2.Size = new Size(109, 19);
-            materialLabel2.TabIndex = 11;
-            materialLabel2.Text = "Monto a pagar:";
+            lblTitulo.AutoSize = true;
+            lblTitulo.Depth = 0;
+            lblTitulo.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblTitulo.Location = new Point(260, 228);
+            lblTitulo.MouseState = MaterialSkin.MouseState.HOVER;
+            lblTitulo.Name = "lblTitulo";
+            lblTitulo.Size = new Size(109, 19);
+            lblTitulo.TabIndex = 11;
+            lblTitulo.Text = "Monto a pagar:";
             // 
             // lblMontoPago
             // 
@@ -187,16 +189,42 @@
             lblNombre.TabIndex = 15;
             lblNombre.Text = "lblNombre";
             // 
+            // lblAbonoNuevo
+            // 
+            lblAbonoNuevo.AutoSize = true;
+            lblAbonoNuevo.Depth = 0;
+            lblAbonoNuevo.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblAbonoNuevo.Location = new Point(71, 181);
+            lblAbonoNuevo.MouseState = MaterialSkin.MouseState.HOVER;
+            lblAbonoNuevo.Name = "lblAbonoNuevo";
+            lblAbonoNuevo.Size = new Size(109, 19);
+            lblAbonoNuevo.TabIndex = 16;
+            lblAbonoNuevo.Text = "lblAbonoNuevo";
+            // 
+            // lblNuevoValor
+            // 
+            lblNuevoValor.AutoSize = true;
+            lblNuevoValor.Depth = 0;
+            lblNuevoValor.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblNuevoValor.Location = new Point(260, 181);
+            lblNuevoValor.MouseState = MaterialSkin.MouseState.HOVER;
+            lblNuevoValor.Name = "lblNuevoValor";
+            lblNuevoValor.Size = new Size(100, 19);
+            lblNuevoValor.TabIndex = 17;
+            lblNuevoValor.Text = "lblNuevoValor";
+            // 
             // FrmRegistrarPago
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(519, 423);
+            Controls.Add(lblNuevoValor);
+            Controls.Add(lblAbonoNuevo);
             Controls.Add(lblNombre);
             Controls.Add(btnRegistrarPago);
             Controls.Add(btnVolver);
             Controls.Add(lblMontoPago);
-            Controls.Add(materialLabel2);
+            Controls.Add(lblTitulo);
             Controls.Add(sltMdp);
             Controls.Add(materialLabel1);
             Controls.Add(lblNumSocio);
@@ -215,10 +243,12 @@
         private MaterialSkin.Controls.MaterialLabel lblNumSocio;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private MaterialSkin.Controls.MaterialComboBox sltMdp;
-        private MaterialSkin.Controls.MaterialLabel materialLabel2;
+        private MaterialSkin.Controls.MaterialLabel lblTitulo;
         private MaterialSkin.Controls.MaterialLabel lblMontoPago;
         private MaterialSkin.Controls.MaterialButton btnVolver;
         private MaterialSkin.Controls.MaterialButton btnRegistrarPago;
         private MaterialSkin.Controls.MaterialLabel lblNombre;
+        private MaterialSkin.Controls.MaterialLabel lblAbonoNuevo;
+        private MaterialSkin.Controls.MaterialLabel lblNuevoValor;
     }
 }

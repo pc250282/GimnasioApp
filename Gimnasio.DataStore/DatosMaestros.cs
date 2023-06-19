@@ -15,13 +15,13 @@ namespace Gimnasio.DataStore
             string sql = "SELECT S.IdSocio,S.fechaDeInscripcion,S.fechaUltimoPago,S.fk_IdAbonoSocio, "
                         + "P.dni,P.nombre,P.apellido,P.telefono,P.direccion,"
                         + "E.nombreEstado,"
-                        + "G.nombreGenero,"
+                        + "G.nombreGenero, "
                         + "ASO.nombreAbono "
                         + "FROM Socio S "
                         + "INNER JOIN Persona P ON S.fk_idPersona = P.idPersona "
                         + "INNER JOIN Estado E ON S.fk_IdEstado = E.IdEstado "
                         + "INNER JOIN Genero G ON P.fk_IdGenero = G.IdGenero "
-                        + "INNER JOIN AbonoSocio ASO ON S.fk_IdAbonoSocio = ASO.IdAbonoSocio";
+                        + "LEFT JOIN AbonoSocio ASO ON S.fk_IdAbonoSocio = ASO.IdAbonoSocio";
             LstSocios = dbOperation.OperationQuery<SocioAdmin>(sql);
             return LstSocios;
         }
@@ -38,10 +38,9 @@ namespace Gimnasio.DataStore
                         + "INNER JOIN Persona P ON S.fk_idPersona = P.idPersona "
                         + "INNER JOIN Estado E ON S.fk_IdEstado = E.IdEstado "
                         + "INNER JOIN Genero G ON P.fk_IdGenero = G.IdGenero "
-                        + "INNER JOIN AbonoSocio ASO ON S.fk_IdAbonoSocio = ASO.IdAbonoSocio "
-                        + "WHERE S.IdSocio ="+idSocio;
-            //socio = dbOperation.OperationQueryById2<SocioAdmin>(sql, new {IdSocio = idSocio});
-            socio = dbOperation.OperationQueryById<SocioAdmin>(sql);
+                        + "LEFT JOIN AbonoSocio ASO ON S.fk_IdAbonoSocio = ASO.IdAbonoSocio "
+                        + "WHERE S.IdSocio = @IdSocio";
+            socio = dbOperation.OperationQueryById2<SocioAdmin>(sql, new {IdSocio = idSocio});
             return socio;
         }
         
@@ -71,7 +70,8 @@ namespace Gimnasio.DataStore
                         + "PR.fk_idActividad "
                         + "FROM Actividad ACT "
                         + "INNER JOIN Abono AB ON ACT.fk_idAbono = AB.idAbono "
-                        + "INNER JOIN Persona P ON PR.fk_idPersona =P.idPersona ";
+                        + "INNER JOIN Persona P ON PR.fk_idPersona =P.idPersona "
+                        + "INNER JOIN Profesor PR ON PR.IdProfesor = P.idPersona ";
             LstActividades = dbOperation.OperationQuery<ActividadAdmin>(sql);
             return LstActividades;
         }
@@ -158,18 +158,38 @@ namespace Gimnasio.DataStore
             return result;
         }
 
-        public int InsertSocio(int idPersona)
+        public int InsertSocioSinAbono(int idPersona)
         {
 
-            string sql = "INSERT INTO Socio (fk_idPersona, fechaDeInscripcion,fechaUltimoPago, fk_IdEstado)  Values" +
-                "(@fk_idPersona, @fechaDeInscripcion, @fechaUltimoPago,@fk_IdEstado)";
+            string sql = "INSERT INTO Socio (fk_idPersona, fechaDeInscripcion, fk_IdEstado)  Values" +
+                "(@fk_idPersona, @fechaDeInscripcion, @fk_IdEstado)";
 
             Object paramList = new
             {
                 fk_idPersona = idPersona,
                 fechaDeInscripcion = DateTime.Now,
-                fechaUltimoPago= DateTime.Now,
-                fk_IdEstado = 1
+                fk_IdEstado = 2
+            };
+
+            int result = dbOperation.OperationExecute(sql, paramList);
+
+            return result;
+
+        }
+
+        public int InsertSocioConAbono(int idPersona, int fk_IdAbonoSocio)
+        {
+
+            string sql = "INSERT INTO Socio (fk_idPersona, fechaDeInscripcion,fechaUltimoPago, fk_IdEstado, fk_IdAbonoSocio)  Values" +
+                "(@fk_idPersona, @fechaDeInscripcion, @fechaUltimoPago,@fk_IdEstado,@fk_IdAbonoSocio)";
+
+            Object paramList = new
+            {
+                fk_idPersona = idPersona,
+                fechaDeInscripcion = DateTime.Now,
+                fechaUltimoPago = DateTime.Now,
+                fk_IdEstado = 1,
+                fk_IdAbonoSocio = fk_IdAbonoSocio
             };
 
             int result = dbOperation.OperationExecute(sql, paramList);
@@ -244,13 +264,13 @@ namespace Gimnasio.DataStore
 
         }
 
-        public int EditarAbonoSocio(int idSocio, SocioDto socio )
+        public int EditarAbonoSocio(int idSocio, int idAbonoSocio, int idEstado )
         {
             string sql = "UPDATE Socio SET fk_IdAbonoSocio = @fk_IdAbonoSocio, fk_IdEstado = @fk_IdEstado WHERE idSocio = @idSocio";
             Object paramList = new { 
                 idSocio = idSocio,
-                fk_IdEstado=socio.fk_IdEstado,
-                fk_IdAbonoSocio=socio.fk_IdAbonoSocio 
+                fk_IdEstado=idEstado,
+                fk_IdAbonoSocio=idAbonoSocio 
                 };
 
             int affectedRows = dbOperation.OperationExecute(sql, paramList);
@@ -286,7 +306,7 @@ namespace Gimnasio.DataStore
                 montoPago = nuevoPago.montoPago,
                 fechaPago = nuevoPago.fechaPago,
                 fk_Socio_id=nuevoPago.fk_Socio_id,
-                fk_Mdp_id=nuevoPago.fk_idMdp,
+                fk_Mdp_id=nuevoPago.fk_Mdp_id,
                 fk_AbonoCobrado_id=nuevoPago.fk_AbonoCobrado_id
             };
 
@@ -295,7 +315,75 @@ namespace Gimnasio.DataStore
             return result;
         }
 
-        
+        public List<PagoDto> GetPagos()
+        {
+            List<PagoDto> LstPagos = new List<PagoDto>();
+            string sql = "SELECT PG.IdPago,PG.montoPago,PG.fechaPago, "
+                        + "P.dni,P.nombre,P.apellido,"
+                        + "S.IdSocio,"
+                        + "ASO.nombreAbono,"
+                        + "MDP.nombreMdp "
+                        + "FROM Pagos PG "
+                        + "INNER JOIN Socio S ON PG.fk_Socio_id = S.IdSocio "
+                        + "INNER JOIN Persona P ON S.fk_idPersona = P.idPersona "
+                        + "INNER JOIN AbonoSocio ASO ON PG.fk_AbonoCobrado_id = ASO.IdAbonoSocio "
+                        + "INNER JOIN MediosDePagos MDP ON PG.fk_Mdp_id = MDP.idMdp";
+            LstPagos = dbOperation.OperationQuery<PagoDto>(sql);
+            return LstPagos;
+        }
+
+        public PagoDto GetPagoById(int idPago)
+        {
+            PagoDto pago;
+            string sql = "SELECT PG.IdPago,PG.montoPago,PG.fechaPago, "
+                        + "P.dni,P.nombre,P.apellido,"
+                        + "S.IdSocio,"
+                        + "ASO.nombreAbono,"
+                        + "MDP.nombreMdp "
+                        + "FROM Pagos PG "
+                        + "INNER JOIN Socio S ON PG.fk_Socio_id = S.IdSocio "
+                        + "INNER JOIN Persona P ON S.fk_idPersona = P.idPersona "
+                        + "INNER JOIN AbonoSocio ASO ON PG.fk_AbonoCobrado_id = ASO.IdAbonoSocio "
+                        + "INNER JOIN MediosDePagos MDP ON PG.fk_Mdp_id = MDP.idMdp "
+                        + "WHERE PG.IdPago = @IdPago";
+            pago = dbOperation.OperationQueryById2<PagoDto>(sql, new { IdPago = idPago });
+            return pago;
+        }
+
+        public int EditarFormaDePago(int idPago, int idMdp)
+        {
+            string sql = "UPDATE Pagos SET fk_Mdp_id = @fk_Mdp_id WHERE IdPago = @IdPago";
+            Object paramList = new { IdPago = idPago, fk_Mdp_id = idMdp };
+            int affectedRows = dbOperation.OperationExecute(sql, paramList);
+
+            return affectedRows;
+        }
+
+        public AbonoSocio GetAbonoSociosById(int idAbonoSocio)
+        {
+            AbonoSocio abono;
+            string sql = "SELECT IdAbonoSocio,nombreAbono,valor FROM AbonoSocio WHERE IdAbonoSocio=@idAbonoSocio";
+            abono = dbOperation.OperationQueryById2<AbonoSocio>(sql, new {idAbonoSocio = idAbonoSocio });
+            return abono;
+        }
+
+        public Pagos GetPagoBySocioId(int idSocio)
+        {
+            Pagos pago;
+            string sql = "SELECT PG.IdPago,PG.montoPago,PG.fechaPago, "
+                        + "P.dni,P.nombre,P.apellido,"
+                        + "S.IdSocio,"
+                        + "ASO.nombreAbono,"
+                        + "MDP.nombreMdp "
+                        + "FROM Pagos PG "
+                        + "INNER JOIN Socio S ON PG.fk_Socio_id = S.IdSocio "
+                        + "INNER JOIN Persona P ON S.fk_idPersona = P.idPersona "
+                        + "INNER JOIN AbonoSocio ASO ON PG.fk_AbonoCobrado_id = ASO.IdAbonoSocio "
+                        + "INNER JOIN MediosDePagos MDP ON PG.fk_Mdp_id = MDP.idMdp "
+                        + "WHERE PG.fk_Socio_id = @fk_Socio_id";
+            pago = dbOperation.OperationQueryById2<Pagos>(sql, new { fk_Socio_id = idSocio });
+            return pago;
+        }
     }
 }
 

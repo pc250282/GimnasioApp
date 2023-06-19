@@ -37,7 +37,7 @@ namespace Gimnasio.DataStore
             T result;
             using (var connection = new SqlConnection(ConnectionString))
             {
-                result = connection.Query<T>(sqlQuery).First();
+                result = connection.Query<T>(sqlQuery, paramList).First();
             }
             return result;
         }

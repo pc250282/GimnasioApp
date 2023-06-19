@@ -27,5 +27,24 @@ namespace Gimnasio.Services
             return datosMaestros.GetHistorialDePagos();
         }
 
+        public List<PagoDto> getPagos()
+        {
+            return datosMaestros.GetPagos();
+        }
+
+        public PagoDto getPagoById(int idPago) 
+        {
+            return datosMaestros.GetPagoById(idPago);
+        }
+
+        public int editarFormaDePago(int idPago, int idMdp)
+        {
+            return datosMaestros.EditarFormaDePago(idPago, idMdp);
+        }
+
+        public Pagos getPagoByIdSocio(int idSocio)
+        {
+            return datosMaestros.GetPagoBySocioId(idSocio);
+        }
     }
 }

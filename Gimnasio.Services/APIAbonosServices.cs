@@ -17,5 +17,12 @@ namespace Gimnasio.Services
         {
             return datosMaestros.GetAbonoSocios();
         }
+
+        public AbonoSocio getAbonoById(int idAbonoSocio)
+        {
+            return datosMaestros.GetAbonoSociosById(idAbonoSocio);
+        }
+
+        
     }
 }

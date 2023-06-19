@@ -35,7 +35,7 @@ namespace Gimnasio.GUI
 
         private void btbBuscarSocio_Click(object sender, EventArgs e)
         {
-            FrmConsultaSociosYProfesores menuConsultaSocio = new FrmConsultaSociosYProfesores();
+            FrmConsultaSocios menuConsultaSocio = new FrmConsultaSocios();
             menuConsultaSocio.Show();
             this.Hide();
         }
@@ -49,15 +49,22 @@ namespace Gimnasio.GUI
 
         private void btnCrearActividad_Click(object sender, EventArgs e)
         {
-            FrmActividades frmActividades= new FrmActividades();
+            FrmActividades frmActividades = new FrmActividades();
             frmActividades.Show();
             this.Hide();
         }
 
         private void btnVerActividades_Click(object sender, EventArgs e)
         {
-            FrmConsultaActividadesAbonos frmConsultaActividadesAbonos=new FrmConsultaActividadesAbonos();
+            FrmConsultaActividadesAbonos frmConsultaActividadesAbonos = new FrmConsultaActividadesAbonos();
             frmConsultaActividadesAbonos.Show();
+            this.Hide();
+        }
+
+        private void btnBuscarProfesores_Click(object sender, EventArgs e)
+        {
+            FrmConsultaProfesores frmConsultaProfesores = new FrmConsultaProfesores();
+            frmConsultaProfesores.Show();
             this.Hide();
         }
     }

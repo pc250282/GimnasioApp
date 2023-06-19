@@ -23,6 +23,7 @@ namespace Gimnasio.GUI.Pantallas
         private APISocioServices sociosServices = new APISocioServices();
         private float montoApagar;
         private int fk_AbonoSocio;
+        private DateTime fechaActual = DateTime.Now;
         public FrmRegistrarPago()
         {
             InitializeComponent();
@@ -44,13 +45,45 @@ namespace Gimnasio.GUI.Pantallas
             //materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Indigo500, MaterialSkin.Primary.Indigo700, MaterialSkin.Primary.Indigo100, MaterialSkin.Accent.Blue400, MaterialSkin.TextShade.WHITE);
             materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Orange700, MaterialSkin.Primary.Orange600, MaterialSkin.Primary.Orange600, MaterialSkin.Accent.Orange400, MaterialSkin.TextShade.WHITE);
             this.socio = socio;
+            lblAbonoNuevo.Visible = false;
             lblNumSocio.Text = "N° de socio: " + socio.IdSocio.ToString();
             lblApellidoSocio.Text = "Apellido: " + socio.apellido.ToString();
-            lblAbonoSocio.Text = "Abono: " + socio.nombreAbono.ToString();
-            lblNombre.Text= "Nombre: " + socio.nombre.ToString();
+            if (socio.nombreAbono != null)
+            {
+                lblAbonoSocio.Text = "Abono: " + socio.nombreAbono.ToString();
+            }
+            else
+            {
+                socio.nombreAbono = "Sin abono";
+                lblAbonoSocio.Text = "Abono: " + socio.nombreAbono.ToString();
+            }
+
+            lblNombre.Text = "Nombre: " + socio.nombre.ToString();
             obtenerMdp();
             obtenerAbonoAcobrar();
-  
+        }
+
+        public FrmRegistrarPago(SocioAdmin socio, int IdAbonoSocio)
+        {
+            InitializeComponent();
+            materialSkinManager = MaterialSkin.MaterialSkinManager.Instance;
+            materialSkinManager.EnforceBackcolorOnAllComponents = true;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.LIGHT;
+            //materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Indigo500, MaterialSkin.Primary.Indigo700, MaterialSkin.Primary.Indigo100, MaterialSkin.Accent.Blue400, MaterialSkin.TextShade.WHITE);
+            materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Orange700, MaterialSkin.Primary.Orange600, MaterialSkin.Primary.Orange600, MaterialSkin.Accent.Orange400, MaterialSkin.TextShade.WHITE);
+            this.socio = socio;
+            lblNumSocio.Text = "N° de socio: " + socio.IdSocio.ToString();
+            lblApellidoSocio.Text = "Apellido: " + socio.apellido.ToString();
+            lblAbonoSocio.Text = $"Abono actual:  {socio.nombreAbono.ToString()} ";
+            btnRegistrarPago.Text = "ACTUALIZAR ABONO";
+            lblTitulo.Text = "Valor total del abono: ";
+
+
+            lblNombre.Text = "Nombre: " + socio.nombre.ToString();
+            obtenerMdp();
+            obtenerAbonoNuevo(IdAbonoSocio);
+
         }
 
         public void obtenerMdp()
@@ -73,10 +106,72 @@ namespace Gimnasio.GUI.Pantallas
                     lblMontoPago.Text = " $ " + abono.valor.ToString();
                     montoApagar = abono.valor;
                     fk_AbonoSocio = abono.IdAbonoSocio;
+
                 }
             }
+
         }
 
+        public Pagos obtenerPagoAnterior(int IdAbonoSocio)
+        {
+            Pagos pagoAnterior = pagosServices.getPagoByIdSocio(IdAbonoSocio);
+            return pagoAnterior;
+        }
+
+        public void obtenerAbonoNuevo(int IdAbonoSocio)
+        {
+            List<AbonoSocio> lstAbonos = abonosServices.getAbonosSocios();
+            foreach (AbonoSocio abono in lstAbonos)
+            {
+                if (abono.IdAbonoSocio == IdAbonoSocio)
+                {
+                    lblMontoPago.Text = " $ " + abono.valor.ToString();
+                    montoApagar = abono.valor;
+                    fk_AbonoSocio = abono.IdAbonoSocio;
+                    lblAbonoNuevo.Text = $"Abono nuevo: {abono.nombreAbono.ToString()}";
+                    montoApagar = abono.valor;
+                    lblNuevoValor.Text = $"Dif. a pagar: -${calculoDePago(montoApagar).ToString()} ";
+                }
+            }
+
+        }
+
+        public double calculoDePago(double valor)
+        {
+            Pagos pagoAnterior = obtenerPagoAnterior(socio.IdSocio);
+            TimeSpan diferencia = fechaActual.Subtract(socio.fechaUltimoPago);
+            int difDiasPendientes = (int)Math.Round(30 - (diferencia.TotalDays));
+            int diasApagar = 30 - difDiasPendientes;
+            double valorAbonoEnDias = valor / 30;
+            double montoYaAbonado = pagoAnterior.montoPago;
+            double valorDePago = Math.Round(valor - (diasApagar * valorAbonoEnDias) - montoYaAbonado);
+            return valorDePago;
+        }
+
+        public void registrarPagoParcial()
+        {
+            DateTime fechaActual = DateTime.Now;
+
+            Pagos nuevoPago = new Pagos()
+            {
+                fechaPago = fechaActual,
+                montoPago = montoApagar,
+                fk_Socio_id = socio.IdSocio,
+                fk_Mdp_id = int.Parse(sltMdp.SelectedValue.ToString()),
+                fk_AbonoCobrado_id = fk_AbonoSocio
+            };
+            int idPagoRegistrado = pagosServices.insertPago(nuevoPago);
+            if (idPagoRegistrado >= 1)
+            {
+                int idEstado = 4; //Asinamos : Activo-cambio de abono reciente
+                MaterialMessageBox.Show($"Se registro el pago del socio N° {socio.IdSocio.ToString()}, el N° de recibo es:{idPagoRegistrado} ");
+                int resultado = sociosServices.editarAbonoSocio(socio.IdSocio, fk_AbonoSocio,idEstado);
+            }
+            else
+            {
+                MaterialMessageBox.Show($"Ocurrió un error registrando el pago del socio: {socio.nombre}");
+            }
+        }
         public void registrarPago()
         {
             DateTime fechaActual = DateTime.Now;
@@ -86,7 +181,7 @@ namespace Gimnasio.GUI.Pantallas
                 fechaPago = fechaActual,
                 montoPago = montoApagar,
                 fk_Socio_id = socio.IdSocio,
-                fk_idMdp = int.Parse(sltMdp.SelectedValue.ToString()),
+                fk_Mdp_id = int.Parse(sltMdp.SelectedValue.ToString()),
                 fk_AbonoCobrado_id = fk_AbonoSocio
             };
             int idPagoRegistrado = pagosServices.insertPago(nuevoPago);
@@ -104,13 +199,21 @@ namespace Gimnasio.GUI.Pantallas
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Close();
-            new FrmConsultaSociosYProfesores().Show();
+            new FrmConsultaSocios().Show();
 
         }
 
         private void btnRegistrarPago_Click(object sender, EventArgs e)
         {
-            registrarPago();
+            if(btnRegistrarPago.Text=="ACTUALIZAR ABONO")
+            {
+                registrarPagoParcial();
+            }
+            else
+            {
+                registrarPago();
+            }
+            
         }
     }
 }

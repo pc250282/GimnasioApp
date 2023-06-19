@@ -13,15 +13,15 @@ namespace GimnasioApp.WebApi.Controllers
         APISocioServices sociosService = new APISocioServices();
         // GET: api/<SocioController>
         [HttpGet]
-        [Route("/Socios/Todos")]
+        [Route("/socios/allSocios")]
         public IEnumerable<SocioAdmin> GetAllSocios()
         {
             return sociosService.getSocios();
         }
 
         // GET by Id action
-        [HttpGet("/Socios/{id}")]
-        //[Route("/BuscarSociosPorID")]
+        [HttpGet]
+        [Route("/socios/socioById")]
         public ActionResult<SocioAdmin> GetById(int id)
         {
             var socio = sociosService.getSocioById(id);
@@ -35,7 +35,7 @@ namespace GimnasioApp.WebApi.Controllers
 
         // POST api/<SocioController>
         [HttpPost]
-        //[Route("CrearSocio")]
+        [Route("/socios/crearSocio")]
         public void crearSocio(Persona newPerson)
         {
             int idPerson=sociosService.insertPersona(newPerson);

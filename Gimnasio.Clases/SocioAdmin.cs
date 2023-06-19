@@ -18,7 +18,7 @@ namespace Gimnasio.Clases
         public DateTime fechaDeInscripcion { get; set; }
         public string nombreEstado { get; set; }
         public DateTime fechaUltimoPago { get; set; }
-        public string nombreAbono { get; set; }
+        public string? nombreAbono { get; set; }
         public int fk_IdAbonoSocio { get; set; }
 
     }

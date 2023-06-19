@@ -38,9 +38,14 @@ namespace Gimnasio.Services
             return datosMaestros.InsertPersona(nuevaPersona);
         }
 
-        public int insertSocio(int idPersona)
+        public int insertSocioSinAbono(int idPersona)
         {
-            return datosMaestros.InsertSocio(idPersona);
+            return datosMaestros.InsertSocioSinAbono(idPersona);
+        }
+
+        public int insertSocioConAbono(int idPersona, int fk_IdAbonoSocio)
+        {
+            return datosMaestros.InsertSocioConAbono(idPersona, fk_IdAbonoSocio);
         }
 
         public int insertActividad(Actividad nuevaActividad)
@@ -87,9 +92,9 @@ namespace Gimnasio.Services
             return datosMaestros.ActualizarFechaPagoSocio(idSocio, fechaUltimoPago);
         }
 
-        public int editarAbonoSocio (int idSocio, SocioDto socio)
+        public int editarAbonoSocio (int idSocio, int idAbonoSocio, int idEstado)
         {
-            return datosMaestros.EditarAbonoSocio(idSocio, socio);
+            return datosMaestros.EditarAbonoSocio(idSocio, idAbonoSocio, idEstado);
         }
         
 

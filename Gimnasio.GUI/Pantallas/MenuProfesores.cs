@@ -17,7 +17,7 @@ namespace Gimnasio.GUI
     public partial class MenuProfesores : MaterialForm
     {
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
-        APISocioServices securityServices=new APISocioServices();
+        APISocioServices securityServices = new APISocioServices();
 
         public MenuProfesores()
         {
@@ -69,16 +69,16 @@ namespace Gimnasio.GUI
                 {
                     //fk_IdEstado=int.Parse(sltEstado.SelectedValue.ToString())
                     fk_idActividad = int.Parse(sltActividad.SelectedValue.ToString()),
-                    fechaContratacion=DateTime.Now,
-                    sueldo=0.0
+                    fechaContratacion = DateTime.Now,
+                    sueldo = 0.0
 
                 };
 
                 int idPersona = securityServices.insertPersona(nuevaPersona);
                 int insertResult = securityServices.insertProfesor(idPersona, profesorNuevo);
-                
-                
-                MaterialMessageBox.Show("El profesor : " + profesorNuevo.nombre + " " + profesorNuevo.apellido+ " se registro con exito");
+
+
+                MaterialMessageBox.Show("El profesor : " + profesorNuevo.nombre + " " + profesorNuevo.apellido + " se registro con exito");
 
             }
             catch (Exception error)
@@ -107,8 +107,8 @@ namespace Gimnasio.GUI
         private bool validacionDeCampos()
         {
             bool resultado = false;
-            if (txtNombre.Text.Trim().Length>=1 && txtApellido.Text.Trim().Length>=1 && txtDNI.Text.Trim().Length>=1 
-                && txtTelefono.Text.Trim().Length>=1 && txtDireccion.Text.Trim().Length >= 1)
+            if (txtNombre.Text.Trim().Length >= 1 && txtApellido.Text.Trim().Length >= 1 && txtDNI.Text.Trim().Length >= 1
+                && txtTelefono.Text.Trim().Length >= 1 && txtDireccion.Text.Trim().Length >= 1)
             {
                 resultado = true;
             }

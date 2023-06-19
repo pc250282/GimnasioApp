@@ -10,6 +10,7 @@ namespace Gimnasio.GUI
     {
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
         APISocioServices securityServices = new APISocioServices();
+        APIAbonosServices abonosServices = new APIAbonosServices();
         public MenuCargaSocio()
         {
             InitializeComponent();
@@ -19,9 +20,9 @@ namespace Gimnasio.GUI
             materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Orange700, MaterialSkin.Primary.Orange600, MaterialSkin.Primary.Orange600, MaterialSkin.Accent.Orange400, MaterialSkin.TextShade.WHITE);
 
-            obtenerEstados();
+            obtenerAbonos();
             obtenerGeneros();
-         
+
         }
 
         public void obtenerGeneros()
@@ -32,42 +33,64 @@ namespace Gimnasio.GUI
             sltGenero.ValueMember = "IdGenero";
             sltGenero.DataSource = lstGenero;
         }
-        public void obtenerEstados()
+        public void obtenerAbonos()
         {
-            List<Estado> lstEstado = securityServices.getEstado();
-            
-            sltEstado.DisplayMember = "nombreEstado";
-            sltEstado.ValueMember = "idEstado";
-            sltEstado.DataSource = lstEstado;
+            List<AbonoSocio> lstAbonosDisponibles = abonosServices.getAbonosSocios();
+
+            sltAbono.DisplayMember = "nombreAbono";
+            sltAbono.ValueMember = "idAbonoSocio";
+            sltAbono.DataSource = lstAbonosDisponibles;
         }
 
         private void ingresoSocioNuevo()
         {
+            int fk_IdAbonoSocio = 0;
+            int insertResult = 0;
             try
             {
                 Persona nuevaPersona = new Persona()
                 {
-                    nombre=txtNombre.Text,
-                    apellido=txtApellido.Text,
-                    dni=txtDNI.Text,
-                    telefono=txtTelefono.Text,
-                    direccion=txtDireccion.Text,
-                    fk_IdGenero=int.Parse(sltGenero.SelectedValue.ToString()),
-                    fechaNacimiento=sltFechaNacimiento.Value!=null? sltFechaNacimiento.Value: new DateTime(2022,28,05),
+                    nombre = txtNombre.Text,
+                    apellido = txtApellido.Text,
+                    dni = txtDNI.Text,
+                    telefono = txtTelefono.Text,
+                    direccion = txtDireccion.Text,
+                    fk_IdGenero = int.Parse(sltGenero.SelectedValue.ToString()),
+                    fechaNacimiento = sltFechaNacimiento.Value != null ? sltFechaNacimiento.Value : new DateTime(2022, 28, 05),
 
 
                 };
-                Socio socio = new Socio()
+
+                if (checkPago.Checked)
                 {
-                    //fk_IdEstado=int.Parse(sltEstado.SelectedValue.ToString())
-                };
+                    Socio socio = new Socio()
+                    {
+                        fk_IdAbonoSocio = int.Parse(sltAbono.SelectedValue.ToString())
+                    };
+                }
+                
 
                 int idPersona = securityServices.insertPersona(nuevaPersona);
-                int insertResult = securityServices.insertSocio(idPersona);
-                if (insertResult >= 1)
+
+                if (fk_IdAbonoSocio != 0)
                 {
-                    MaterialMessageBox.Show($"Se registro al socio "+nuevaPersona.nombre+ " con exito");
+                    insertResult = securityServices.insertSocioConAbono(idPersona, fk_IdAbonoSocio);
+                    
+                    if (insertResult >= 1)
+                    {
+                        MaterialMessageBox.Show($"Se registro al socio " + nuevaPersona.nombre + " con exito, y se le asigno el abono");
+                    }
                 }
+                else if (fk_IdAbonoSocio == 0)
+                {
+                    insertResult = securityServices.insertSocioSinAbono(idPersona);
+                    
+                    if (insertResult >= 1) 
+                    {
+                        MaterialMessageBox.Show($"Se registro al socio " + nuevaPersona.nombre + " con exito, recuerde asignar el abono");
+                    }
+                }
+
                 else
                 {
                     MaterialMessageBox.Show($"Ocurrió un error registrando al socio");
@@ -113,12 +136,14 @@ namespace Gimnasio.GUI
         {
             if (validacionDeCampos())
             {
+                ingresoSocioNuevo();
                 if (checkPago.Checked)
                 {
-                    ingresoSocioNuevo();
+                    MaterialMessageBox.Show("Se registro al socio y su abono");
                 }
                 else
                 {
+                    
                     MaterialMessageBox.Show("Debe registrar el pago del socio");
                 }
             }
@@ -126,14 +151,14 @@ namespace Gimnasio.GUI
             {
                 MaterialMessageBox.Show("Debe registrar todos los datos del socio para registrarlo");
             }
-                
-            
+
+
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-                this.Close();
-                new MenuPrincipal().Show();
+            this.Close();
+            new MenuPrincipal().Show();
         }
 
         private void sltFechaNacimiento_MouseEnter_1(object sender, EventArgs e)

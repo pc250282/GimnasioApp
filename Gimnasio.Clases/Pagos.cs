@@ -12,7 +12,7 @@ namespace Gimnasio.Clases
         public float montoPago { get; set; }
         public DateTime fechaPago { get; set; }
         public int fk_Socio_id { get; set; }
-        public int fk_idMdp { get; set; }
+        public int fk_Mdp_id { get; set; }
         public int fk_AbonoCobrado_id { get; set; }
 
 

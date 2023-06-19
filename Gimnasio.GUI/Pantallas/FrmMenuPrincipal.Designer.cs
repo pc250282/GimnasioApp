@@ -28,128 +28,149 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnCrearSocio = new MaterialSkin.Controls.MaterialButton();
-            this.btnCrearProfesor = new MaterialSkin.Controls.MaterialButton();
-            this.btbBuscarSocio = new MaterialSkin.Controls.MaterialButton();
-            this.btnVerActividades = new MaterialSkin.Controls.MaterialButton();
-            this.btnCrearActividad = new MaterialSkin.Controls.MaterialButton();
-            this.SuspendLayout();
+            btnCrearSocio = new MaterialSkin.Controls.MaterialButton();
+            btnCrearProfesor = new MaterialSkin.Controls.MaterialButton();
+            btbBuscarSocio = new MaterialSkin.Controls.MaterialButton();
+            btnVerActividades = new MaterialSkin.Controls.MaterialButton();
+            btnCrearActividad = new MaterialSkin.Controls.MaterialButton();
+            btnBuscarProfesores = new MaterialSkin.Controls.MaterialButton();
+            SuspendLayout();
             // 
             // btnCrearSocio
             // 
-            this.btnCrearSocio.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnCrearSocio.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.btnCrearSocio.Depth = 0;
-            this.btnCrearSocio.HighEmphasis = true;
-            this.btnCrearSocio.Icon = null;
-            this.btnCrearSocio.Location = new System.Drawing.Point(146, 100);
-            this.btnCrearSocio.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnCrearSocio.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnCrearSocio.Name = "btnCrearSocio";
-            this.btnCrearSocio.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btnCrearSocio.Size = new System.Drawing.Size(116, 36);
-            this.btnCrearSocio.TabIndex = 0;
-            this.btnCrearSocio.Text = "Socio nuevo";
-            this.btnCrearSocio.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.btnCrearSocio.UseAccentColor = false;
-            this.btnCrearSocio.UseVisualStyleBackColor = true;
-            this.btnCrearSocio.Click += new System.EventHandler(this.btnCrearSocio_Click);
+            btnCrearSocio.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnCrearSocio.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnCrearSocio.Depth = 0;
+            btnCrearSocio.HighEmphasis = true;
+            btnCrearSocio.Icon = null;
+            btnCrearSocio.Location = new Point(7, 93);
+            btnCrearSocio.Margin = new Padding(4, 6, 4, 6);
+            btnCrearSocio.MouseState = MaterialSkin.MouseState.HOVER;
+            btnCrearSocio.Name = "btnCrearSocio";
+            btnCrearSocio.NoAccentTextColor = Color.Empty;
+            btnCrearSocio.Size = new Size(116, 36);
+            btnCrearSocio.TabIndex = 0;
+            btnCrearSocio.Text = "Socio nuevo";
+            btnCrearSocio.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnCrearSocio.UseAccentColor = false;
+            btnCrearSocio.UseVisualStyleBackColor = true;
+            btnCrearSocio.Click += btnCrearSocio_Click;
             // 
             // btnCrearProfesor
             // 
-            this.btnCrearProfesor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnCrearProfesor.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.btnCrearProfesor.Depth = 0;
-            this.btnCrearProfesor.HighEmphasis = true;
-            this.btnCrearProfesor.Icon = null;
-            this.btnCrearProfesor.Location = new System.Drawing.Point(232, 325);
-            this.btnCrearProfesor.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnCrearProfesor.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnCrearProfesor.Name = "btnCrearProfesor";
-            this.btnCrearProfesor.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btnCrearProfesor.Size = new System.Drawing.Size(147, 36);
-            this.btnCrearProfesor.TabIndex = 1;
-            this.btnCrearProfesor.Text = "Profesor nuevo";
-            this.btnCrearProfesor.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.btnCrearProfesor.UseAccentColor = false;
-            this.btnCrearProfesor.UseVisualStyleBackColor = true;
-            this.btnCrearProfesor.Click += new System.EventHandler(this.btnCrearProfesor_Click);
+            btnCrearProfesor.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnCrearProfesor.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnCrearProfesor.Depth = 0;
+            btnCrearProfesor.HighEmphasis = true;
+            btnCrearProfesor.Icon = null;
+            btnCrearProfesor.Location = new Point(136, 93);
+            btnCrearProfesor.Margin = new Padding(4, 6, 4, 6);
+            btnCrearProfesor.MouseState = MaterialSkin.MouseState.HOVER;
+            btnCrearProfesor.Name = "btnCrearProfesor";
+            btnCrearProfesor.NoAccentTextColor = Color.Empty;
+            btnCrearProfesor.Size = new Size(147, 36);
+            btnCrearProfesor.TabIndex = 1;
+            btnCrearProfesor.Text = "Profesor nuevo";
+            btnCrearProfesor.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnCrearProfesor.UseAccentColor = false;
+            btnCrearProfesor.UseVisualStyleBackColor = true;
+            btnCrearProfesor.Click += btnCrearProfesor_Click;
             // 
             // btbBuscarSocio
             // 
-            this.btbBuscarSocio.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btbBuscarSocio.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.btbBuscarSocio.Depth = 0;
-            this.btbBuscarSocio.HighEmphasis = true;
-            this.btbBuscarSocio.Icon = null;
-            this.btbBuscarSocio.Location = new System.Drawing.Point(121, 216);
-            this.btbBuscarSocio.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btbBuscarSocio.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btbBuscarSocio.Name = "btbBuscarSocio";
-            this.btbBuscarSocio.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btbBuscarSocio.Size = new System.Drawing.Size(174, 36);
-            this.btbBuscarSocio.TabIndex = 2;
-            this.btbBuscarSocio.Text = "Administrar socios";
-            this.btbBuscarSocio.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.btbBuscarSocio.UseAccentColor = false;
-            this.btbBuscarSocio.UseVisualStyleBackColor = true;
-            this.btbBuscarSocio.Click += new System.EventHandler(this.btbBuscarSocio_Click);
+            btbBuscarSocio.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btbBuscarSocio.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btbBuscarSocio.Depth = 0;
+            btbBuscarSocio.HighEmphasis = true;
+            btbBuscarSocio.Icon = null;
+            btbBuscarSocio.Location = new Point(7, 214);
+            btbBuscarSocio.Margin = new Padding(4, 6, 4, 6);
+            btbBuscarSocio.MouseState = MaterialSkin.MouseState.HOVER;
+            btbBuscarSocio.Name = "btbBuscarSocio";
+            btbBuscarSocio.NoAccentTextColor = Color.Empty;
+            btbBuscarSocio.Size = new Size(174, 36);
+            btbBuscarSocio.TabIndex = 2;
+            btbBuscarSocio.Text = "Administrar socios";
+            btbBuscarSocio.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btbBuscarSocio.UseAccentColor = false;
+            btbBuscarSocio.UseVisualStyleBackColor = true;
+            btbBuscarSocio.Click += btbBuscarSocio_Click;
             // 
             // btnVerActividades
             // 
-            this.btnVerActividades.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnVerActividades.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.btnVerActividades.Depth = 0;
-            this.btnVerActividades.HighEmphasis = true;
-            this.btnVerActividades.Icon = null;
-            this.btnVerActividades.Location = new System.Drawing.Point(136, 158);
-            this.btnVerActividades.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnVerActividades.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnVerActividades.Name = "btnVerActividades";
-            this.btnVerActividades.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btnVerActividades.Size = new System.Drawing.Size(145, 36);
-            this.btnVerActividades.TabIndex = 5;
-            this.btnVerActividades.Text = "Ver Actividades";
-            this.btnVerActividades.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.btnVerActividades.UseAccentColor = false;
-            this.btnVerActividades.UseVisualStyleBackColor = true;
-            this.btnVerActividades.Click += new System.EventHandler(this.btnVerActividades_Click);
+            btnVerActividades.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnVerActividades.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnVerActividades.Depth = 0;
+            btnVerActividades.HighEmphasis = true;
+            btnVerActividades.Icon = null;
+            btnVerActividades.Location = new Point(7, 348);
+            btnVerActividades.Margin = new Padding(4, 6, 4, 6);
+            btnVerActividades.MouseState = MaterialSkin.MouseState.HOVER;
+            btnVerActividades.Name = "btnVerActividades";
+            btnVerActividades.NoAccentTextColor = Color.Empty;
+            btnVerActividades.Size = new Size(214, 36);
+            btnVerActividades.TabIndex = 5;
+            btnVerActividades.Text = "Administrar Actividades";
+            btnVerActividades.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnVerActividades.UseAccentColor = false;
+            btnVerActividades.UseVisualStyleBackColor = true;
+            btnVerActividades.Click += btnVerActividades_Click;
             // 
             // btnCrearActividad
             // 
-            this.btnCrearActividad.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnCrearActividad.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.btnCrearActividad.Depth = 0;
-            this.btnCrearActividad.HighEmphasis = true;
-            this.btnCrearActividad.Icon = null;
-            this.btnCrearActividad.Location = new System.Drawing.Point(76, 325);
-            this.btnCrearActividad.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnCrearActividad.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnCrearActividad.Name = "btnCrearActividad";
-            this.btnCrearActividad.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btnCrearActividad.Size = new System.Drawing.Size(148, 36);
-            this.btnCrearActividad.TabIndex = 6;
-            this.btnCrearActividad.Text = "Nueva Actividad";
-            this.btnCrearActividad.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.btnCrearActividad.UseAccentColor = false;
-            this.btnCrearActividad.UseVisualStyleBackColor = true;
-            this.btnCrearActividad.Click += new System.EventHandler(this.btnCrearActividad_Click);
+            btnCrearActividad.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnCrearActividad.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnCrearActividad.Depth = 0;
+            btnCrearActividad.HighEmphasis = true;
+            btnCrearActividad.Icon = null;
+            btnCrearActividad.Location = new Point(294, 93);
+            btnCrearActividad.Margin = new Padding(4, 6, 4, 6);
+            btnCrearActividad.MouseState = MaterialSkin.MouseState.HOVER;
+            btnCrearActividad.Name = "btnCrearActividad";
+            btnCrearActividad.NoAccentTextColor = Color.Empty;
+            btnCrearActividad.Size = new Size(148, 36);
+            btnCrearActividad.TabIndex = 6;
+            btnCrearActividad.Text = "Nueva Actividad";
+            btnCrearActividad.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnCrearActividad.UseAccentColor = false;
+            btnCrearActividad.UseVisualStyleBackColor = true;
+            btnCrearActividad.Click += btnCrearActividad_Click;
+            // 
+            // btnBuscarProfesores
+            // 
+            btnBuscarProfesores.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnBuscarProfesores.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnBuscarProfesores.Depth = 0;
+            btnBuscarProfesores.HighEmphasis = true;
+            btnBuscarProfesores.Icon = null;
+            btnBuscarProfesores.Location = new Point(7, 279);
+            btnBuscarProfesores.Margin = new Padding(4, 6, 4, 6);
+            btnBuscarProfesores.MouseState = MaterialSkin.MouseState.HOVER;
+            btnBuscarProfesores.Name = "btnBuscarProfesores";
+            btnBuscarProfesores.NoAccentTextColor = Color.Empty;
+            btnBuscarProfesores.Size = new Size(213, 36);
+            btnBuscarProfesores.TabIndex = 7;
+            btnBuscarProfesores.Text = "Administrar Profesores";
+            btnBuscarProfesores.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnBuscarProfesores.UseAccentColor = false;
+            btnBuscarProfesores.UseVisualStyleBackColor = true;
+            btnBuscarProfesores.Click += btnBuscarProfesores_Click;
             // 
             // MenuPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(458, 450);
-            this.Controls.Add(this.btnCrearActividad);
-            this.Controls.Add(this.btnVerActividades);
-            this.Controls.Add(this.btbBuscarSocio);
-            this.Controls.Add(this.btnCrearProfesor);
-            this.Controls.Add(this.btnCrearSocio);
-            this.Name = "MenuPrincipal";
-            this.Text = "Bienvenido al sistema";
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(458, 450);
+            Controls.Add(btnBuscarProfesores);
+            Controls.Add(btnCrearActividad);
+            Controls.Add(btnVerActividades);
+            Controls.Add(btbBuscarSocio);
+            Controls.Add(btnCrearProfesor);
+            Controls.Add(btnCrearSocio);
+            Name = "MenuPrincipal";
+            Text = "Bienvenido al sistema";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -159,5 +180,6 @@
         private MaterialSkin.Controls.MaterialButton btbBuscarSocio;
         private MaterialSkin.Controls.MaterialButton btnVerActividades;
         private MaterialSkin.Controls.MaterialButton btnCrearActividad;
+        private MaterialSkin.Controls.MaterialButton btnBuscarProfesores;
     }
 }
