@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             tabPage1 = new TabPage();
+            sltEstado = new MaterialSkin.Controls.MaterialComboBox();
+            btnActualizarEstado = new MaterialSkin.Controls.MaterialButton();
+            btnUpdateAbono = new MaterialSkin.Controls.MaterialButton();
             btnAbono = new MaterialSkin.Controls.MaterialButton();
             btnRegistrarPago = new MaterialSkin.Controls.MaterialButton();
             btnVolver = new MaterialSkin.Controls.MaterialButton();
@@ -44,7 +47,6 @@
             lblNumSocio = new MaterialSkin.Controls.MaterialLabel();
             sltNumSocio = new MaterialSkin.Controls.MaterialComboBox();
             tbForm = new MaterialSkin.Controls.MaterialTabControl();
-            btnUpdateAbono = new MaterialSkin.Controls.MaterialButton();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)tablaSocios).BeginInit();
             tbForm.SuspendLayout();
@@ -52,6 +54,8 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(sltEstado);
+            tabPage1.Controls.Add(btnActualizarEstado);
             tabPage1.Controls.Add(btnUpdateAbono);
             tabPage1.Controls.Add(btnAbono);
             tabPage1.Controls.Add(btnRegistrarPago);
@@ -62,10 +66,73 @@
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(894, 387);
+            tabPage1.Size = new Size(933, 439);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Datos Socios";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // sltEstado
+            // 
+            sltEstado.AutoResize = false;
+            sltEstado.BackColor = Color.FromArgb(255, 255, 255);
+            sltEstado.Depth = 0;
+            sltEstado.DrawMode = DrawMode.OwnerDrawVariable;
+            sltEstado.DropDownHeight = 174;
+            sltEstado.DropDownStyle = ComboBoxStyle.DropDownList;
+            sltEstado.DropDownWidth = 121;
+            sltEstado.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            sltEstado.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            sltEstado.FormattingEnabled = true;
+            sltEstado.Hint = "Estados";
+            sltEstado.IntegralHeight = false;
+            sltEstado.ItemHeight = 43;
+            sltEstado.Location = new Point(593, 332);
+            sltEstado.MaxDropDownItems = 4;
+            sltEstado.MouseState = MaterialSkin.MouseState.OUT;
+            sltEstado.Name = "sltEstado";
+            sltEstado.Size = new Size(204, 49);
+            sltEstado.StartIndex = 0;
+            sltEstado.TabIndex = 13;
+            // 
+            // btnActualizarEstado
+            // 
+            btnActualizarEstado.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnActualizarEstado.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnActualizarEstado.Depth = 0;
+            btnActualizarEstado.HighEmphasis = true;
+            btnActualizarEstado.Icon = null;
+            btnActualizarEstado.Location = new Point(593, 390);
+            btnActualizarEstado.Margin = new Padding(4, 6, 4, 6);
+            btnActualizarEstado.MouseState = MaterialSkin.MouseState.HOVER;
+            btnActualizarEstado.Name = "btnActualizarEstado";
+            btnActualizarEstado.NoAccentTextColor = Color.Empty;
+            btnActualizarEstado.Size = new Size(145, 36);
+            btnActualizarEstado.TabIndex = 12;
+            btnActualizarEstado.Text = "cambiar estado";
+            btnActualizarEstado.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnActualizarEstado.UseAccentColor = false;
+            btnActualizarEstado.UseVisualStyleBackColor = true;
+            btnActualizarEstado.Click += btnActualizarEstado_Click_1;
+            // 
+            // btnUpdateAbono
+            // 
+            btnUpdateAbono.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnUpdateAbono.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnUpdateAbono.Depth = 0;
+            btnUpdateAbono.HighEmphasis = true;
+            btnUpdateAbono.Icon = null;
+            btnUpdateAbono.Location = new Point(258, 380);
+            btnUpdateAbono.Margin = new Padding(4, 6, 4, 6);
+            btnUpdateAbono.MouseState = MaterialSkin.MouseState.HOVER;
+            btnUpdateAbono.Name = "btnUpdateAbono";
+            btnUpdateAbono.NoAccentTextColor = Color.Empty;
+            btnUpdateAbono.Size = new Size(139, 36);
+            btnUpdateAbono.TabIndex = 11;
+            btnUpdateAbono.Text = "cambiar abono";
+            btnUpdateAbono.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnUpdateAbono.UseAccentColor = false;
+            btnUpdateAbono.UseVisualStyleBackColor = true;
+            btnUpdateAbono.Click += btnUpdateAbono_Click;
             // 
             // btnAbono
             // 
@@ -74,7 +141,7 @@
             btnAbono.Depth = 0;
             btnAbono.HighEmphasis = true;
             btnAbono.Icon = null;
-            btnAbono.Location = new Point(253, 280);
+            btnAbono.Location = new Point(260, 332);
             btnAbono.Margin = new Padding(4, 6, 4, 6);
             btnAbono.MouseState = MaterialSkin.MouseState.HOVER;
             btnAbono.Name = "btnAbono";
@@ -94,7 +161,7 @@
             btnRegistrarPago.Depth = 0;
             btnRegistrarPago.HighEmphasis = true;
             btnRegistrarPago.Icon = null;
-            btnRegistrarPago.Location = new Point(253, 328);
+            btnRegistrarPago.Location = new Point(426, 332);
             btnRegistrarPago.Margin = new Padding(4, 6, 4, 6);
             btnRegistrarPago.MouseState = MaterialSkin.MouseState.HOVER;
             btnRegistrarPago.Name = "btnRegistrarPago";
@@ -114,7 +181,7 @@
             btnVolver.Depth = 0;
             btnVolver.HighEmphasis = true;
             btnVolver.Icon = null;
-            btnVolver.Location = new Point(792, 328);
+            btnVolver.Location = new Point(850, 397);
             btnVolver.Margin = new Padding(4, 6, 4, 6);
             btnVolver.MouseState = MaterialSkin.MouseState.HOVER;
             btnVolver.Name = "btnVolver";
@@ -137,7 +204,7 @@
             tablaSocios.Name = "tablaSocios";
             tablaSocios.ReadOnly = true;
             tablaSocios.RowTemplate.Height = 25;
-            tablaSocios.Size = new Size(845, 246);
+            tablaSocios.Size = new Size(890, 301);
             tablaSocios.TabIndex = 0;
             // 
             // idSocio
@@ -194,7 +261,7 @@
             lblNumSocio.AutoSize = true;
             lblNumSocio.Depth = 0;
             lblNumSocio.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblNumSocio.Location = new Point(23, 276);
+            lblNumSocio.Location = new Point(23, 336);
             lblNumSocio.MouseState = MaterialSkin.MouseState.HOVER;
             lblNumSocio.Name = "lblNumSocio";
             lblNumSocio.Size = new Size(204, 19);
@@ -216,7 +283,7 @@
             sltNumSocio.Hint = "N°Socio";
             sltNumSocio.IntegralHeight = false;
             sltNumSocio.ItemHeight = 43;
-            sltNumSocio.Location = new Point(23, 315);
+            sltNumSocio.Location = new Point(23, 366);
             sltNumSocio.MaxDropDownItems = 4;
             sltNumSocio.MouseState = MaterialSkin.MouseState.OUT;
             sltNumSocio.Name = "sltNumSocio";
@@ -233,34 +300,14 @@
             tbForm.Multiline = true;
             tbForm.Name = "tbForm";
             tbForm.SelectedIndex = 0;
-            tbForm.Size = new Size(902, 415);
+            tbForm.Size = new Size(941, 467);
             tbForm.TabIndex = 9;
-            // 
-            // btnUpdateAbono
-            // 
-            btnUpdateAbono.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnUpdateAbono.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnUpdateAbono.Depth = 0;
-            btnUpdateAbono.HighEmphasis = true;
-            btnUpdateAbono.Icon = null;
-            btnUpdateAbono.Location = new Point(434, 280);
-            btnUpdateAbono.Margin = new Padding(4, 6, 4, 6);
-            btnUpdateAbono.MouseState = MaterialSkin.MouseState.HOVER;
-            btnUpdateAbono.Name = "btnUpdateAbono";
-            btnUpdateAbono.NoAccentTextColor = Color.Empty;
-            btnUpdateAbono.Size = new Size(149, 36);
-            btnUpdateAbono.TabIndex = 11;
-            btnUpdateAbono.Text = "cambiar abono";
-            btnUpdateAbono.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            btnUpdateAbono.UseAccentColor = false;
-            btnUpdateAbono.UseVisualStyleBackColor = true;
-            btnUpdateAbono.Click += btnUpdateAbono_Click;
             // 
             // FrmConsultaSocios
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(927, 484);
+            ClientSize = new Size(982, 540);
             Controls.Add(tbForm);
             Name = "FrmConsultaSocios";
             Text = "Socios";
@@ -303,5 +350,7 @@
         private System.CodeDom.CodeTypeReference btnAsignarAbono;
         private MaterialSkin.Controls.MaterialButton btnAbono;
         private MaterialSkin.Controls.MaterialButton btnUpdateAbono;
+        private MaterialSkin.Controls.MaterialComboBox sltEstado;
+        private MaterialSkin.Controls.MaterialButton btnActualizarEstado;
     }
 }

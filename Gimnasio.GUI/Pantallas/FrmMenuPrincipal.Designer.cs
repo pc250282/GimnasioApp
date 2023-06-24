@@ -34,6 +34,7 @@
             btnVerActividades = new MaterialSkin.Controls.MaterialButton();
             btnCrearActividad = new MaterialSkin.Controls.MaterialButton();
             btnBuscarProfesores = new MaterialSkin.Controls.MaterialButton();
+            btnAdminPagos = new MaterialSkin.Controls.MaterialButton();
             SuspendLayout();
             // 
             // btnCrearSocio
@@ -156,11 +157,32 @@
             btnBuscarProfesores.UseVisualStyleBackColor = true;
             btnBuscarProfesores.Click += btnBuscarProfesores_Click;
             // 
+            // btnAdminPagos
+            // 
+            btnAdminPagos.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnAdminPagos.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnAdminPagos.Depth = 0;
+            btnAdminPagos.HighEmphasis = true;
+            btnAdminPagos.Icon = null;
+            btnAdminPagos.Location = new Point(268, 348);
+            btnAdminPagos.Margin = new Padding(4, 6, 4, 6);
+            btnAdminPagos.MouseState = MaterialSkin.MouseState.HOVER;
+            btnAdminPagos.Name = "btnAdminPagos";
+            btnAdminPagos.NoAccentTextColor = Color.Empty;
+            btnAdminPagos.Size = new Size(174, 36);
+            btnAdminPagos.TabIndex = 8;
+            btnAdminPagos.Text = "ADMINISTRAR PAGOS";
+            btnAdminPagos.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnAdminPagos.UseAccentColor = false;
+            btnAdminPagos.UseVisualStyleBackColor = true;
+            btnAdminPagos.Click += btnAdminPagos_Click;
+            // 
             // MenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(458, 450);
+            Controls.Add(btnAdminPagos);
             Controls.Add(btnBuscarProfesores);
             Controls.Add(btnCrearActividad);
             Controls.Add(btnVerActividades);
@@ -181,5 +203,6 @@
         private MaterialSkin.Controls.MaterialButton btnVerActividades;
         private MaterialSkin.Controls.MaterialButton btnCrearActividad;
         private MaterialSkin.Controls.MaterialButton btnBuscarProfesores;
+        private MaterialSkin.Controls.MaterialButton btnAdminPagos;
     }
 }

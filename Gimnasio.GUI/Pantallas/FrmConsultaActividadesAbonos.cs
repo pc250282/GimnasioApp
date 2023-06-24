@@ -17,7 +17,8 @@ namespace Gimnasio.GUI.Pantallas
     public partial class FrmConsultaActividadesAbonos : MaterialForm
     {
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
-        private APISocioServices securityServices = new APISocioServices();
+        private APIActividadServices actividadesServices = new APIActividadServices();
+        private List<string> lstIdsActividades = new List<string>();
         public FrmConsultaActividadesAbonos()
         {
 
@@ -28,37 +29,60 @@ namespace Gimnasio.GUI.Pantallas
             materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Orange700, MaterialSkin.Primary.Orange600, MaterialSkin.Primary.Orange600, MaterialSkin.Accent.Orange400, MaterialSkin.TextShade.WHITE);
 
-            InitializeComponent();
-
             obtenerActividades();
+            llenarIds();
+        }
+
+        private void obtenerActividades()
+        {
+            List<ActividadAdmin> lstActividad = actividadesServices.getActividadesActivas();
+            tablaActividades.Rows.Clear();
+            foreach (ActividadAdmin actividadAdmin in lstActividad)
+            {
+                llenarTableActividades(actividadAdmin);
+                lstIdsActividades.Add(actividadAdmin.IdActividad.ToString());
+            }
         }
 
         private void llenarTableActividades(ActividadAdmin actividad)
         {
             int rowIndex = tablaActividades.Rows.Add();
-
-
-            tablaActividades.Rows[rowIndex].Cells[0].Value = actividad.nombreActividad;
-            tablaActividades.Rows[rowIndex].Cells[1].Value = actividad.horario;
-            tablaActividades.Rows[rowIndex].Cells[2].Value = actividad.nombreProfesor;
-            tablaActividades.Rows[rowIndex].Cells[3].Value = actividad.valorActividad;
-            tablaActividades.Rows[rowIndex].Cells[4].Value = actividad.cupoDisponible;
+            tablaActividades.Rows[rowIndex].Cells[0].Value = actividad.IdActividad;
+            tablaActividades.Rows[rowIndex].Cells[1].Value = actividad.nombreActividad;
+            tablaActividades.Rows[rowIndex].Cells[2].Value = actividad.cupo;
+            tablaActividades.Rows[rowIndex].Cells[3].Value = actividad.horario;
+            tablaActividades.Rows[rowIndex].Cells[4].Value = actividad.nombre;
+            tablaActividades.Rows[rowIndex].Cells[5].Value = actividad.nombreAbono;
+            tablaActividades.Rows[rowIndex].Cells[6].Value = $"$ {actividad.valorCuotaPura} ";
         }
 
-        private void obtenerActividades()
+        private void llenarIds()
         {
-            List<ActividadAdmin> lstActividad = securityServices.getActividadesActivas();
-            tablaActividades.Rows.Clear();
-            foreach (ActividadAdmin actividadAdmin in lstActividad)
-            {
-                llenarTableActividades(actividadAdmin);
-            }
+            sltIdActividad.DataSource = lstIdsActividades;
         }
-
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Close();
             new MenuPrincipal().Show();
+        }
+
+        private void btnEditActividad_Click(object sender, EventArgs e)
+        {
+            int IdActividad = int.Parse(sltIdActividad.SelectedValue.ToString());
+            ActividadAdmin actividadAeditar = actividadesServices.getActividadById(IdActividad);
+            if (actividadAeditar == null)
+            {
+                MaterialMessageBox.Show($"No se encontro la actividad seleccionada");
+            }
+            else
+            {
+                FrmActividades frmActividades = new FrmActividades(actividadAeditar);
+                frmActividades.Show();
+                this.Hide();
+
+
+            }
+
         }
     }
 }

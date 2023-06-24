@@ -36,7 +36,7 @@ namespace Gimnasio.GUI
             materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Orange700, MaterialSkin.Primary.Orange600, MaterialSkin.Primary.Orange600, MaterialSkin.Accent.Orange400, MaterialSkin.TextShade.WHITE);
 
             obtenerSocios();
-            //obtenerEstados();
+            obtenerEstados();
             llenarIds();
 
 
@@ -93,32 +93,17 @@ namespace Gimnasio.GUI
             sltNumSocio.DataSource = lstIds;
         }
 
-        //public void obtenerEstados()
-        //{
-        //    List<Estado> lstEstado = securityServices.getEstado();
+        public void obtenerEstados()
+        {
+            List<Estado> lstEstado = securityServices.getEstado();
 
-        //    sltEstado.DisplayMember = "nombreEstado";
-        //    sltEstado.ValueMember = "idEstado";
-        //    sltEstado.DataSource = lstEstado;
-        //}
+            sltEstado.DisplayMember = "nombreEstado";
+            sltEstado.ValueMember = "idEstado";
+            sltEstado.DataSource = lstEstado;
+        }
 
 
-        //private void btnActualizarEstado_Click(object sender, EventArgs e)
-        //{
-        //    int idEstado = int.Parse(sltEstado.SelectedValue.ToString());
-        //    int idSocio = int.Parse(sltNumSocio.SelectedValue.ToString());
 
-        //    int resultado = securityServices.editarEstadoSocio(idSocio, idEstado);
-        //    if (resultado >= 1)
-        //    {
-        //        obtenerSocios();
-        //        MaterialMessageBox.Show($"Se actualizó con exito el estado del socio N° {idSocio.ToString()}");
-        //    }
-        //    else
-        //    {
-        //        MaterialMessageBox.Show($"Ocurrió un error cambiando el estado del socio N°: {idSocio.ToString()}");
-        //    }
-        //}
 
         private void btnRegistrarPago_Click(object sender, EventArgs e)
         {
@@ -186,7 +171,24 @@ namespace Gimnasio.GUI
                 frmAbono.Show();
                 this.Hide();
             }
-            
+
+        }
+
+        private void btnActualizarEstado_Click_1(object sender, EventArgs e)
+        {
+            int idEstado = int.Parse(sltEstado.SelectedValue.ToString());
+            int idSocio = int.Parse(sltNumSocio.SelectedValue.ToString());
+
+            int resultado = securityServices.editarEstadoSocio(idSocio, idEstado);
+            if (resultado >= 1)
+            {
+                obtenerSocios();
+                MaterialMessageBox.Show($"Se actualizó con exito el estado del socio N° {idSocio.ToString()}");
+            }
+            else
+            {
+                MaterialMessageBox.Show($"Ocurrió un error cambiando el estado del socio N°: {idSocio.ToString()}");
+            }
         }
     }
 }

@@ -8,12 +8,12 @@ namespace Gimnasio.Clases
 {
     public class ActividadAdmin
     {
-        public int idActividadesAdmin { get; set; }
+        public int IdActividad { get; set; }
         public string nombreActividad { get; set; }
-        public string nombreProfesor { get; set; }
+        public string nombre { get; set; }
         public string horario { get; set; }
-        public double valorActividad { get; set; }
-        public int cupoDisponible { get; set; }
-        public int cupoTotal { get; set; }
+        public double valorCuotaPura { get; set; }
+        public int cupo { get; set; }
+        public string nombreAbono { get; set; }
     }
 }

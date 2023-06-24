@@ -67,5 +67,12 @@ namespace Gimnasio.GUI
             frmConsultaProfesores.Show();
             this.Hide();
         }
+
+        private void btnAdminPagos_Click(object sender, EventArgs e)
+        {
+            FrmHistorialPagos frmHistorialPagos = new FrmHistorialPagos();
+            frmHistorialPagos.Show();
+            this.Hide();
+        }
     }
 }

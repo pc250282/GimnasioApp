@@ -17,7 +17,8 @@ namespace Gimnasio.GUI
     public partial class MenuProfesores : MaterialForm
     {
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
-        APISocioServices securityServices = new APISocioServices();
+        APIProfesorServices profesorServices = new APIProfesorServices();
+        APISocioServices personaServices = new APISocioServices();
 
         public MenuProfesores()
         {
@@ -28,26 +29,18 @@ namespace Gimnasio.GUI
             materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Orange700, MaterialSkin.Primary.Orange600, MaterialSkin.Primary.Orange600, MaterialSkin.Accent.Orange400, MaterialSkin.TextShade.WHITE);
 
-            obtenerActividades();
             obtenerGeneros();
         }
 
         public void obtenerGeneros()
         {
-            List<Genero> lstGenero = securityServices.getGenero();
+            List<Genero> lstGenero = personaServices.getGenero();
 
             sltGenero.DisplayMember = "nombreGenero";
             sltGenero.ValueMember = "IdGenero";
             sltGenero.DataSource = lstGenero;
         }
 
-        public void obtenerActividades()
-        {
-            List<Actividad> lstActividad = securityServices.getActividad();
-            sltActividad.DisplayMember = "nombreActividad";
-            sltActividad.ValueMember = "IdActividad";
-            sltActividad.DataSource = lstActividad;
-        }
 
         private void ingresoProfesorNuevo()
         {
@@ -68,18 +61,19 @@ namespace Gimnasio.GUI
                 Profesor profesorNuevo = new Profesor()
                 {
                     //fk_IdEstado=int.Parse(sltEstado.SelectedValue.ToString())
-                    fk_idActividad = int.Parse(sltActividad.SelectedValue.ToString()),
+                    //fk_idActividad = int.Parse(sltActividad.SelectedValue.ToString()),
                     fechaContratacion = DateTime.Now,
                     sueldo = 0.0
 
                 };
 
-                int idPersona = securityServices.insertPersona(nuevaPersona);
-                int insertResult = securityServices.insertProfesor(idPersona, profesorNuevo);
+                int idPersona = personaServices.insertPersona(nuevaPersona);
+                int insertResult = profesorServices.insertProfesor(idPersona, profesorNuevo);
 
 
                 MaterialMessageBox.Show("El profesor : " + profesorNuevo.nombre + " " + profesorNuevo.apellido + " se registro con exito");
-
+                this.Close();
+                new MenuPrincipal().Show();
             }
             catch (Exception error)
             {

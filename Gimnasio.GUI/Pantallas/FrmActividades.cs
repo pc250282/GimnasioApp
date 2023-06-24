@@ -17,7 +17,9 @@ namespace Gimnasio.GUI.Pantallas
     public partial class FrmActividades : MaterialForm
     {
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
-        private APISocioServices securityServices = new APISocioServices();
+        private APIActividadServices actividadServices = new APIActividadServices();
+        private APIProfesorServices profesorServices = new APIProfesorServices();
+        private ActividadAdmin actividadAeditar;
         public FrmActividades()
         {
             InitializeComponent();
@@ -27,14 +29,46 @@ namespace Gimnasio.GUI.Pantallas
             materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.LIGHT;
             //materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Indigo500, MaterialSkin.Primary.Indigo700, MaterialSkin.Primary.Indigo100, MaterialSkin.Accent.Blue400, MaterialSkin.TextShade.WHITE);
             materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Orange700, MaterialSkin.Primary.Orange600, MaterialSkin.Primary.Orange600, MaterialSkin.Accent.Orange400, MaterialSkin.TextShade.WHITE);
-
+            lblAbonoActual.Visible = false;
+            lblProfesorActual.Visible = false;
+            lblValorActual.Visible = false;
+            lblDatos.Visible = false;
             obtenerAbonos();
+            obtenerProfesoresDisponibles();
+        }
 
+        public FrmActividades(ActividadAdmin actividadAeditar)
+        {
+            InitializeComponent();
+            materialSkinManager = MaterialSkin.MaterialSkinManager.Instance;
+            materialSkinManager.EnforceBackcolorOnAllComponents = true;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.LIGHT;
+            //materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Indigo500, MaterialSkin.Primary.Indigo700, MaterialSkin.Primary.Indigo100, MaterialSkin.Accent.Blue400, MaterialSkin.TextShade.WHITE);
+            materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Orange700, MaterialSkin.Primary.Orange600, MaterialSkin.Primary.Orange600, MaterialSkin.Accent.Orange400, MaterialSkin.TextShade.WHITE);
+            this.actividadAeditar = actividadAeditar;
+            btnCreaActividad.Text = "ACTUALIZAR DATOS";
+            txtHorario.Text = actividadAeditar.horario;
+            txtCupo.Text = actividadAeditar.cupo.ToString();
+            txtNombreActividad.Text = actividadAeditar.nombreActividad;
+            obtenerAbonos();
+            obtenerProfesoresDisponibles();
+            lblAbonoActual.Text = $"Abono: {actividadAeditar.nombreAbono}";
+            if (actividadAeditar.nombre == null)
+            {
+                lblProfesorActual.Text = "Sin asignar";
+            }
+            else
+            {
+                lblProfesorActual.Text = $"Profesor: {actividadAeditar.nombre}";
+            }
+            
+            lblValorActual.Text = $"Valor: ${actividadAeditar.valorCuotaPura}";
         }
 
         private void obtenerAbonos()
         {
-            List<Abono> lstAbono = securityServices.getAbono();
+            List<Abono> lstAbono = actividadServices.getAbono();
 
             //Mostrar Actividades existentes
             seleccionAbono.DisplayMember = "nombreAbono";
@@ -49,6 +83,15 @@ namespace Gimnasio.GUI.Pantallas
 
         }
 
+        private void obtenerProfesoresDisponibles()
+        {
+            List<ProfesorAdmin> lstProfesores = profesorServices.getProfesores();
+
+            sltProfesor.DisplayMember = "apellido";
+            sltProfesor.ValueMember = "idProfesor";
+            sltProfesor.DataSource = lstProfesores;
+        }
+
 
         private void crearActividad()
         {
@@ -59,14 +102,19 @@ namespace Gimnasio.GUI.Pantallas
                     nombreActividad = txtNombreActividad.Text,
                     horario = txtHorario.Text,
                     cupo = int.Parse(txtCupo.Text),
-                    fk_idAbono = int.Parse(seleccionAbono.SelectedValue.ToString())
+                    fk_Abono_id = int.Parse(seleccionAbono.SelectedValue.ToString()),
+                    fk_Profesor_id = int.Parse(sltProfesor.SelectedValue.ToString())
 
                 };
 
-                int insertResult = securityServices.insertActividad(nuevaActividad);
+                int insertResult = actividadServices.insertActividad(nuevaActividad);
                 if (insertResult >= 1)
                 {
+
                     MaterialMessageBox.Show($"Se registro la actividad " + nuevaActividad.nombreActividad + " con exito");
+                    this.Close();
+                    new MenuPrincipal().Show();
+
                 }
                 else
                 {

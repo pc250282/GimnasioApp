@@ -28,107 +28,156 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tablaActividades = new System.Windows.Forms.DataGridView();
-            this.nombreActividad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.horario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreProfesor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fk_idAbono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cupo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cupoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnVolver = new MaterialSkin.Controls.MaterialButton();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaActividades)).BeginInit();
-            this.SuspendLayout();
+            tablaActividades = new DataGridView();
+            btnVolver = new MaterialSkin.Controls.MaterialButton();
+            sltIdActividad = new MaterialSkin.Controls.MaterialComboBox();
+            btnEditActividad = new MaterialSkin.Controls.MaterialButton();
+            IdActividad = new DataGridViewTextBoxColumn();
+            nombreActividad = new DataGridViewTextBoxColumn();
+            cupo = new DataGridViewTextBoxColumn();
+            horario = new DataGridViewTextBoxColumn();
+            nombre = new DataGridViewTextBoxColumn();
+            nombreAbono = new DataGridViewTextBoxColumn();
+            valorCuotaPura = new DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)tablaActividades).BeginInit();
+            SuspendLayout();
             // 
             // tablaActividades
             // 
-            this.tablaActividades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tablaActividades.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nombreActividad,
-            this.horario,
-            this.nombreProfesor,
-            this.fk_idAbono,
-            this.cupo,
-            this.cupoTotal});
-            this.tablaActividades.Location = new System.Drawing.Point(53, 108);
-            this.tablaActividades.Name = "tablaActividades";
-            this.tablaActividades.RowTemplate.Height = 25;
-            this.tablaActividades.Size = new System.Drawing.Size(653, 215);
-            this.tablaActividades.TabIndex = 0;
-            // 
-            // nombreActividad
-            // 
-            this.nombreActividad.HeaderText = "Actividad";
-            this.nombreActividad.Name = "nombreActividad";
-            // 
-            // horario
-            // 
-            this.horario.HeaderText = "Horario";
-            this.horario.Name = "horario";
-            // 
-            // nombreProfesor
-            // 
-            this.nombreProfesor.HeaderText = "Profesor";
-            this.nombreProfesor.Name = "nombreProfesor";
-            // 
-            // fk_idAbono
-            // 
-            this.fk_idAbono.HeaderText = "Abono";
-            this.fk_idAbono.Name = "fk_idAbono";
-            // 
-            // cupo
-            // 
-            this.cupo.HeaderText = "Cupo disponible";
-            this.cupo.Name = "cupo";
-            // 
-            // cupoTotal
-            // 
-            this.cupoTotal.HeaderText = "Cupo Total";
-            this.cupoTotal.Name = "cupoTotal";
+            tablaActividades.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            tablaActividades.Columns.AddRange(new DataGridViewColumn[] { IdActividad, nombreActividad, cupo, horario, nombre, nombreAbono, valorCuotaPura });
+            tablaActividades.Location = new Point(7, 84);
+            tablaActividades.Name = "tablaActividades";
+            tablaActividades.RowTemplate.Height = 25;
+            tablaActividades.Size = new Size(653, 215);
+            tablaActividades.TabIndex = 0;
             // 
             // btnVolver
             // 
-            this.btnVolver.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnVolver.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.btnVolver.Depth = 0;
-            this.btnVolver.HighEmphasis = true;
-            this.btnVolver.Icon = null;
-            this.btnVolver.Location = new System.Drawing.Point(7, 405);
-            this.btnVolver.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnVolver.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnVolver.Name = "btnVolver";
-            this.btnVolver.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btnVolver.Size = new System.Drawing.Size(158, 36);
-            this.btnVolver.TabIndex = 1;
-            this.btnVolver.Text = "VOLVER";
-            this.btnVolver.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.btnVolver.UseAccentColor = false;
-            this.btnVolver.UseVisualStyleBackColor = true;
-            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
+            btnVolver.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnVolver.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnVolver.Depth = 0;
+            btnVolver.HighEmphasis = true;
+            btnVolver.Icon = null;
+            btnVolver.Location = new Point(7, 405);
+            btnVolver.Margin = new Padding(4, 6, 4, 6);
+            btnVolver.MouseState = MaterialSkin.MouseState.HOVER;
+            btnVolver.Name = "btnVolver";
+            btnVolver.NoAccentTextColor = Color.Empty;
+            btnVolver.Size = new Size(76, 36);
+            btnVolver.TabIndex = 1;
+            btnVolver.Text = "VOLVER";
+            btnVolver.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnVolver.UseAccentColor = false;
+            btnVolver.UseVisualStyleBackColor = true;
+            btnVolver.Click += btnVolver_Click;
+            // 
+            // sltIdActividad
+            // 
+            sltIdActividad.AutoResize = false;
+            sltIdActividad.BackColor = Color.FromArgb(255, 255, 255);
+            sltIdActividad.Depth = 0;
+            sltIdActividad.DrawMode = DrawMode.OwnerDrawVariable;
+            sltIdActividad.DropDownHeight = 174;
+            sltIdActividad.DropDownStyle = ComboBoxStyle.DropDownList;
+            sltIdActividad.DropDownWidth = 121;
+            sltIdActividad.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            sltIdActividad.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            sltIdActividad.FormattingEnabled = true;
+            sltIdActividad.Hint = "N° de actividad";
+            sltIdActividad.IntegralHeight = false;
+            sltIdActividad.ItemHeight = 43;
+            sltIdActividad.Location = new Point(7, 319);
+            sltIdActividad.MaxDropDownItems = 4;
+            sltIdActividad.MouseState = MaterialSkin.MouseState.OUT;
+            sltIdActividad.Name = "sltIdActividad";
+            sltIdActividad.Size = new Size(145, 49);
+            sltIdActividad.StartIndex = 0;
+            sltIdActividad.TabIndex = 2;
+            // 
+            // btnEditActividad
+            // 
+            btnEditActividad.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnEditActividad.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnEditActividad.Depth = 0;
+            btnEditActividad.HighEmphasis = true;
+            btnEditActividad.Icon = null;
+            btnEditActividad.Location = new Point(201, 332);
+            btnEditActividad.Margin = new Padding(4, 6, 4, 6);
+            btnEditActividad.MouseState = MaterialSkin.MouseState.HOVER;
+            btnEditActividad.Name = "btnEditActividad";
+            btnEditActividad.NoAccentTextColor = Color.Empty;
+            btnEditActividad.Size = new Size(150, 36);
+            btnEditActividad.TabIndex = 3;
+            btnEditActividad.Text = "EDITAR ACTIVIDAD";
+            btnEditActividad.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnEditActividad.UseAccentColor = false;
+            btnEditActividad.UseVisualStyleBackColor = true;
+            btnEditActividad.Click += btnEditActividad_Click;
+            // 
+            // IdActividad
+            // 
+            IdActividad.HeaderText = "N° Actividad";
+            IdActividad.Name = "IdActividad";
+            // 
+            // nombreActividad
+            // 
+            nombreActividad.HeaderText = "Nombre";
+            nombreActividad.Name = "nombreActividad";
+            // 
+            // cupo
+            // 
+            cupo.HeaderText = "Cupo";
+            cupo.Name = "cupo";
+            // 
+            // horario
+            // 
+            horario.HeaderText = "Horario";
+            horario.Name = "horario";
+            // 
+            // nombre
+            // 
+            nombre.HeaderText = "Profesor";
+            nombre.Name = "nombre";
+            // 
+            // nombreAbono
+            // 
+            nombreAbono.HeaderText = "Abono de:";
+            nombreAbono.Name = "nombreAbono";
+            // 
+            // valorCuotaPura
+            // 
+            valorCuotaPura.HeaderText = "Valor";
+            valorCuotaPura.Name = "valorCuotaPura";
             // 
             // FrmConsultaActividadesAbonos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btnVolver);
-            this.Controls.Add(this.tablaActividades);
-            this.Name = "FrmConsultaActividadesAbonos";
-            this.Text = "FrmConsultaActividadesAbonos";
-            ((System.ComponentModel.ISupportInitialize)(this.tablaActividades)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(btnEditActividad);
+            Controls.Add(sltIdActividad);
+            Controls.Add(btnVolver);
+            Controls.Add(tablaActividades);
+            Name = "FrmConsultaActividadesAbonos";
+            Text = "FrmConsultaActividadesAbonos";
+            ((System.ComponentModel.ISupportInitialize)tablaActividades).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private DataGridView tablaActividades;
-        private DataGridViewTextBoxColumn nombreActividad;
-        private DataGridViewTextBoxColumn horario;
-        private DataGridViewTextBoxColumn nombreProfesor;
-        private DataGridViewTextBoxColumn fk_idAbono;
-        private DataGridViewTextBoxColumn cupo;
-        private DataGridViewTextBoxColumn cupoTotal;
         private MaterialSkin.Controls.MaterialButton btnVolver;
+        private MaterialSkin.Controls.MaterialComboBox sltIdActividad;
+        private MaterialSkin.Controls.MaterialButton btnEditActividad;
+        private DataGridViewTextBoxColumn IdActividad;
+        private DataGridViewTextBoxColumn nombreActividad;
+        private DataGridViewTextBoxColumn cupo;
+        private DataGridViewTextBoxColumn horario;
+        private DataGridViewTextBoxColumn nombre;
+        private DataGridViewTextBoxColumn nombreAbono;
+        private DataGridViewTextBoxColumn valorCuotaPura;
     }
 }

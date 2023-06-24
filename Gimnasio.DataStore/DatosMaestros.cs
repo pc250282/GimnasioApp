@@ -51,12 +51,10 @@ namespace Gimnasio.DataStore
             List<ProfesorAdmin> LstProfesores = new List<ProfesorAdmin>();
             string sql = "SELECT PR.idProfesor,PR.fechaContratacion,PR.sueldo,"
                         + "P.nombre,P.apellido,"
-                        + "E.nombreEstado, "
-                        + "A.nombreActividad "
+                        + "E.nombreEstado "
                         + "FROM Profesor PR "
                         + "INNER JOIN Persona P ON PR.fk_idPersona = P.idPersona "
-                        + "INNER JOIN Estado E ON PR.fk_IdEstado = E.IdEstado "
-                        + "INNER JOIN Actividad A ON PR.fk_idActividad = A.idActividad ";
+                        + "LEFT JOIN Estado E ON PR.fk_IdEstado = E.IdEstado";
             LstProfesores = dbOperation.OperationQuery<ProfesorAdmin>(sql);
             return LstProfesores;
         }
@@ -64,14 +62,13 @@ namespace Gimnasio.DataStore
         public List<ActividadAdmin> GetActividadesActivas()
         {
             List<ActividadAdmin> LstActividades = new List<ActividadAdmin>();
-            string sql = "SELECT ACT.idActividad, ACT.nombreActividad,ACT.cupo,ACT.horario,"
-                        + "AB.valorCuotaPura,AB.nombreAbono, "
-                        + "P.nombre, "
-                        + "PR.fk_idActividad "
+            string sql = "SELECT ACT.IdActividad,ACT.nombreActividad,ACT.horario,ACT.cupo,ACT.fk_Profesor_id,fk_Abono_id,"
+                        + "AB.valorCuotaPura,AB.nombreAbono,"
+                        + "P.nombre "
                         + "FROM Actividad ACT "
-                        + "INNER JOIN Abono AB ON ACT.fk_idAbono = AB.idAbono "
-                        + "INNER JOIN Persona P ON PR.fk_idPersona =P.idPersona "
-                        + "INNER JOIN Profesor PR ON PR.IdProfesor = P.idPersona ";
+                        + "LEFT JOIN Abono AB ON ACT.fk_Abono_id = AB.idAbono "
+                        + "LEFT JOIN Profesor PR ON ACT.fk_Profesor_id = PR.IdProfesor "
+                        + "LEFT JOIN Persona P ON PR.fk_idPersona = P.idPersona";
             LstActividades = dbOperation.OperationQuery<ActividadAdmin>(sql);
             return LstActividades;
         }
@@ -117,6 +114,19 @@ namespace Gimnasio.DataStore
             return LstActividad;
         }
 
+        public List<Actividad> GetActividades()
+        {
+            List<Actividad> LstActividades = new List<Actividad>();
+            string sql = "SELECT ACT.idActividad, ACT.nombreActividad,ACT.cupo,ACT.horario,"
+                        + "AB.valorCuotaPura,AB.nombreAbono, "
+                        + "P.nombre, "
+                        + "PR.fk_idActividad "
+                        + "FROM Actividad ACT "
+                        + "INNER JOIN Abono AB ON ACT.fk_Abono_id = AB.idAbono ";
+            LstActividades = dbOperation.OperationQuery<Actividad>(sql);
+            return LstActividades;
+        }
+
         public int InsertPersona(Persona nuevaPersona)
         {
             string sql = "INSERT INTO Persona (nombre,apellido,dni,telefono,direccion,fk_IdGenero,fechaNacimiento)" +
@@ -141,16 +151,17 @@ namespace Gimnasio.DataStore
 
         public int InsertActividad(Actividad nuevaActividad)
         {
-            string sql = "INSERT INTO Actividad (nombreActividad,horario,cupo,fk_idAbono)" +
+            string sql = "INSERT INTO Actividad (nombreActividad,horario,cupo,fk_Abono_id,fk_Profesor_id)" +
                 "OUTPUT INSERTED.idActividad " +
-                "VALUES(@nombreActividad,@horario,@cupo,@fk_idAbono) ";
+                "VALUES(@nombreActividad,@horario,@cupo,@fk_Abono_id,@fk_Profesor_id) ";
 
             object paramList = new
             {
                 nombreActividad = nuevaActividad.nombreActividad,
                 horario = nuevaActividad.horario,
                 cupo = nuevaActividad.cupo,
-                fk_idAbono = nuevaActividad.fk_idAbono
+                fk_Abono_id = nuevaActividad.fk_Abono_id,
+                fk_Profesor_id=nuevaActividad.fk_Profesor_id
             };
 
             int result = dbOperation.OperationExecuteWithIdentity(sql, paramList);
@@ -201,13 +212,12 @@ namespace Gimnasio.DataStore
         public int InsertProfesor(int idPersona, Profesor profesorNuevo)
         {
 
-            string sql = "INSERT INTO Profesor (fk_idPersona,fk_idEstado,fk_idActividad,fechaContratacion,sueldo)  Values" +
-                "(@fk_idPersona, @fk_idActividad, @sueldo, @fechaContratacion, @fk_idEstado)";
+            string sql = "INSERT INTO Profesor (fk_idPersona,fk_idEstado,fechaContratacion,sueldo)  Values" +
+                "(@fk_idPersona, @sueldo, @fechaContratacion, @fk_idEstado)";
 
             Object paramList = new
             {
                 fk_idPersona = idPersona,
-                fk_idActividad = profesorNuevo.fk_idActividad,
                 sueldo = profesorNuevo.sueldo,
                 fechaContratacion = profesorNuevo.fechaContratacion,
                 fk_idEstado = 1
@@ -383,6 +393,25 @@ namespace Gimnasio.DataStore
                         + "WHERE PG.fk_Socio_id = @fk_Socio_id";
             pago = dbOperation.OperationQueryById2<Pagos>(sql, new { fk_Socio_id = idSocio });
             return pago;
+        }
+
+        public ActividadAdmin GetActividadById(int idActividad)
+        {
+            ActividadAdmin actividad;
+            string sql = "SELECT ACT.IdActividad,ACT.nombreActividad,ACT.horario,ACT.cupo,ACT.fk_Profesor_id,fk_Abono_id,"
+                        + "AB.valorCuotaPura,AB.nombreAbono,"
+                        + "P.nombre "
+                        + "FROM Actividad ACT "
+                        + "LEFT JOIN Abono AB ON ACT.fk_Abono_id = AB.idAbono "
+                        + "LEFT JOIN Profesor PR ON ACT.fk_Profesor_id = PR.IdProfesor "
+                        + "LEFT JOIN Persona P ON PR.fk_idPersona = P.idPersona "
+                        + "WHERE ACT.IdActividad = @IdActividad ";
+            actividad = dbOperation.OperationQueryById2<ActividadAdmin>(sql, 
+                new
+            {
+                IdActividad = idActividad
+            });
+            return actividad;
         }
     }
 }

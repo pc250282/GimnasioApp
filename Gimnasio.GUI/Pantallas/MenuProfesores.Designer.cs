@@ -36,7 +36,6 @@
             sltGenero = new MaterialSkin.Controls.MaterialComboBox();
             sltFechaNacimiento = new DateTimePicker();
             lblFecha = new MaterialSkin.Controls.MaterialLabel();
-            sltActividad = new MaterialSkin.Controls.MaterialComboBox();
             btnRegistro = new MaterialSkin.Controls.MaterialButton();
             btnVolver = new MaterialSkin.Controls.MaterialButton();
             SuspendLayout();
@@ -178,29 +177,6 @@
             lblFecha.TabIndex = 14;
             lblFecha.Text = "Fecha de nacimiento";
             // 
-            // sltActividad
-            // 
-            sltActividad.AutoResize = false;
-            sltActividad.BackColor = Color.FromArgb(255, 255, 255);
-            sltActividad.Depth = 0;
-            sltActividad.DrawMode = DrawMode.OwnerDrawVariable;
-            sltActividad.DropDownHeight = 174;
-            sltActividad.DropDownStyle = ComboBoxStyle.DropDownList;
-            sltActividad.DropDownWidth = 121;
-            sltActividad.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
-            sltActividad.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            sltActividad.FormattingEnabled = true;
-            sltActividad.Hint = "Actividad";
-            sltActividad.IntegralHeight = false;
-            sltActividad.ItemHeight = 43;
-            sltActividad.Location = new Point(269, 287);
-            sltActividad.MaxDropDownItems = 4;
-            sltActividad.MouseState = MaterialSkin.MouseState.OUT;
-            sltActividad.Name = "sltActividad";
-            sltActividad.Size = new Size(180, 49);
-            sltActividad.StartIndex = 0;
-            sltActividad.TabIndex = 8;
-            // 
             // btnRegistro
             // 
             btnRegistro.AutoSizeMode = AutoSizeMode.GrowAndShrink;
@@ -248,7 +224,6 @@
             ClientSize = new Size(636, 450);
             Controls.Add(btnVolver);
             Controls.Add(btnRegistro);
-            Controls.Add(sltActividad);
             Controls.Add(lblFecha);
             Controls.Add(sltFechaNacimiento);
             Controls.Add(sltGenero);
@@ -273,7 +248,6 @@
         private MaterialSkin.Controls.MaterialComboBox sltGenero;
         private DateTimePicker sltFechaNacimiento;
         private MaterialSkin.Controls.MaterialLabel lblFecha;
-        private MaterialSkin.Controls.MaterialComboBox sltActividad;
         private MaterialSkin.Controls.MaterialButton btnRegistro;
         private MaterialSkin.Controls.MaterialButton btnVolver;
     }

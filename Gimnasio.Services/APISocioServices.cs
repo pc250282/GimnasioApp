@@ -29,10 +29,7 @@ namespace Gimnasio.Services
             return datosMaestros.GetActividad();
         }
 
-        public List<Abono> getAbono()
-        {
-            return datosMaestros.GetAbono();
-        }
+        
         public int insertPersona(Persona nuevaPersona)
         {
             return datosMaestros.InsertPersona(nuevaPersona);
@@ -57,10 +54,7 @@ namespace Gimnasio.Services
         {
             return datosMaestros.InsertAbono(nuevoAbono);
         }
-        public int insertProfesor(int idPersona, Profesor profesorNuevo)
-        {
-            return datosMaestros.InsertProfesor(idPersona, profesorNuevo);
-        }
+        
 
         public List<SocioAdmin> getSocios()
         {
@@ -97,10 +91,5 @@ namespace Gimnasio.Services
             return datosMaestros.EditarAbonoSocio(idSocio, idAbonoSocio, idEstado);
         }
         
-
-        public List<ActividadAdmin> getActividadesActivas()
-        {
-            return datosMaestros.GetActividadesActivas();
-        }
     }
 }

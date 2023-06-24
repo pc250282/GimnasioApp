@@ -36,6 +36,11 @@
             btnVolver = new MaterialSkin.Controls.MaterialButton();
             sltAbono = new MaterialSkin.Controls.MaterialComboBox();
             btnCreaActividad = new MaterialSkin.Controls.MaterialButton();
+            sltProfesor = new MaterialSkin.Controls.MaterialComboBox();
+            lblAbonoActual = new MaterialSkin.Controls.MaterialLabel();
+            lblProfesorActual = new MaterialSkin.Controls.MaterialLabel();
+            lblValorActual = new MaterialSkin.Controls.MaterialLabel();
+            lblDatos = new MaterialSkin.Controls.MaterialLabel();
             SuspendLayout();
             // 
             // txtNombreActividad
@@ -156,7 +161,7 @@
             txtCrearAbono.Depth = 0;
             txtCrearAbono.HighEmphasis = true;
             txtCrearAbono.Icon = null;
-            txtCrearAbono.Location = new Point(558, 108);
+            txtCrearAbono.Location = new Point(378, 343);
             txtCrearAbono.Margin = new Padding(4, 6, 4, 6);
             txtCrearAbono.MouseState = MaterialSkin.MouseState.HOVER;
             txtCrearAbono.Name = "txtCrearAbono";
@@ -233,11 +238,87 @@
             btnCreaActividad.UseVisualStyleBackColor = true;
             btnCreaActividad.Click += btnCreaActividad_Click;
             // 
+            // sltProfesor
+            // 
+            sltProfesor.AutoResize = false;
+            sltProfesor.BackColor = Color.FromArgb(255, 255, 255);
+            sltProfesor.Depth = 0;
+            sltProfesor.DrawMode = DrawMode.OwnerDrawVariable;
+            sltProfesor.DropDownHeight = 174;
+            sltProfesor.DropDownStyle = ComboBoxStyle.DropDownList;
+            sltProfesor.DropDownWidth = 121;
+            sltProfesor.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            sltProfesor.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            sltProfesor.FormattingEnabled = true;
+            sltProfesor.Hint = "Seleccione Profesor";
+            sltProfesor.IntegralHeight = false;
+            sltProfesor.ItemHeight = 43;
+            sltProfesor.Location = new Point(301, 249);
+            sltProfesor.MaxDropDownItems = 4;
+            sltProfesor.MouseState = MaterialSkin.MouseState.OUT;
+            sltProfesor.Name = "sltProfesor";
+            sltProfesor.Size = new Size(250, 49);
+            sltProfesor.StartIndex = 0;
+            sltProfesor.TabIndex = 8;
+            // 
+            // lblAbonoActual
+            // 
+            lblAbonoActual.AutoSize = true;
+            lblAbonoActual.Depth = 0;
+            lblAbonoActual.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblAbonoActual.Location = new Point(566, 125);
+            lblAbonoActual.MouseState = MaterialSkin.MouseState.HOVER;
+            lblAbonoActual.Name = "lblAbonoActual";
+            lblAbonoActual.Size = new Size(109, 19);
+            lblAbonoActual.TabIndex = 9;
+            lblAbonoActual.Text = "lblAbonoActual";
+            // 
+            // lblProfesorActual
+            // 
+            lblProfesorActual.AutoSize = true;
+            lblProfesorActual.Depth = 0;
+            lblProfesorActual.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblProfesorActual.Location = new Point(566, 279);
+            lblProfesorActual.MouseState = MaterialSkin.MouseState.HOVER;
+            lblProfesorActual.Name = "lblProfesorActual";
+            lblProfesorActual.Size = new Size(123, 19);
+            lblProfesorActual.TabIndex = 10;
+            lblProfesorActual.Text = "lblProfesorActual";
+            // 
+            // lblValorActual
+            // 
+            lblValorActual.AutoSize = true;
+            lblValorActual.Depth = 0;
+            lblValorActual.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblValorActual.Location = new Point(566, 198);
+            lblValorActual.MouseState = MaterialSkin.MouseState.HOVER;
+            lblValorActual.Name = "lblValorActual";
+            lblValorActual.Size = new Size(100, 19);
+            lblValorActual.TabIndex = 11;
+            lblValorActual.Text = "lblValorActual";
+            // 
+            // lblDatos
+            // 
+            lblDatos.AutoSize = true;
+            lblDatos.Depth = 0;
+            lblDatos.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblDatos.Location = new Point(566, 74);
+            lblDatos.MouseState = MaterialSkin.MouseState.HOVER;
+            lblDatos.Name = "lblDatos";
+            lblDatos.Size = new Size(122, 19);
+            lblDatos.TabIndex = 12;
+            lblDatos.Text = "Valores actuales:";
+            // 
             // FrmActividades
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(lblDatos);
+            Controls.Add(lblValorActual);
+            Controls.Add(lblProfesorActual);
+            Controls.Add(lblAbonoActual);
+            Controls.Add(sltProfesor);
             Controls.Add(btnCreaActividad);
             Controls.Add(sltAbono);
             Controls.Add(btnVolver);
@@ -262,5 +343,10 @@
         private MaterialSkin.Controls.MaterialButton btnVolver;
         private MaterialSkin.Controls.MaterialComboBox sltAbono;
         private MaterialSkin.Controls.MaterialButton btnCreaActividad;
+        private MaterialSkin.Controls.MaterialComboBox sltProfesor;
+        private MaterialSkin.Controls.MaterialLabel lblAbonoActual;
+        private MaterialSkin.Controls.MaterialLabel lblProfesorActual;
+        private MaterialSkin.Controls.MaterialLabel lblValorActual;
+        private MaterialSkin.Controls.MaterialLabel lblDatos;
     }
 }
