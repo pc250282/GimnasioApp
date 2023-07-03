@@ -49,8 +49,9 @@ namespace Gimnasio.GUI.Pantallas
             this.actividadAeditar = actividadAeditar;
             btnCreaActividad.Text = "ACTUALIZAR DATOS";
             txtHorario.Text = actividadAeditar.horario;
-            txtCupo.Text = actividadAeditar.cupo.ToString();
+            txtHorasPorSemana.Text = actividadAeditar.horasPorSemana.ToString();
             txtNombreActividad.Text = actividadAeditar.nombreActividad;
+            txtCupo.Text = actividadAeditar.cupoDisponible.ToString();
             obtenerAbonos();
             obtenerProfesoresDisponibles();
             lblAbonoActual.Text = $"Abono: {actividadAeditar.nombreAbono}";
@@ -62,7 +63,7 @@ namespace Gimnasio.GUI.Pantallas
             {
                 lblProfesorActual.Text = $"Profesor: {actividadAeditar.nombre}";
             }
-            
+
             lblValorActual.Text = $"Valor: ${actividadAeditar.valorCuotaPura}";
         }
 
@@ -101,8 +102,9 @@ namespace Gimnasio.GUI.Pantallas
                 {
                     nombreActividad = txtNombreActividad.Text,
                     horario = txtHorario.Text,
-                    cupo = int.Parse(txtCupo.Text),
+                    horasPorSemana = int.Parse(txtHorasPorSemana.Text),
                     fk_Abono_id = int.Parse(seleccionAbono.SelectedValue.ToString()),
+                    cupoDisponible = int.Parse(txtCupo.Text),
                     fk_Profesor_id = int.Parse(sltProfesor.SelectedValue.ToString())
 
                 };
@@ -131,6 +133,48 @@ namespace Gimnasio.GUI.Pantallas
             }
         }
 
+        private void editarActividad()
+        {
+            try
+            {
+                Actividad actividadEditada = new Actividad()
+                {
+                    idActividad = actividadAeditar.IdActividad,
+                    nombreActividad = txtNombreActividad.Text,
+                    horario = txtHorario.Text,
+                    cupoDisponible = int.Parse(txtCupo.Text),
+                    horasPorSemana = int.Parse(txtHorasPorSemana.Text),
+                    fk_Abono_id = int.Parse(seleccionAbono.SelectedValue.ToString()),
+                    fk_Profesor_id = int.Parse(sltProfesor.SelectedValue.ToString())
+
+                };
+
+                int insertResult = actividadServices.editarActividad(actividadEditada);
+
+                if (insertResult >= 1)
+                {
+
+                    int updateProfesorResult = profesorServices.editarEstadoProfesor(actividadEditada.fk_Profesor_id);
+                    MaterialMessageBox.Show($"Se actualizo la actividad N° {actividadEditada.idActividad}, {actividadEditada.nombreActividad} con exito");
+                    this.Close();
+                    new MenuPrincipal().Show();
+
+                }
+                else
+                {
+                    MaterialMessageBox.Show($"Ocurrió un error actualizando la actividad");
+                }
+
+
+            }
+            catch (Exception error)
+            {
+                MaterialMessageBox.Show("Algo salió mal : " + error);
+
+
+            }
+        }
+
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -146,7 +190,15 @@ namespace Gimnasio.GUI.Pantallas
 
         private void btnCreaActividad_Click(object sender, EventArgs e)
         {
-            crearActividad();
+            if (btnCreaActividad.Text == "ACTUALIZAR DATOS")
+            {
+                editarActividad();
+            }
+            else
+            {
+                crearActividad();
+            }
+
         }
     }
 }

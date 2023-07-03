@@ -10,8 +10,8 @@
         public string direccion { get; set; }
         public int fk_IdGenero { get; set; }
         public DateTime fechaNacimiento { get; set; }
+        public string mail { get; set; }
  
     }
-
 
 }

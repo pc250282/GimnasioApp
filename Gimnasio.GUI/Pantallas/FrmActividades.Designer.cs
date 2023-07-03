@@ -30,7 +30,7 @@
         {
             txtNombreActividad = new MaterialSkin.Controls.MaterialTextBox2();
             txtHorario = new MaterialSkin.Controls.MaterialTextBox2();
-            txtCupo = new MaterialSkin.Controls.MaterialTextBox2();
+            txtHorasPorSemana = new MaterialSkin.Controls.MaterialTextBox2();
             seleccionAbono = new MaterialSkin.Controls.MaterialComboBox();
             txtCrearAbono = new MaterialSkin.Controls.MaterialButton();
             btnVolver = new MaterialSkin.Controls.MaterialButton();
@@ -41,6 +41,7 @@
             lblProfesorActual = new MaterialSkin.Controls.MaterialLabel();
             lblValorActual = new MaterialSkin.Controls.MaterialLabel();
             lblDatos = new MaterialSkin.Controls.MaterialLabel();
+            txtCupo = new MaterialSkin.Controls.MaterialTextBox2();
             SuspendLayout();
             // 
             // txtNombreActividad
@@ -102,34 +103,34 @@
             txtHorario.TrailingIcon = null;
             txtHorario.UseSystemPasswordChar = false;
             // 
-            // txtCupo
+            // txtHorasPorSemana
             // 
-            txtCupo.AnimateReadOnly = false;
-            txtCupo.BackgroundImageLayout = ImageLayout.None;
-            txtCupo.CharacterCasing = CharacterCasing.Normal;
-            txtCupo.Depth = 0;
-            txtCupo.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtCupo.HideSelection = true;
-            txtCupo.Hint = "Cupo de alumnos";
-            txtCupo.LeadingIcon = null;
-            txtCupo.Location = new Point(21, 250);
-            txtCupo.MaxLength = 100;
-            txtCupo.MouseState = MaterialSkin.MouseState.OUT;
-            txtCupo.Name = "txtCupo";
-            txtCupo.PasswordChar = '\0';
-            txtCupo.PrefixSuffixText = null;
-            txtCupo.ReadOnly = false;
-            txtCupo.RightToLeft = RightToLeft.No;
-            txtCupo.SelectedText = "";
-            txtCupo.SelectionLength = 0;
-            txtCupo.SelectionStart = 0;
-            txtCupo.ShortcutsEnabled = true;
-            txtCupo.Size = new Size(250, 48);
-            txtCupo.TabIndex = 2;
-            txtCupo.TabStop = false;
-            txtCupo.TextAlign = HorizontalAlignment.Left;
-            txtCupo.TrailingIcon = null;
-            txtCupo.UseSystemPasswordChar = false;
+            txtHorasPorSemana.AnimateReadOnly = false;
+            txtHorasPorSemana.BackgroundImageLayout = ImageLayout.None;
+            txtHorasPorSemana.CharacterCasing = CharacterCasing.Normal;
+            txtHorasPorSemana.Depth = 0;
+            txtHorasPorSemana.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtHorasPorSemana.HideSelection = true;
+            txtHorasPorSemana.Hint = "Horas por semana";
+            txtHorasPorSemana.LeadingIcon = null;
+            txtHorasPorSemana.Location = new Point(21, 250);
+            txtHorasPorSemana.MaxLength = 100;
+            txtHorasPorSemana.MouseState = MaterialSkin.MouseState.OUT;
+            txtHorasPorSemana.Name = "txtHorasPorSemana";
+            txtHorasPorSemana.PasswordChar = '\0';
+            txtHorasPorSemana.PrefixSuffixText = null;
+            txtHorasPorSemana.ReadOnly = false;
+            txtHorasPorSemana.RightToLeft = RightToLeft.No;
+            txtHorasPorSemana.SelectedText = "";
+            txtHorasPorSemana.SelectionLength = 0;
+            txtHorasPorSemana.SelectionStart = 0;
+            txtHorasPorSemana.ShortcutsEnabled = true;
+            txtHorasPorSemana.Size = new Size(250, 48);
+            txtHorasPorSemana.TabIndex = 2;
+            txtHorasPorSemana.TabStop = false;
+            txtHorasPorSemana.TextAlign = HorizontalAlignment.Left;
+            txtHorasPorSemana.TrailingIcon = null;
+            txtHorasPorSemana.UseSystemPasswordChar = false;
             // 
             // seleccionAbono
             // 
@@ -143,7 +144,7 @@
             seleccionAbono.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
             seleccionAbono.ForeColor = Color.FromArgb(222, 0, 0, 0);
             seleccionAbono.FormattingEnabled = true;
-            seleccionAbono.Hint = "Seleccione abono";
+            seleccionAbono.Hint = "Abonos en existencia";
             seleccionAbono.IntegralHeight = false;
             seleccionAbono.ItemHeight = 43;
             seleccionAbono.Location = new Point(301, 96);
@@ -161,14 +162,14 @@
             txtCrearAbono.Depth = 0;
             txtCrearAbono.HighEmphasis = true;
             txtCrearAbono.Icon = null;
-            txtCrearAbono.Location = new Point(378, 343);
+            txtCrearAbono.Location = new Point(301, 390);
             txtCrearAbono.Margin = new Padding(4, 6, 4, 6);
             txtCrearAbono.MouseState = MaterialSkin.MouseState.HOVER;
             txtCrearAbono.Name = "txtCrearAbono";
             txtCrearAbono.NoAccentTextColor = Color.Empty;
-            txtCrearAbono.Size = new Size(173, 36);
+            txtCrearAbono.Size = new Size(121, 36);
             txtCrearAbono.TabIndex = 4;
-            txtCrearAbono.Text = "CREAR NUEVO ABONO";
+            txtCrearAbono.Text = "CREAR ABONO ";
             txtCrearAbono.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             txtCrearAbono.UseAccentColor = false;
             txtCrearAbono.UseVisualStyleBackColor = true;
@@ -181,7 +182,7 @@
             btnVolver.Depth = 0;
             btnVolver.HighEmphasis = true;
             btnVolver.Icon = null;
-            btnVolver.Location = new Point(252, 343);
+            btnVolver.Location = new Point(566, 390);
             btnVolver.Margin = new Padding(4, 6, 4, 6);
             btnVolver.MouseState = MaterialSkin.MouseState.HOVER;
             btnVolver.Name = "btnVolver";
@@ -225,7 +226,7 @@
             btnCreaActividad.Depth = 0;
             btnCreaActividad.HighEmphasis = true;
             btnCreaActividad.Icon = null;
-            btnCreaActividad.Location = new Point(21, 343);
+            btnCreaActividad.Location = new Point(21, 390);
             btnCreaActividad.Margin = new Padding(4, 6, 4, 6);
             btnCreaActividad.MouseState = MaterialSkin.MouseState.HOVER;
             btnCreaActividad.Name = "btnCreaActividad";
@@ -250,7 +251,7 @@
             sltProfesor.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
             sltProfesor.ForeColor = Color.FromArgb(222, 0, 0, 0);
             sltProfesor.FormattingEnabled = true;
-            sltProfesor.Hint = "Seleccione Profesor";
+            sltProfesor.Hint = "Profesores disponibles";
             sltProfesor.IntegralHeight = false;
             sltProfesor.ItemHeight = 43;
             sltProfesor.Location = new Point(301, 249);
@@ -266,7 +267,7 @@
             lblAbonoActual.AutoSize = true;
             lblAbonoActual.Depth = 0;
             lblAbonoActual.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblAbonoActual.Location = new Point(566, 125);
+            lblAbonoActual.Location = new Point(580, 125);
             lblAbonoActual.MouseState = MaterialSkin.MouseState.HOVER;
             lblAbonoActual.Name = "lblAbonoActual";
             lblAbonoActual.Size = new Size(109, 19);
@@ -278,7 +279,7 @@
             lblProfesorActual.AutoSize = true;
             lblProfesorActual.Depth = 0;
             lblProfesorActual.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblProfesorActual.Location = new Point(566, 279);
+            lblProfesorActual.Location = new Point(580, 279);
             lblProfesorActual.MouseState = MaterialSkin.MouseState.HOVER;
             lblProfesorActual.Name = "lblProfesorActual";
             lblProfesorActual.Size = new Size(123, 19);
@@ -290,7 +291,7 @@
             lblValorActual.AutoSize = true;
             lblValorActual.Depth = 0;
             lblValorActual.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblValorActual.Location = new Point(566, 198);
+            lblValorActual.Location = new Point(580, 198);
             lblValorActual.MouseState = MaterialSkin.MouseState.HOVER;
             lblValorActual.Name = "lblValorActual";
             lblValorActual.Size = new Size(100, 19);
@@ -299,21 +300,51 @@
             // 
             // lblDatos
             // 
-            lblDatos.AutoSize = true;
             lblDatos.Depth = 0;
-            lblDatos.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Bold, GraphicsUnit.Pixel);
-            lblDatos.Location = new Point(566, 74);
+            lblDatos.Font = new Font("Roboto Medium", 20F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblDatos.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
+            lblDatos.Location = new Point(566, 79);
             lblDatos.MouseState = MaterialSkin.MouseState.HOVER;
             lblDatos.Name = "lblDatos";
-            lblDatos.Size = new Size(122, 19);
+            lblDatos.Size = new Size(172, 30);
             lblDatos.TabIndex = 12;
-            lblDatos.Text = "Valores actuales:";
+            lblDatos.Text = "Valores actuales";
+            // 
+            // txtCupo
+            // 
+            txtCupo.AnimateReadOnly = false;
+            txtCupo.BackgroundImageLayout = ImageLayout.None;
+            txtCupo.CharacterCasing = CharacterCasing.Normal;
+            txtCupo.Depth = 0;
+            txtCupo.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtCupo.HideSelection = true;
+            txtCupo.Hint = "Cupo de alumnos";
+            txtCupo.LeadingIcon = null;
+            txtCupo.Location = new Point(21, 322);
+            txtCupo.MaxLength = 100;
+            txtCupo.MouseState = MaterialSkin.MouseState.OUT;
+            txtCupo.Name = "txtCupo";
+            txtCupo.PasswordChar = '\0';
+            txtCupo.PrefixSuffixText = null;
+            txtCupo.ReadOnly = false;
+            txtCupo.RightToLeft = RightToLeft.No;
+            txtCupo.SelectedText = "";
+            txtCupo.SelectionLength = 0;
+            txtCupo.SelectionStart = 0;
+            txtCupo.ShortcutsEnabled = true;
+            txtCupo.Size = new Size(250, 48);
+            txtCupo.TabIndex = 13;
+            txtCupo.TabStop = false;
+            txtCupo.TextAlign = HorizontalAlignment.Left;
+            txtCupo.TrailingIcon = null;
+            txtCupo.UseSystemPasswordChar = false;
             // 
             // FrmActividades
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(txtCupo);
             Controls.Add(lblDatos);
             Controls.Add(lblValorActual);
             Controls.Add(lblProfesorActual);
@@ -324,11 +355,11 @@
             Controls.Add(btnVolver);
             Controls.Add(txtCrearAbono);
             Controls.Add(seleccionAbono);
-            Controls.Add(txtCupo);
+            Controls.Add(txtHorasPorSemana);
             Controls.Add(txtHorario);
             Controls.Add(txtNombreActividad);
             Name = "FrmActividades";
-            Text = "Administrar actividades";
+            Text = "Creacion de actividades";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -337,7 +368,7 @@
 
         private MaterialSkin.Controls.MaterialTextBox2 txtNombreActividad;
         private MaterialSkin.Controls.MaterialTextBox2 txtHorario;
-        private MaterialSkin.Controls.MaterialTextBox2 txtCupo;
+        private MaterialSkin.Controls.MaterialTextBox2 txtHorasPorSemana;
         private MaterialSkin.Controls.MaterialComboBox seleccionAbono;
         private MaterialSkin.Controls.MaterialButton txtCrearAbono;
         private MaterialSkin.Controls.MaterialButton btnVolver;
@@ -348,5 +379,6 @@
         private MaterialSkin.Controls.MaterialLabel lblProfesorActual;
         private MaterialSkin.Controls.MaterialLabel lblValorActual;
         private MaterialSkin.Controls.MaterialLabel lblDatos;
+        private MaterialSkin.Controls.MaterialTextBox2 txtCupo;
     }
 }

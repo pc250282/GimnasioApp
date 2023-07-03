@@ -76,10 +76,6 @@ namespace Gimnasio.Services
             return datosMaestros.EditarEstadoSocio(idSocio, idEstado);
         }
 
-        public int editarActividadProfesor(int idProfesor, int fk_idActividad, double sueldo)
-        {
-            return datosMaestros.EditarActividadProfesor(idProfesor, fk_idActividad, sueldo);
-        }
 
         public int actualizarFechaPagoSocio(int idSocio, DateTime fechaUltimoPago)
         {
@@ -89,6 +85,11 @@ namespace Gimnasio.Services
         public int editarAbonoSocio (int idSocio, int idAbonoSocio, int idEstado)
         {
             return datosMaestros.EditarAbonoSocio(idSocio, idAbonoSocio, idEstado);
+        }
+
+        public int editarDatosPersona(Persona personaExistente)
+        {
+            return datosMaestros.EditarDatosPersona(personaExistente);
         }
         
     }

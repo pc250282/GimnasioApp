@@ -16,7 +16,7 @@ namespace Gimnasio.GUI.Pantallas
     public partial class FrmConsultaProfesores : MaterialForm
     {
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
-        private APISocioServices securityServices = new APISocioServices();
+        private APIProfesorServices profesorServices = new APIProfesorServices();
         private List<string> lstIdsProfesores = new List<string>();
         private DateTime fechaActual = DateTime.Now;
         public FrmConsultaProfesores()
@@ -30,17 +30,17 @@ namespace Gimnasio.GUI.Pantallas
             InitializeComponent();
             obtenerProfesores();
             llenarIds();
-            obtenerActividades();
+
         }
 
         private void obtenerProfesores()
         {
-            List<ProfesorAdmin> lstProfes = securityServices.getProfesores();
+            List<ProfesorAdmin> lstProfes = profesorServices.getProfesores();
             tablaProfesores.Rows.Clear();
             foreach (ProfesorAdmin profesor in lstProfes)
             {
                 llenarTableProfesores(profesor);
-                lstIdsProfesores.Add(profesor.idProfesor.ToString());
+                lstIdsProfesores.Add(profesor.IdProfesor.ToString());
             }
         }
 
@@ -49,52 +49,33 @@ namespace Gimnasio.GUI.Pantallas
             int rowIndex = tablaProfesores.Rows.Add();
 
 
-            tablaProfesores.Rows[rowIndex].Cells[0].Value = profesor.idProfesor;
+            tablaProfesores.Rows[rowIndex].Cells[0].Value = profesor.IdProfesor;
             tablaProfesores.Rows[rowIndex].Cells[1].Value = profesor.nombreEstado;
             tablaProfesores.Rows[rowIndex].Cells[2].Value = profesor.nombre;
             tablaProfesores.Rows[rowIndex].Cells[3].Value = profesor.apellido;
-            tablaProfesores.Rows[rowIndex].Cells[4].Value = profesor.nombreActividad;
-            tablaProfesores.Rows[rowIndex].Cells[5].Value = profesor.fechaContratacion.ToShortDateString();
-            tablaProfesores.Rows[rowIndex].Cells[6].Value = ((profesor.valorCuotaPura * profesor.porcentajeProfesor) / 100).ToString();
+            tablaProfesores.Rows[rowIndex].Cells[4].Value = profesor.fechaContratacion.ToShortDateString();
+            tablaProfesores.Rows[rowIndex].Cells[5].Value = $"$ {profesor.sueldo.ToString()}";
         }
 
-        public void obtenerActividades()
-        {
-            List<Actividad> lstActividad = securityServices.getActividad();
-
-            sltActividades.DisplayMember = "nombreActividad";
-            sltActividades.ValueMember = "idActividad";
-            sltActividades.DataSource = lstActividad;
-
-        }
 
         private void llenarIds()
         {
             sltNumProfesor.DataSource = lstIdsProfesores;
-        }
-        private void btbAsignarActividad_Click(object sender, EventArgs e)
-        {
-            int fk_idActividad = int.Parse(sltActividades.SelectedValue.ToString());
-            int idProfesor = int.Parse(sltNumProfesor.SelectedValue.ToString());
-            double sueldo = 0.0;
-
-
-            int resultado = securityServices.editarActividadProfesor(idProfesor, fk_idActividad, sueldo);
-            if (resultado >= 1)
-            {
-                obtenerProfesores();
-                MaterialMessageBox.Show($"Se actualizó con exito la actividad del profesor  N° {idProfesor.ToString()}");
-            }
-            else
-            {
-                MaterialMessageBox.Show($"Ocurrió un error asignando la actividad del profesor N°: {idProfesor.ToString()}");
-            }
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Close();
             new MenuPrincipal().Show();
+        }
+
+        private void btbAsignarSueldo_Click(object sender, EventArgs e)
+        {
+            int idProfesor = int.Parse(sltNumProfesor.SelectedValue.ToString());
+            ProfesorAdmin profesor = profesorServices.getProfesorById(idProfesor);
+            FrmAsignarSueldo frmAsignarSueldo = new FrmAsignarSueldo(profesor);
+            this.Hide();
+            frmAsignarSueldo.Show();
         }
     }
 }

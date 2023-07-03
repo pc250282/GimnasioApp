@@ -42,6 +42,7 @@
             txtEdad = new MaterialSkin.Controls.MaterialTextBox();
             btnVolver = new MaterialSkin.Controls.MaterialButton();
             materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            txtMail = new MaterialSkin.Controls.MaterialTextBox2();
             SuspendLayout();
             // 
             // sltGenero
@@ -63,9 +64,9 @@
             sltGenero.MaxDropDownItems = 4;
             sltGenero.MouseState = MaterialSkin.MouseState.OUT;
             sltGenero.Name = "sltGenero";
-            sltGenero.Size = new Size(205, 49);
+            sltGenero.Size = new Size(246, 49);
             sltGenero.StartIndex = 0;
-            sltGenero.TabIndex = 0;
+            sltGenero.TabIndex = 6;
             // 
             // sltAbono
             // 
@@ -82,13 +83,13 @@
             sltAbono.Hint = "Abonos disponibles";
             sltAbono.IntegralHeight = false;
             sltAbono.ItemHeight = 43;
-            sltAbono.Location = new Point(271, 298);
+            sltAbono.Location = new Point(546, 143);
             sltAbono.MaxDropDownItems = 4;
             sltAbono.MouseState = MaterialSkin.MouseState.OUT;
             sltAbono.Name = "sltAbono";
-            sltAbono.Size = new Size(205, 49);
+            sltAbono.Size = new Size(248, 49);
             sltAbono.StartIndex = 0;
-            sltAbono.TabIndex = 1;
+            sltAbono.TabIndex = 9;
             // 
             // txtNombre
             // 
@@ -104,9 +105,10 @@
             txtNombre.Multiline = false;
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(205, 50);
-            txtNombre.TabIndex = 2;
+            txtNombre.TabIndex = 1;
             txtNombre.Text = "";
             txtNombre.TrailingIcon = null;
+            txtNombre.KeyPress += txtNombre_KeyPress;
             // 
             // txtApellido
             // 
@@ -122,9 +124,10 @@
             txtApellido.Multiline = false;
             txtApellido.Name = "txtApellido";
             txtApellido.Size = new Size(205, 50);
-            txtApellido.TabIndex = 3;
+            txtApellido.TabIndex = 2;
             txtApellido.Text = "";
             txtApellido.TrailingIcon = null;
+            txtApellido.KeyPress += txtApellido_KeyPress;
             // 
             // txtDNI
             // 
@@ -134,15 +137,17 @@
             txtDNI.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtDNI.Hint = "N° Documento";
             txtDNI.LeadingIcon = null;
+            txtDNI.LeaveOnEnterKey = true;
             txtDNI.Location = new Point(41, 214);
-            txtDNI.MaxLength = 50;
+            txtDNI.MaxLength = 8;
             txtDNI.MouseState = MaterialSkin.MouseState.OUT;
             txtDNI.Multiline = false;
             txtDNI.Name = "txtDNI";
             txtDNI.Size = new Size(205, 50);
-            txtDNI.TabIndex = 4;
+            txtDNI.TabIndex = 3;
             txtDNI.Text = "";
             txtDNI.TrailingIcon = null;
+            txtDNI.KeyPress += txtDNI_KeyPress;
             // 
             // txtTelefono
             // 
@@ -153,14 +158,15 @@
             txtTelefono.Hint = "Celular";
             txtTelefono.LeadingIcon = null;
             txtTelefono.Location = new Point(271, 145);
-            txtTelefono.MaxLength = 50;
+            txtTelefono.MaxLength = 10;
             txtTelefono.MouseState = MaterialSkin.MouseState.OUT;
             txtTelefono.Multiline = false;
             txtTelefono.Name = "txtTelefono";
-            txtTelefono.Size = new Size(205, 50);
+            txtTelefono.Size = new Size(246, 50);
             txtTelefono.TabIndex = 5;
             txtTelefono.Text = "";
             txtTelefono.TrailingIcon = null;
+            txtTelefono.KeyPress += txtTelefono_KeyPress;
             // 
             // txtDireccion
             // 
@@ -175,8 +181,8 @@
             txtDireccion.MouseState = MaterialSkin.MouseState.OUT;
             txtDireccion.Multiline = false;
             txtDireccion.Name = "txtDireccion";
-            txtDireccion.Size = new Size(205, 50);
-            txtDireccion.TabIndex = 6;
+            txtDireccion.Size = new Size(246, 50);
+            txtDireccion.TabIndex = 4;
             txtDireccion.Text = "";
             txtDireccion.TrailingIcon = null;
             // 
@@ -184,7 +190,7 @@
             // 
             checkPago.AutoSize = true;
             checkPago.Depth = 0;
-            checkPago.Location = new Point(528, 102);
+            checkPago.Location = new Point(546, 79);
             checkPago.Margin = new Padding(0);
             checkPago.MouseLocation = new Point(-1, -1);
             checkPago.MouseState = MaterialSkin.MouseState.HOVER;
@@ -203,7 +209,7 @@
             btnConfirmaAlta.Depth = 0;
             btnConfirmaAlta.HighEmphasis = true;
             btnConfirmaAlta.Icon = null;
-            btnConfirmaAlta.Location = new Point(528, 215);
+            btnConfirmaAlta.Location = new Point(546, 228);
             btnConfirmaAlta.Margin = new Padding(4, 6, 4, 6);
             btnConfirmaAlta.MouseState = MaterialSkin.MouseState.HOVER;
             btnConfirmaAlta.Name = "btnConfirmaAlta";
@@ -221,7 +227,7 @@
             lblFecha.AutoSize = true;
             lblFecha.Depth = 0;
             lblFecha.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblFecha.Location = new Point(46, 298);
+            lblFecha.Location = new Point(46, 295);
             lblFecha.MouseState = MaterialSkin.MouseState.HOVER;
             lblFecha.Name = "lblFecha";
             lblFecha.Size = new Size(148, 19);
@@ -232,12 +238,12 @@
             // 
             sltFechaNacimiento.CalendarMonthBackground = SystemColors.ScrollBar;
             sltFechaNacimiento.Format = DateTimePickerFormat.Short;
-            sltFechaNacimiento.Location = new Point(46, 324);
+            sltFechaNacimiento.Location = new Point(46, 320);
             sltFechaNacimiento.MaxDate = new DateTime(2005, 12, 31, 0, 0, 0, 0);
             sltFechaNacimiento.MinDate = new DateTime(1920, 12, 31, 0, 0, 0, 0);
             sltFechaNacimiento.Name = "sltFechaNacimiento";
             sltFechaNacimiento.Size = new Size(200, 23);
-            sltFechaNacimiento.TabIndex = 12;
+            sltFechaNacimiento.TabIndex = 7;
             sltFechaNacimiento.Value = new DateTime(2005, 12, 31, 0, 0, 0, 0);
             sltFechaNacimiento.MouseEnter += sltFechaNacimiento_MouseEnter_1;
             // 
@@ -266,7 +272,7 @@
             btnVolver.Depth = 0;
             btnVolver.HighEmphasis = true;
             btnVolver.Icon = null;
-            btnVolver.Location = new Point(665, 388);
+            btnVolver.Location = new Point(701, 405);
             btnVolver.Margin = new Padding(4, 6, 4, 6);
             btnVolver.MouseState = MaterialSkin.MouseState.HOVER;
             btnVolver.Name = "btnVolver";
@@ -287,15 +293,47 @@
             materialLabel1.Location = new Point(46, 366);
             materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel1.Name = "materialLabel1";
-            materialLabel1.Size = new Size(37, 19);
+            materialLabel1.Size = new Size(85, 19);
             materialLabel1.TabIndex = 14;
-            materialLabel1.Text = "Edad";
+            materialLabel1.Text = "Edad actual";
+            // 
+            // txtMail
+            // 
+            txtMail.AnimateReadOnly = false;
+            txtMail.BackgroundImageLayout = ImageLayout.None;
+            txtMail.CharacterCasing = CharacterCasing.Normal;
+            txtMail.Depth = 0;
+            txtMail.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtMail.HelperText = "ejemplo@gmail.com";
+            txtMail.HideSelection = true;
+            txtMail.Hint = "Correo electronico";
+            txtMail.LeadingIcon = null;
+            txtMail.Location = new Point(271, 304);
+            txtMail.MaxLength = 32767;
+            txtMail.MouseState = MaterialSkin.MouseState.OUT;
+            txtMail.Name = "txtMail";
+            txtMail.PasswordChar = '\0';
+            txtMail.PrefixSuffixText = null;
+            txtMail.ReadOnly = false;
+            txtMail.RightToLeft = RightToLeft.No;
+            txtMail.SelectedText = "";
+            txtMail.SelectionLength = 0;
+            txtMail.SelectionStart = 0;
+            txtMail.ShortcutsEnabled = true;
+            txtMail.Size = new Size(246, 48);
+            txtMail.TabIndex = 8;
+            txtMail.TabStop = false;
+            txtMail.TextAlign = HorizontalAlignment.Left;
+            txtMail.TrailingIcon = null;
+            txtMail.UseSystemPasswordChar = false;
+            txtMail.KeyDown += txtMail_KeyDown;
             // 
             // MenuCargaSocio
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(txtMail);
             Controls.Add(materialLabel1);
             Controls.Add(btnVolver);
             Controls.Add(sltFechaNacimiento);
@@ -332,5 +370,6 @@
         private MaterialSkin.Controls.MaterialTextBox txtEdad;
         private MaterialSkin.Controls.MaterialButton btnVolver;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private MaterialSkin.Controls.MaterialTextBox2 txtMail;
     }
 }

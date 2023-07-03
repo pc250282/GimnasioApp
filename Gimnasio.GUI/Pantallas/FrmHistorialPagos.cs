@@ -64,5 +64,12 @@ namespace Gimnasio.GUI.Pantallas
         {
             sltPagos.DataSource = lstIds;
         }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+
+            this.Close();
+            new MenuPrincipal().Show();
+        }
     }
 }

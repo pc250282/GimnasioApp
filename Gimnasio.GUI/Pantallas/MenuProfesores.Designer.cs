@@ -38,6 +38,7 @@
             lblFecha = new MaterialSkin.Controls.MaterialLabel();
             btnRegistro = new MaterialSkin.Controls.MaterialButton();
             btnVolver = new MaterialSkin.Controls.MaterialButton();
+            txtMail = new MaterialSkin.Controls.MaterialTextBox();
             SuspendLayout();
             // 
             // txtApellido
@@ -48,13 +49,13 @@
             txtApellido.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtApellido.Hint = "Apellido";
             txtApellido.LeadingIcon = null;
-            txtApellido.Location = new Point(45, 149);
-            txtApellido.MaxLength = 50;
+            txtApellido.Location = new Point(13, 149);
+            txtApellido.MaxLength = 25;
             txtApellido.MouseState = MaterialSkin.MouseState.OUT;
             txtApellido.Multiline = false;
             txtApellido.Name = "txtApellido";
-            txtApellido.Size = new Size(180, 50);
-            txtApellido.TabIndex = 1;
+            txtApellido.Size = new Size(232, 50);
+            txtApellido.TabIndex = 3;
             txtApellido.Text = "";
             txtApellido.TrailingIcon = null;
             // 
@@ -66,12 +67,12 @@
             txtNombre.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtNombre.Hint = "Nombre";
             txtNombre.LeadingIcon = null;
-            txtNombre.Location = new Point(45, 82);
-            txtNombre.MaxLength = 50;
+            txtNombre.Location = new Point(13, 82);
+            txtNombre.MaxLength = 25;
             txtNombre.MouseState = MaterialSkin.MouseState.OUT;
             txtNombre.Multiline = false;
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(180, 50);
+            txtNombre.Size = new Size(232, 50);
             txtNombre.TabIndex = 0;
             txtNombre.Text = "";
             txtNombre.TrailingIcon = null;
@@ -84,8 +85,8 @@
             txtTelefono.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtTelefono.Hint = "Telefono";
             txtTelefono.LeadingIcon = null;
-            txtTelefono.Location = new Point(269, 214);
-            txtTelefono.MaxLength = 50;
+            txtTelefono.Location = new Point(228, 214);
+            txtTelefono.MaxLength = 10;
             txtTelefono.MouseState = MaterialSkin.MouseState.OUT;
             txtTelefono.Multiline = false;
             txtTelefono.Name = "txtTelefono";
@@ -102,12 +103,12 @@
             txtDireccion.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtDireccion.Hint = "Direccion";
             txtDireccion.LeadingIcon = null;
-            txtDireccion.Location = new Point(269, 82);
+            txtDireccion.Location = new Point(264, 149);
             txtDireccion.MaxLength = 50;
             txtDireccion.MouseState = MaterialSkin.MouseState.OUT;
             txtDireccion.Multiline = false;
             txtDireccion.Name = "txtDireccion";
-            txtDireccion.Size = new Size(180, 50);
+            txtDireccion.Size = new Size(264, 50);
             txtDireccion.TabIndex = 4;
             txtDireccion.Text = "";
             txtDireccion.TrailingIcon = null;
@@ -120,13 +121,13 @@
             txtDNI.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtDNI.Hint = "N° Documento";
             txtDNI.LeadingIcon = null;
-            txtDNI.Location = new Point(45, 214);
-            txtDNI.MaxLength = 50;
+            txtDNI.Location = new Point(13, 214);
+            txtDNI.MaxLength = 8;
             txtDNI.MouseState = MaterialSkin.MouseState.OUT;
             txtDNI.Multiline = false;
             txtDNI.Name = "txtDNI";
             txtDNI.Size = new Size(180, 50);
-            txtDNI.TabIndex = 3;
+            txtDNI.TabIndex = 5;
             txtDNI.Text = "";
             txtDNI.TrailingIcon = null;
             // 
@@ -145,19 +146,19 @@
             sltGenero.Hint = "Genero";
             sltGenero.IntegralHeight = false;
             sltGenero.ItemHeight = 43;
-            sltGenero.Location = new Point(269, 148);
+            sltGenero.Location = new Point(435, 214);
             sltGenero.MaxDropDownItems = 4;
             sltGenero.MouseState = MaterialSkin.MouseState.OUT;
             sltGenero.Name = "sltGenero";
             sltGenero.Size = new Size(180, 49);
             sltGenero.StartIndex = 0;
-            sltGenero.TabIndex = 5;
+            sltGenero.TabIndex = 7;
             // 
             // sltFechaNacimiento
             // 
             sltFechaNacimiento.CalendarMonthBackground = SystemColors.ScrollBar;
             sltFechaNacimiento.Format = DateTimePickerFormat.Short;
-            sltFechaNacimiento.Location = new Point(45, 313);
+            sltFechaNacimiento.Location = new Point(13, 313);
             sltFechaNacimiento.MaxDate = new DateTime(2005, 12, 31, 0, 0, 0, 0);
             sltFechaNacimiento.MinDate = new DateTime(1920, 12, 31, 0, 0, 0, 0);
             sltFechaNacimiento.Name = "sltFechaNacimiento";
@@ -170,7 +171,7 @@
             lblFecha.AutoSize = true;
             lblFecha.Depth = 0;
             lblFecha.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblFecha.Location = new Point(45, 279);
+            lblFecha.Location = new Point(13, 278);
             lblFecha.MouseState = MaterialSkin.MouseState.HOVER;
             lblFecha.Name = "lblFecha";
             lblFecha.Size = new Size(148, 19);
@@ -217,11 +218,30 @@
             btnVolver.UseVisualStyleBackColor = true;
             btnVolver.Click += btnVolver_Click;
             // 
+            // txtMail
+            // 
+            txtMail.AnimateReadOnly = false;
+            txtMail.BorderStyle = BorderStyle.None;
+            txtMail.Depth = 0;
+            txtMail.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtMail.Hint = "Correo electronico";
+            txtMail.LeadingIcon = null;
+            txtMail.Location = new Point(264, 82);
+            txtMail.MaxLength = 25;
+            txtMail.MouseState = MaterialSkin.MouseState.OUT;
+            txtMail.Multiline = false;
+            txtMail.Name = "txtMail";
+            txtMail.Size = new Size(264, 50);
+            txtMail.TabIndex = 2;
+            txtMail.Text = "";
+            txtMail.TrailingIcon = null;
+            // 
             // MenuProfesores
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(636, 450);
+            Controls.Add(txtMail);
             Controls.Add(btnVolver);
             Controls.Add(btnRegistro);
             Controls.Add(lblFecha);
@@ -250,5 +270,6 @@
         private MaterialSkin.Controls.MaterialLabel lblFecha;
         private MaterialSkin.Controls.MaterialButton btnRegistro;
         private MaterialSkin.Controls.MaterialButton btnVolver;
+        private MaterialSkin.Controls.MaterialTextBox txtMail;
     }
 }

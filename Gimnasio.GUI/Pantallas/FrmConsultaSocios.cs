@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Gimnasio.GUI
 {
@@ -22,9 +23,12 @@ namespace Gimnasio.GUI
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
         private APISocioServices securityServices = new APISocioServices();
         private List<string> lstIds = new List<string>();
+        private List<string> lstApellidos = new List<string>();
         private List<string> lstIdsProfesores = new List<string>();
         private DateTime fechaActual = DateTime.Now;
         private int flagAbono;
+
+
         public FrmConsultaSocios()
         {
             InitializeComponent();
@@ -39,7 +43,6 @@ namespace Gimnasio.GUI
             obtenerEstados();
             llenarIds();
 
-
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
@@ -48,14 +51,17 @@ namespace Gimnasio.GUI
             new MenuPrincipal().Show();
         }
 
+
         private void obtenerSocios()
         {
+
             List<SocioAdmin> lstSocios = securityServices.getSocios();
             tablaSocios.Rows.Clear();
             foreach (SocioAdmin socio in lstSocios)
             {
                 llenarTablaSocios(socio);
                 lstIds.Add(socio.IdSocio.ToString());
+                lstApellidos.Add(socio.apellido);
             }
         }
 
@@ -66,36 +72,79 @@ namespace Gimnasio.GUI
             int rowIndex = tablaSocios.Rows.Add();
 
             tablaSocios.Rows[rowIndex].Cells[0].Value = socio.IdSocio;
-            tablaSocios.Rows[rowIndex].Cells[1].Value = socio.nombreAbono;
-            tablaSocios.Rows[rowIndex].Cells[2].Value = socio.fechaDeInscripcion.ToShortDateString();
-            tablaSocios.Rows[rowIndex].Cells[3].Value = socio.nombreEstado;
-            tablaSocios.Rows[rowIndex].Cells[4].Value = socio.nombre;
-            tablaSocios.Rows[rowIndex].Cells[5].Value = socio.apellido;
-            tablaSocios.Rows[rowIndex].Cells[6].Value = socio.telefono;
-            tablaSocios.Rows[rowIndex].Cells[7].Value = socio.fechaUltimoPago.ToShortDateString();
-            // Comparo fechas, si la fecha de ultimo pago es mayor a 30 dias existe pago pendiente pinto en rojo
-            TimeSpan diferencia = fechaActual.Subtract(socio.fechaUltimoPago);
-            if (diferencia.TotalDays <= 30)
+            tablaSocios.Rows[rowIndex].Cells[1].Value = socio.dni;
+            tablaSocios.Rows[rowIndex].Cells[2].Value = socio.nombreAbono;
+            tablaSocios.Rows[rowIndex].Cells[3].Value = socio.fechaDeInscripcion.ToShortDateString();
+            tablaSocios.Rows[rowIndex].Cells[4].Value = socio.nombreEstado;
+            tablaSocios.Rows[rowIndex].Cells[5].Value = socio.nombre;
+            tablaSocios.Rows[rowIndex].Cells[6].Value = socio.apellido;
+            tablaSocios.Rows[rowIndex].Cells[7].Value = socio.telefono;
+            tablaSocios.Rows[rowIndex].Cells[8].Value = socio.mail;
+            tablaSocios.Rows[rowIndex].Cells[9].Value = socio.fechaUltimoPago.ToShortDateString();
+            // Comparo fechas, si existe pago pendiente pinto en rojo
+            if (!string.IsNullOrEmpty(socio.nombreAbono) && socio.nombreAbono.Contains("Anual"))
             {
-                tablaSocios.Rows[rowIndex].Cells[7].Style.BackColor = Color.Green;
+                TimeSpan diferencia = fechaActual.Subtract(socio.fechaUltimoPago);
+                if (diferencia.TotalDays <= 365)
+                {
+                    tablaSocios.Rows[rowIndex].Cells[9].Style.BackColor = Color.Green;
+                }
+                else
+                {
+                    tablaSocios.Rows[rowIndex].Cells[9].Style.BackColor = Color.Red;
+                }
             }
             else
             {
-                tablaSocios.Rows[rowIndex].Cells[7].Style.BackColor = Color.Red;
+                TimeSpan diferencia = fechaActual.Subtract(socio.fechaUltimoPago);
+                if (diferencia.TotalDays <= 30)
+                {
+                    tablaSocios.Rows[rowIndex].Cells[9].Style.BackColor = Color.Green;
+                }
+                else
+                {
+                    tablaSocios.Rows[rowIndex].Cells[9].Style.BackColor = Color.Red;
+                }
             }
+
 
         }
 
+        private void tablaSocios_SelectionChanged(object sender, EventArgs e)
+        {
 
+            if (tablaSocios.SelectedRows.Count > 0)
+            {
+                // Obtener el valor del ID de la fila seleccionada en el DataGridView
+                int idSeleccionado = (int)tablaSocios.SelectedRows[0].Cells["idSocio"].Value;
+
+                // Seleccionar el valor correspondiente en el ComboBox
+                sltNumSocio.Text = idSeleccionado.ToString();
+            }
+        }
 
         private void llenarIds()
         {
             sltNumSocio.DataSource = lstIds;
         }
 
+
         public void obtenerEstados()
         {
             List<Estado> lstEstado = securityServices.getEstado();
+            object objectToRemove = null;
+            foreach (Estado estado in lstEstado)
+            {
+                if (estado.idEstado == 1007)
+                {
+                    objectToRemove = estado;
+
+                }
+            }
+            if (objectToRemove != null)
+            {
+                lstEstado.Remove((Estado)objectToRemove);
+            }
 
             sltEstado.DisplayMember = "nombreEstado";
             sltEstado.ValueMember = "idEstado";
@@ -107,26 +156,43 @@ namespace Gimnasio.GUI
 
         private void btnRegistrarPago_Click(object sender, EventArgs e)
         {
+
             int idSocio = int.Parse(sltNumSocio.SelectedValue.ToString());
             SocioAdmin socio = securityServices.getSocioById(idSocio);
             flagAbono = socio.fk_IdAbonoSocio;
-
-            // Comparo fechas, si la fecha de ultimo pago es mayor a 30 dias existe pago pendiente
             TimeSpan diferencia = fechaActual.Subtract(socio.fechaUltimoPago);
-            if (diferencia.TotalDays >= 30)
-            {
 
+            if (!string.IsNullOrEmpty(socio.nombreAbono) && socio.nombreAbono.Contains("Anual"))
+            {
+                bool abonoAnual = true;
+                if (diferencia.TotalDays >= 365 || socio.fk_IdEstado == 3 || socio.fk_IdEstado == 5)
+                {
+                    FrmRegistrarPago frmRegistrarPago = new FrmRegistrarPago(socio);
+                    frmRegistrarPago.Show();
+                    this.Hide();
+                }
+                //No tiene que pagar aun, el valor obtenido es sobre la fecha actual por eso le sumo 30 dias para obtener dias que restan de abono
+                else
+                {
+                    MaterialMessageBox.Show($"El socio seleccionado no posee deuda, le restan " + Math.Round(365 - (diferencia.TotalDays)) + " dias.");
+                    return;
+                }
+
+            }
+
+            if (diferencia.TotalDays >= 30 || socio.fk_IdEstado == 3 || socio.fk_IdEstado == 5)
+            {
                 if (flagAbono == 0)
                 {
-                    MaterialMessageBox.Show("El socio seleccionado no tiene Abono asignado");
+                    MaterialMessageBox.Show("El socio seleccionado no tiene membresia asignada");
                 }
+
                 else
                 {
                     FrmRegistrarPago frmRegistrarPago = new FrmRegistrarPago(socio);
                     frmRegistrarPago.Show();
                     this.Hide();
                 }
-
             }
 
             //No tiene que pagar aun, el valor obtenido es sobre la fecha actual por eso le sumo 30 dias para obtener dias que restan de abono
@@ -145,13 +211,13 @@ namespace Gimnasio.GUI
             flagAbono = socio.fk_IdAbonoSocio;
             if (flagAbono == 0)
             {
-                FrmAsignarAbonoSocios frmAbono = new FrmAsignarAbonoSocios(socio);
+                FrmAsignarMembresiaSocios frmAbono = new FrmAsignarMembresiaSocios(socio);
                 frmAbono.Show();
                 this.Hide();
             }
             else
             {
-                MaterialMessageBox.Show("El socio seleccionado ya tiene un abono asignado");
+                MaterialMessageBox.Show("El socio seleccionado ya tiene una membresia asignada");
             }
 
         }
@@ -163,11 +229,18 @@ namespace Gimnasio.GUI
             flagAbono = socio.fk_IdAbonoSocio;
             if (flagAbono == 0)
             {
-                MaterialMessageBox.Show("El socio seleccionado no tiene Abono asignado");
+                MaterialMessageBox.Show("El socio seleccionado no tiene membresia asignada");
             }
+
+            else if(flagAbono!=0 && (!string.IsNullOrEmpty(socio.nombreAbono) && socio.nombreAbono.Contains("Anual")))
+            {
+                flagAbono = 0;
+                MaterialMessageBox.Show("No es posible cambiar un abono Anual, el socio debe gestionar el cambio desde atencion al cliente");
+            }
+
             else
             {
-                FrmAsignarAbonoSocios frmAbono = new FrmAsignarAbonoSocios(socio);
+                FrmAsignarMembresiaSocios frmAbono = new FrmAsignarMembresiaSocios(socio);
                 frmAbono.Show();
                 this.Hide();
             }
@@ -178,17 +251,43 @@ namespace Gimnasio.GUI
         {
             int idEstado = int.Parse(sltEstado.SelectedValue.ToString());
             int idSocio = int.Parse(sltNumSocio.SelectedValue.ToString());
+            SocioAdmin socio = securityServices.getSocioById(idSocio);
 
-            int resultado = securityServices.editarEstadoSocio(idSocio, idEstado);
-            if (resultado >= 1)
+            if (socio.fk_IdEstado == idEstado)
             {
-                obtenerSocios();
-                MaterialMessageBox.Show($"Se actualizó con exito el estado del socio N° {idSocio.ToString()}");
+                MaterialMessageBox.Show($"El estado seleccionado es igual al actual");
+
             }
+
+            else if (socio.fk_IdEstado == 3 || socio.fk_IdEstado == 5 || socio.fk_IdEstado == 6 || socio.fk_IdEstado == 1007)
+            {
+                MaterialMessageBox.Show($"No es posible cambiar el estado del socio, debe registrar el pago primero");
+            }
+
             else
             {
-                MaterialMessageBox.Show($"Ocurrió un error cambiando el estado del socio N°: {idSocio.ToString()}");
+                int resultado = securityServices.editarEstadoSocio(idSocio, idEstado);
+                if (resultado >= 1)
+                {
+                    obtenerSocios();
+                    MaterialMessageBox.Show($"Se actualizó con exito el estado del socio N° {idSocio.ToString()}");
+                }
+                else
+                {
+                    MaterialMessageBox.Show($"Ocurrió un error cambiando el estado del socio N°: {idSocio.ToString()}");
+                }
             }
+
+
+        }
+
+        private void btnEditarDatos_Click(object sender, EventArgs e)
+        {
+            int idSocio = int.Parse(sltNumSocio.SelectedValue.ToString());
+            SocioAdmin socio = securityServices.getSocioById(idSocio);
+            MenuCargaSocio menuCargaSocio = new MenuCargaSocio(socio);
+            menuCargaSocio.Show();
+            this.Hide();
         }
     }
 }

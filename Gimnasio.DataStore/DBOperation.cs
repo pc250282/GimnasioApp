@@ -23,6 +23,16 @@ namespace Gimnasio.DataStore
             return LstResult;
         }
 
+        public List<T> OperationQuery2<T>(string sqlQuery, object paramsList)
+        {
+            List<T> LstResult;
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                LstResult = connection.Query<T>(sqlQuery, paramsList).ToList();
+            }
+            return LstResult;
+        }
+
         public T OperationQueryById<T>(string sqlQuery)
         {
             T result;

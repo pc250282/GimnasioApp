@@ -38,5 +38,9 @@ namespace Gimnasio.Services
             return datosMaestros.GetAbono();
         }
 
+        public int editarActividad(Actividad actividadEditada)
+        {
+            return datosMaestros.EditarActividad(actividadEditada); 
+        }
     }
 }

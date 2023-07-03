@@ -69,7 +69,7 @@ namespace Gimnasio.GUI.Pantallas
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Close();
-            new MenuPrincipal().Show();
+            new FrmActividades().Show();
         }
 
         private void mostrarValores()

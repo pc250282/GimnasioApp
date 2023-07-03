@@ -1,4 +1,5 @@
 ﻿using Gimnasio.Clases;
+using Gimnasio.GUI.Validaciones;
 using Gimnasio.Services;
 using MaterialSkin;
 using MaterialSkin.Controls;
@@ -6,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -19,6 +21,7 @@ namespace Gimnasio.GUI
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
         APIProfesorServices profesorServices = new APIProfesorServices();
         APISocioServices personaServices = new APISocioServices();
+        ValidacionesFront validacionesFrontEnd = new ValidacionesFront();
 
         public MenuProfesores()
         {
@@ -42,7 +45,7 @@ namespace Gimnasio.GUI
         }
 
 
-        private void ingresoProfesorNuevo()
+        private bool ingresoProfesorNuevo()
         {
             try
             {
@@ -53,6 +56,7 @@ namespace Gimnasio.GUI
                     dni = txtDNI.Text,
                     telefono = txtTelefono.Text,
                     direccion = txtDireccion.Text,
+                    mail = txtMail.Text,
                     fk_IdGenero = int.Parse(sltGenero.SelectedValue.ToString()),
                     fechaNacimiento = sltFechaNacimiento.Value != null ? sltFechaNacimiento.Value : new DateTime(2022, 28, 05),
 
@@ -74,17 +78,39 @@ namespace Gimnasio.GUI
                 MaterialMessageBox.Show("El profesor : " + profesorNuevo.nombre + " " + profesorNuevo.apellido + " se registro con exito");
                 this.Close();
                 new MenuPrincipal().Show();
+                return true;
             }
-            catch (Exception error)
+            catch (SqlException error)
             {
-                MaterialMessageBox.Show("Algo salió mal : " + error);
+                int errorCode = error.Number;
+                if (errorCode == 2627)
+                {
+                    MaterialMessageBox.Show("Ya existe un Socio con ese DNI, porfavor validar en sistema");
+                }
+                else if (errorCode == 2628)
+                {
+                    MaterialMessageBox.Show("Error: Porfavor valida los campos ingresados");
+                }
+                else
+                {
+                    MaterialMessageBox.Show("Algo salió mal : " + error);
+                }
+                return false;
             }
         }
 
         private void btnRegistro_Click(object sender, EventArgs e)
         {
             if (validacionDeCampos())
-                ingresoProfesorNuevo();
+            {
+                bool exito = ingresoProfesorNuevo();
+                if (exito == true)
+                {
+                    this.Close();
+                    new MenuPrincipal().Show();
+                }
+            }
+            
             else
             {
                 MaterialMessageBox.Show("Debes completar todos los datos para registrar al profesor");
@@ -107,6 +133,26 @@ namespace Gimnasio.GUI
                 resultado = true;
             }
             return resultado;
+        }
+
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validacionesFrontEnd.soloLetras(e);
+        }
+
+        private void txtApellido_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validacionesFrontEnd.soloLetras(e);
+        }
+
+        private void txtDNI_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validacionesFrontEnd.soloNumeros(e);
+        }
+
+        private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validacionesFrontEnd.soloNumeros(e);
         }
     }
 }

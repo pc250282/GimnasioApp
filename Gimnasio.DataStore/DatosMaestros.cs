@@ -13,7 +13,7 @@ namespace Gimnasio.DataStore
         {
             List<SocioAdmin> LstSocios = new List<SocioAdmin>();
             string sql = "SELECT S.IdSocio,S.fechaDeInscripcion,S.fechaUltimoPago,S.fk_IdAbonoSocio, "
-                        + "P.dni,P.nombre,P.apellido,P.telefono,P.direccion,"
+                        + "P.idPersona,P.dni,P.nombre,P.apellido,P.telefono,P.direccion,P.mail,P.fechaNacimiento, "
                         + "E.nombreEstado,"
                         + "G.nombreGenero, "
                         + "ASO.nombreAbono "
@@ -29,8 +29,8 @@ namespace Gimnasio.DataStore
         public SocioAdmin? GetSocioById(int idSocio)
         {
             SocioAdmin socio;
-            string sql = "SELECT S.IdSocio,S.fechaDeInscripcion,S.fechaUltimoPago,S.fk_IdAbonoSocio, "
-                        + "P.dni,P.nombre,P.apellido,P.telefono,P.direccion,"
+            string sql = "SELECT S.IdSocio,S.fechaDeInscripcion,S.fechaUltimoPago,S.fk_IdAbonoSocio,fk_IdEstado, "
+                        + "P.idPersona,P.dni,P.nombre,P.apellido,P.telefono,P.direccion,P.mail,P.fechaNacimiento, "
                         + "E.nombreEstado,"
                         + "G.nombreGenero,"
                         + "ASO.nombreAbono,valor "
@@ -50,7 +50,7 @@ namespace Gimnasio.DataStore
         {
             List<ProfesorAdmin> LstProfesores = new List<ProfesorAdmin>();
             string sql = "SELECT PR.idProfesor,PR.fechaContratacion,PR.sueldo,"
-                        + "P.nombre,P.apellido,"
+                        + "P.nombre,P.apellido,mail,"
                         + "E.nombreEstado "
                         + "FROM Profesor PR "
                         + "INNER JOIN Persona P ON PR.fk_idPersona = P.idPersona "
@@ -62,7 +62,7 @@ namespace Gimnasio.DataStore
         public List<ActividadAdmin> GetActividadesActivas()
         {
             List<ActividadAdmin> LstActividades = new List<ActividadAdmin>();
-            string sql = "SELECT ACT.IdActividad,ACT.nombreActividad,ACT.horario,ACT.cupo,ACT.fk_Profesor_id,fk_Abono_id,"
+            string sql = "SELECT ACT.IdActividad,ACT.nombreActividad,ACT.horario,ACT.horasPorSemana,ACT.fk_Profesor_id,ACT.fk_Abono_id,ACT.cupoDisponible,ACT.cupoUtilizado,"
                         + "AB.valorCuotaPura,AB.nombreAbono,"
                         + "P.nombre "
                         + "FROM Actividad ACT "
@@ -117,7 +117,7 @@ namespace Gimnasio.DataStore
         public List<Actividad> GetActividades()
         {
             List<Actividad> LstActividades = new List<Actividad>();
-            string sql = "SELECT ACT.idActividad, ACT.nombreActividad,ACT.cupo,ACT.horario,"
+            string sql = "SELECT ACT.idActividad, ACT.nombreActividad,ACT.horaPorSemana,ACT.horario,ACT.cupoDisponible,"
                         + "AB.valorCuotaPura,AB.nombreAbono, "
                         + "P.nombre, "
                         + "PR.fk_idActividad "
@@ -129,9 +129,9 @@ namespace Gimnasio.DataStore
 
         public int InsertPersona(Persona nuevaPersona)
         {
-            string sql = "INSERT INTO Persona (nombre,apellido,dni,telefono,direccion,fk_IdGenero,fechaNacimiento)" +
+            string sql = "INSERT INTO Persona (nombre,apellido,dni,telefono,direccion,fk_IdGenero,fechaNacimiento,mail)" +
                 "OUTPUT INSERTED.idPersona " +
-                "VALUES(@nombre,@apellido,@dni,@telefono,@direccion,@fk_IdGenero,@fechaNacimiento) ";
+                "VALUES(@nombre,@apellido,@dni,@telefono,@direccion,@fk_IdGenero,@fechaNacimiento,@mail) ";
 
             object paramList = new
             {
@@ -142,6 +142,7 @@ namespace Gimnasio.DataStore
                 direccion = nuevaPersona.direccion,
                 fk_IdGenero = nuevaPersona.fk_IdGenero,
                 fechaNacimiento = nuevaPersona.fechaNacimiento,
+                mail=nuevaPersona.mail,
             };
 
             int result = dbOperation.OperationExecuteWithIdentity(sql, paramList);
@@ -151,17 +152,18 @@ namespace Gimnasio.DataStore
 
         public int InsertActividad(Actividad nuevaActividad)
         {
-            string sql = "INSERT INTO Actividad (nombreActividad,horario,cupo,fk_Abono_id,fk_Profesor_id)" +
+            string sql = "INSERT INTO Actividad (nombreActividad,horario,horasPorSemana,fk_Abono_id,fk_Profesor_id,cupoDisponible)" +
                 "OUTPUT INSERTED.idActividad " +
-                "VALUES(@nombreActividad,@horario,@cupo,@fk_Abono_id,@fk_Profesor_id) ";
+                "VALUES(@nombreActividad,@horario,@horasPorSemana,@fk_Abono_id,@fk_Profesor_id,@cupoDisponible) ";
 
             object paramList = new
             {
                 nombreActividad = nuevaActividad.nombreActividad,
                 horario = nuevaActividad.horario,
-                cupo = nuevaActividad.cupo,
+                horasPorSemana = nuevaActividad.horasPorSemana,
                 fk_Abono_id = nuevaActividad.fk_Abono_id,
-                fk_Profesor_id=nuevaActividad.fk_Profesor_id
+                fk_Profesor_id=nuevaActividad.fk_Profesor_id,
+                cupoDisponible=nuevaActividad.cupoDisponible
             };
 
             int result = dbOperation.OperationExecuteWithIdentity(sql, paramList);
@@ -191,15 +193,14 @@ namespace Gimnasio.DataStore
         public int InsertSocioConAbono(int idPersona, int fk_IdAbonoSocio)
         {
 
-            string sql = "INSERT INTO Socio (fk_idPersona, fechaDeInscripcion,fechaUltimoPago, fk_IdEstado, fk_IdAbonoSocio)  Values" +
-                "(@fk_idPersona, @fechaDeInscripcion, @fechaUltimoPago,@fk_IdEstado,@fk_IdAbonoSocio)";
+            string sql = "INSERT INTO Socio (fk_idPersona, fechaDeInscripcion, fk_IdEstado, fk_IdAbonoSocio)  Values" +
+                "(@fk_idPersona, @fechaDeInscripcion,@fk_IdEstado,@fk_IdAbonoSocio)";
 
             Object paramList = new
             {
                 fk_idPersona = idPersona,
                 fechaDeInscripcion = DateTime.Now,
-                fechaUltimoPago = DateTime.Now,
-                fk_IdEstado = 1,
+                fk_IdEstado = 1007,
                 fk_IdAbonoSocio = fk_IdAbonoSocio
             };
 
@@ -257,10 +258,13 @@ namespace Gimnasio.DataStore
             return affectedRows;
         }
 
-        public int EditarActividadProfesor(int idProfesor, int fk_idActividad, double sueldo)
+        public int AsignarSueldoProfesor(int idProfesor, double sueldo)
         {
-            string sql = "UPDATE Profesor SET fk_idActividad = @fk_idActividad, sueldo = @sueldo WHERE idProfesor = @idProfesor";
-            Object paramList = new {idProfesor=idProfesor, fk_idActividad=fk_idActividad, sueldo=sueldo };
+            string sql = "UPDATE Profesor SET sueldo = @sueldo, fk_idEstado=@fk_idEstado WHERE idProfesor = @idProfesor";
+            Object paramList = new {
+                idProfesor=idProfesor, 
+                sueldo=sueldo,
+                fk_idEstado=1};
             int affectedRows = dbOperation.OperationExecute(sql, paramList);
             return affectedRows;
         }
@@ -398,8 +402,8 @@ namespace Gimnasio.DataStore
         public ActividadAdmin GetActividadById(int idActividad)
         {
             ActividadAdmin actividad;
-            string sql = "SELECT ACT.IdActividad,ACT.nombreActividad,ACT.horario,ACT.cupo,ACT.fk_Profesor_id,fk_Abono_id,"
-                        + "AB.valorCuotaPura,AB.nombreAbono,"
+            string sql = "SELECT ACT.IdActividad,ACT.nombreActividad,ACT.horario,ACT.horasPorSemana,ACT.fk_Profesor_id,fk_Abono_id,ACT.cupoDisponible,"
+                        + "AB.valorCuotaPura,AB.nombreAbono,AB.porcentajeEstablecimiento,AB.porcentajeProfesor,"
                         + "P.nombre "
                         + "FROM Actividad ACT "
                         + "LEFT JOIN Abono AB ON ACT.fk_Abono_id = AB.idAbono "
@@ -412,6 +416,94 @@ namespace Gimnasio.DataStore
                 IdActividad = idActividad
             });
             return actividad;
+        }
+
+        public int EditarActividad(Actividad actividad)
+        {
+            string sql = "UPDATE Actividad SET nombreActividad = @nombreActividad, fk_Abono_id = @fk_Abono_id, horario = @horario,cupoDisponible=@cupoDisponible, "
+                +"horasPorSemana = @horasPorSemana, fk_Profesor_id = @fk_Profesor_id " 
+                +"WHERE IdActividad = @IdActividad";
+            Object paramList = new {
+                nombreActividad = actividad.nombreActividad,
+                fk_Abono_id = actividad.fk_Abono_id,
+                horario = actividad.horario,
+                horasPorSemana = actividad.horasPorSemana,
+                fk_Profesor_id = actividad.fk_Profesor_id,
+                IdActividad = actividad.idActividad,
+                cupoDisponible =actividad.cupoDisponible};
+            int affectedRows = dbOperation.OperationExecute(sql, paramList);
+            return affectedRows;
+        }
+
+        public int EditarEstadoProfesor(int idProfesor)
+        {
+            string sql = "UPDATE Profesor SET fk_IdEstado = @idEstado WHERE IdProfesor = @IdProfesor";
+            Object paramList = new { 
+                IdProfesor = idProfesor, 
+                idEstado = 1 };
+            int affectedRows = dbOperation.OperationExecute(sql, paramList);
+
+            return affectedRows;
+        }
+
+        public ProfesorAdmin GetProfesorById (int idProfesor)
+        {
+            ProfesorAdmin profesor;
+            string sql = "SELECT PR.IdProfesor,PR.fechaContratacion,PR.sueldo,PR.fk_IdEstado, "
+                        + "P.dni,P.nombre,P.apellido,P.telefono,P.direccion,P.mail,"
+                        + "E.nombreEstado,"
+                        + "ACT.nombreActividad "
+                        + "FROM Profesor PR "
+                        + "INNER JOIN Persona P ON PR.fk_idPersona = P.idPersona "
+                        + "LEFT JOIN Estado E ON PR.fk_IdEstado = E.IdEstado "
+                        + "LEFT JOIN Actividad ACT ON PR.IdProfesor = ACT.fk_Profesor_id "
+                        + "WHERE PR.IdProfesor = @IdProfesor";
+
+            profesor = dbOperation.OperationQueryById2<ProfesorAdmin>(sql, new { 
+                IdProfesor = idProfesor });
+
+            return profesor;
+        }
+
+        public List<ActividadAdmin> GetActividadesDelProfesor(int fk_Profesor_id)
+        {
+            List<ActividadAdmin> actividades = new List<ActividadAdmin>();
+            List <int> ids = new List<int>();
+            string sqlQuery = "SELECT IdActividad FROM Actividad WHERE "
+                               +"fk_Profesor_id=@fk_Profesor_id";
+            ids = dbOperation.OperationQuery2<int>(sqlQuery, new
+            {
+                fk_Profesor_id= fk_Profesor_id
+            });
+            foreach (int id in ids)
+            {
+                ActividadAdmin actividad = GetActividadById(id);
+                actividades.Add(actividad);
+            }
+            return actividades;
+        }
+
+        public int EditarDatosPersona(Persona personaExistente)
+        {
+            string sql = "UPDATE Persona SET nombre=@nombre, apellido=@apellido, dni=@dni, telefono=@telefono, direccion=@direccion,"
+                +"fk_IdGenero=@fk_IdGenero, fechaNacimiento=@fechaNacimiento, mail=@mail "
+                +"WHERE IdPersona=@IdPersona";
+
+            object paramList = new
+            {
+                nombre = personaExistente.nombre,
+                apellido = personaExistente.apellido,
+                dni = personaExistente.dni,
+                telefono = personaExistente.telefono,
+                direccion = personaExistente.direccion,
+                fk_IdGenero = personaExistente.fk_IdGenero,
+                fechaNacimiento = personaExistente.fechaNacimiento,
+                mail = personaExistente.mail,
+                IdPersona = personaExistente.idPersona
+            };
+
+            int affectedRows = dbOperation.OperationExecute(sql, paramList);
+            return affectedRows;
         }
     }
 }

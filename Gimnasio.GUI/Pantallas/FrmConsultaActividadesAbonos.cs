@@ -49,11 +49,12 @@ namespace Gimnasio.GUI.Pantallas
             int rowIndex = tablaActividades.Rows.Add();
             tablaActividades.Rows[rowIndex].Cells[0].Value = actividad.IdActividad;
             tablaActividades.Rows[rowIndex].Cells[1].Value = actividad.nombreActividad;
-            tablaActividades.Rows[rowIndex].Cells[2].Value = actividad.cupo;
+            tablaActividades.Rows[rowIndex].Cells[2].Value = actividad.cupoDisponible;
             tablaActividades.Rows[rowIndex].Cells[3].Value = actividad.horario;
             tablaActividades.Rows[rowIndex].Cells[4].Value = actividad.nombre;
             tablaActividades.Rows[rowIndex].Cells[5].Value = actividad.nombreAbono;
             tablaActividades.Rows[rowIndex].Cells[6].Value = $"$ {actividad.valorCuotaPura} ";
+            tablaActividades.Rows[rowIndex].Cells[7].Value = $" {actividad.horasPorSemana}hs ";
         }
 
         private void llenarIds()

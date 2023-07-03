@@ -34,22 +34,23 @@
             btnEditActividad = new MaterialSkin.Controls.MaterialButton();
             IdActividad = new DataGridViewTextBoxColumn();
             nombreActividad = new DataGridViewTextBoxColumn();
-            cupo = new DataGridViewTextBoxColumn();
+            cupoDisponible = new DataGridViewTextBoxColumn();
             horario = new DataGridViewTextBoxColumn();
             nombre = new DataGridViewTextBoxColumn();
             nombreAbono = new DataGridViewTextBoxColumn();
             valorCuotaPura = new DataGridViewTextBoxColumn();
+            horasPorSemana = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)tablaActividades).BeginInit();
             SuspendLayout();
             // 
             // tablaActividades
             // 
             tablaActividades.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            tablaActividades.Columns.AddRange(new DataGridViewColumn[] { IdActividad, nombreActividad, cupo, horario, nombre, nombreAbono, valorCuotaPura });
+            tablaActividades.Columns.AddRange(new DataGridViewColumn[] { IdActividad, nombreActividad, cupoDisponible, horario, nombre, nombreAbono, valorCuotaPura, horasPorSemana });
             tablaActividades.Location = new Point(7, 84);
             tablaActividades.Name = "tablaActividades";
             tablaActividades.RowTemplate.Height = 25;
-            tablaActividades.Size = new Size(653, 215);
+            tablaActividades.Size = new Size(918, 229);
             tablaActividades.TabIndex = 0;
             // 
             // btnVolver
@@ -87,11 +88,11 @@
             sltIdActividad.Hint = "N° de actividad";
             sltIdActividad.IntegralHeight = false;
             sltIdActividad.ItemHeight = 43;
-            sltIdActividad.Location = new Point(7, 319);
+            sltIdActividad.Location = new Point(6, 332);
             sltIdActividad.MaxDropDownItems = 4;
             sltIdActividad.MouseState = MaterialSkin.MouseState.OUT;
             sltIdActividad.Name = "sltIdActividad";
-            sltIdActividad.Size = new Size(145, 49);
+            sltIdActividad.Size = new Size(151, 49);
             sltIdActividad.StartIndex = 0;
             sltIdActividad.TabIndex = 2;
             // 
@@ -102,7 +103,7 @@
             btnEditActividad.Depth = 0;
             btnEditActividad.HighEmphasis = true;
             btnEditActividad.Icon = null;
-            btnEditActividad.Location = new Point(201, 332);
+            btnEditActividad.Location = new Point(202, 345);
             btnEditActividad.Margin = new Padding(4, 6, 4, 6);
             btnEditActividad.MouseState = MaterialSkin.MouseState.HOVER;
             btnEditActividad.Name = "btnEditActividad";
@@ -119,30 +120,34 @@
             // 
             IdActividad.HeaderText = "N° Actividad";
             IdActividad.Name = "IdActividad";
+            IdActividad.Width = 80;
             // 
             // nombreActividad
             // 
             nombreActividad.HeaderText = "Nombre";
             nombreActividad.Name = "nombreActividad";
+            nombreActividad.Width = 120;
             // 
-            // cupo
+            // cupoDisponible
             // 
-            cupo.HeaderText = "Cupo";
-            cupo.Name = "cupo";
+            cupoDisponible.HeaderText = "Cupo de alumnos";
+            cupoDisponible.Name = "cupoDisponible";
             // 
             // horario
             // 
             horario.HeaderText = "Horario";
             horario.Name = "horario";
+            horario.Width = 150;
             // 
             // nombre
             // 
             nombre.HeaderText = "Profesor";
             nombre.Name = "nombre";
+            nombre.Width = 120;
             // 
             // nombreAbono
             // 
-            nombreAbono.HeaderText = "Abono de:";
+            nombreAbono.HeaderText = "Abono";
             nombreAbono.Name = "nombreAbono";
             // 
             // valorCuotaPura
@@ -150,17 +155,22 @@
             valorCuotaPura.HeaderText = "Valor";
             valorCuotaPura.Name = "valorCuotaPura";
             // 
+            // horasPorSemana
+            // 
+            horasPorSemana.HeaderText = "Horas semanales";
+            horasPorSemana.Name = "horasPorSemana";
+            // 
             // FrmConsultaActividadesAbonos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1060, 508);
             Controls.Add(btnEditActividad);
             Controls.Add(sltIdActividad);
             Controls.Add(btnVolver);
             Controls.Add(tablaActividades);
             Name = "FrmConsultaActividadesAbonos";
-            Text = "FrmConsultaActividadesAbonos";
+            Text = "Menu Actividades";
             ((System.ComponentModel.ISupportInitialize)tablaActividades).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -174,10 +184,11 @@
         private MaterialSkin.Controls.MaterialButton btnEditActividad;
         private DataGridViewTextBoxColumn IdActividad;
         private DataGridViewTextBoxColumn nombreActividad;
-        private DataGridViewTextBoxColumn cupo;
+        private DataGridViewTextBoxColumn cupoDisponible;
         private DataGridViewTextBoxColumn horario;
         private DataGridViewTextBoxColumn nombre;
         private DataGridViewTextBoxColumn nombreAbono;
         private DataGridViewTextBoxColumn valorCuotaPura;
+        private DataGridViewTextBoxColumn horasPorSemana;
     }
 }

@@ -22,5 +22,24 @@ namespace Gimnasio.Services
             return datosMaestros.InsertProfesor(idPersona, profesorNuevo);
         }
 
+        public int editarEstadoProfesor(int idProfesor)
+        {
+            return datosMaestros.EditarEstadoProfesor(idProfesor);
+        }
+
+        public int asignarSueldoProfesor(int idProfesor, double sueldo)
+        {
+            return datosMaestros.AsignarSueldoProfesor(idProfesor, sueldo);
+        }
+
+        public ProfesorAdmin getProfesorById(int idProfesor)
+        {
+            return datosMaestros.GetProfesorById(idProfesor) ;
+        }
+
+        public List<ActividadAdmin> getActividesDelProfesor(int fk_Profesor_id)
+        {
+            return datosMaestros.GetActividadesDelProfesor(fk_Profesor_id);
+        }
     }
 }

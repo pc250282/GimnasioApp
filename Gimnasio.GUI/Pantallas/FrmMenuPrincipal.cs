@@ -23,7 +23,7 @@ namespace Gimnasio.GUI
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.DARK;
             materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Orange700, MaterialSkin.Primary.Orange600, MaterialSkin.Primary.Orange600, MaterialSkin.Accent.Orange400, MaterialSkin.TextShade.WHITE);
-
+            timer1.Enabled = true;
         }
 
         private void btnCrearSocio_Click(object sender, EventArgs e)
@@ -73,6 +73,12 @@ namespace Gimnasio.GUI
             FrmHistorialPagos frmHistorialPagos = new FrmHistorialPagos();
             frmHistorialPagos.Show();
             this.Hide();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            lblHora.Text = "Hora: " + DateTime.Now.ToString("hh:mm");
+            lblFecha.Text = "Fecha: " + DateTime.Now.ToShortDateString();
         }
     }
 }
