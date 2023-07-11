@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             sltEstado = new MaterialSkin.Controls.MaterialComboBox();
             btnActualizarEstado = new MaterialSkin.Controls.MaterialButton();
             btnUpdateAbono = new MaterialSkin.Controls.MaterialButton();
@@ -161,8 +162,19 @@
             // 
             tablaSocios.AllowUserToAddRows = false;
             tablaSocios.AllowUserToDeleteRows = false;
+            tablaSocios.BackgroundColor = SystemColors.ActiveCaptionText;
+            tablaSocios.BorderStyle = BorderStyle.Fixed3D;
             tablaSocios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             tablaSocios.Columns.AddRange(new DataGridViewColumn[] { idSocio, dni, nombreAbono, fechaDeInscripcion, fk_IdEstado, nombre, apellido, telefono, mail, fechaUltimoPago });
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.GrayText;
+            dataGridViewCellStyle1.Font = new Font("Bahnschrift SemiCondensed", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            tablaSocios.DefaultCellStyle = dataGridViewCellStyle1;
+            tablaSocios.GridColor = SystemColors.ActiveCaptionText;
             tablaSocios.Location = new Point(6, 80);
             tablaSocios.Name = "tablaSocios";
             tablaSocios.ReadOnly = true;
@@ -332,7 +344,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1412, 654);
+            ClientSize = new Size(1386, 654);
             Controls.Add(btnEditarDatos);
             Controls.Add(btnVolver);
             Controls.Add(btnAbono);
@@ -345,6 +357,7 @@
             Controls.Add(sltNumSocio);
             Name = "FrmConsultaSocios";
             Sizable = false;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Socios";
             ((System.ComponentModel.ISupportInitialize)tablaSocios).EndInit();
             ResumeLayout(false);

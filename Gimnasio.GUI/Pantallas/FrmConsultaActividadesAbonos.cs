@@ -2,10 +2,12 @@
 using Gimnasio.GUI;
 using Gimnasio.Services;
 using MaterialSkin.Controls;
+using Microsoft.VisualBasic.Logging;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -19,7 +21,10 @@ namespace Gimnasio.GUI.Pantallas
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
         private APIActividadServices actividadesServices = new APIActividadServices();
         private List<string> lstIdsActividades = new List<string>();
-        public FrmConsultaActividadesAbonos()
+        private int idUser;
+        private Usuario usuario;
+        APILoginServices login = new APILoginServices();
+        public FrmConsultaActividadesAbonos(int idUser)
         {
 
             InitializeComponent();
@@ -28,10 +33,21 @@ namespace Gimnasio.GUI.Pantallas
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Orange700, MaterialSkin.Primary.Orange600, MaterialSkin.Primary.Orange600, MaterialSkin.Accent.Orange400, MaterialSkin.TextShade.WHITE);
-
+            this.idUser = idUser;
+            this.usuario = login.getUsuarioById(idUser);
+            if (usuario.fk_IdRol == 2)
+            {
+                btnCrearAbono.Visible = false;
+                btnEditActividad.Visible = false;
+                btnCrearAbono.Visible = false;
+                materialButton2.Visible=false;
+                
+            }
             obtenerActividades();
             llenarIds();
         }
+
+
 
         private void obtenerActividades()
         {
@@ -64,7 +80,7 @@ namespace Gimnasio.GUI.Pantallas
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Close();
-            new MenuPrincipal().Show();
+            new MenuPrincipal(idUser).Show();
         }
 
         private void btnEditActividad_Click(object sender, EventArgs e)
@@ -84,6 +100,42 @@ namespace Gimnasio.GUI.Pantallas
 
             }
 
+        }
+
+        private void tablaActividades_SelectionChanged(object sender, EventArgs e)
+        {
+            if (tablaActividades.SelectedRows.Count > 0)
+            {
+                // Obtener el valor del ID de la fila seleccionada en el DataGridView
+                int idSeleccionado = (int)tablaActividades.SelectedRows[0].Cells["IdActividad"].Value;
+
+                // Seleccionar el valor correspondiente en el ComboBox
+                sltIdActividad.Text = idSeleccionado.ToString();
+            }
+        }
+
+        private void materialButton2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int IdActividad = int.Parse(sltIdActividad.SelectedValue.ToString());
+                ActividadAdmin actividadAeditar = actividadesServices.getActividadById(IdActividad);
+                FrmActividades frmActividades = new FrmActividades(actividadAeditar);
+                frmActividades.Show();
+                this.Hide();
+            }
+            catch (SqlException er)
+            {
+                MaterialMessageBox.Show($"No se encontro la actividad seleccionada{er}");
+            }
+
+        }
+
+        private void btnCrearAbono_Click(object sender, EventArgs e)
+        {
+            FrmCrearAbono frmCrearAbono = new FrmCrearAbono();
+            frmCrearAbono.Show();
+            this.Hide();
         }
     }
 }

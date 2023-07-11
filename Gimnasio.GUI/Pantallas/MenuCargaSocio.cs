@@ -16,21 +16,23 @@ namespace Gimnasio.GUI
         APIAbonosServices abonosServices = new APIAbonosServices();
         ValidacionesFront validacionesFrontEnd = new ValidacionesFront();
         private SocioAdmin socioEditar;
-        public MenuCargaSocio()
+        private int idUser;
+        APILoginServices login = new APILoginServices();
+        public MenuCargaSocio(int idUser)
         {
             InitializeComponent();
             materialSkinManager = MaterialSkin.MaterialSkinManager.Instance;
             materialSkinManager.EnforceBackcolorOnAllComponents = true;
             materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.LIGHT;
+            materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.DARK;
             materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Orange700, MaterialSkin.Primary.Orange600, MaterialSkin.Primary.Orange600, MaterialSkin.Accent.Orange400, MaterialSkin.TextShade.WHITE);
-
+            this.idUser = idUser;
             obtenerAbonos();
             obtenerGeneros();
 
         }
 
-        public MenuCargaSocio(SocioAdmin socioEditar)
+        public MenuCargaSocio(SocioAdmin socioEditar, int idUser)
         {
             InitializeComponent();
             materialSkinManager = MaterialSkin.MaterialSkinManager.Instance;
@@ -42,9 +44,9 @@ namespace Gimnasio.GUI
             obtenerAbonos();
             obtenerGeneros();
             txtNombre.Text = socioEditar.nombre;
-            txtApellido.Text=socioEditar.apellido;
+            txtApellido.Text = socioEditar.apellido;
             txtDNI.Text = socioEditar.dni.ToString();
-            txtTelefono.Text=socioEditar.telefono;
+            txtTelefono.Text = socioEditar.telefono;
             txtDireccion.Text = socioEditar.direccion;
             txtMail.Text = socioEditar.mail;
             btnConfirmaAlta.Text = "ACTUALIZAR DATOS";
@@ -54,8 +56,8 @@ namespace Gimnasio.GUI
             DateTime fechaNacimiento = new DateTime();
             fechaNacimiento = socioEditar.fechaNacimiento;
             sltFechaNacimiento.Value = fechaNacimiento;
+            this.idUser = idUser;
 
-            
 
         }
 
@@ -91,8 +93,8 @@ namespace Gimnasio.GUI
                     direccion = txtDireccion.Text.ToLower(),
                     fk_IdGenero = int.Parse(sltGenero.SelectedValue.ToString()),
                     fechaNacimiento = sltFechaNacimiento.Value != null ? sltFechaNacimiento.Value : new DateTime(2022, 28, 05),
-                    
-                    
+
+
                     mail = txtMail.Text.ToLower()
 
                 };
@@ -154,7 +156,7 @@ namespace Gimnasio.GUI
 
         private bool actualizaSocio()
         {
-            
+
             int insertResult = 0;
             try
             {
@@ -168,7 +170,7 @@ namespace Gimnasio.GUI
                     fk_IdGenero = int.Parse(sltGenero.SelectedValue.ToString()),
                     fechaNacimiento = sltFechaNacimiento.Value != null ? sltFechaNacimiento.Value : new DateTime(2022, 28, 05),
                     mail = txtMail.Text.ToLower(),
-                    idPersona = socioEditar.idPersona                  
+                    idPersona = socioEditar.idPersona
 
                 };
 
@@ -243,7 +245,7 @@ namespace Gimnasio.GUI
         {
             if (socioEditar != null)
             {
-                bool exito=actualizaSocio();
+                bool exito = actualizaSocio();
                 if (exito == true)
                 {
                     this.Close();
@@ -254,14 +256,14 @@ namespace Gimnasio.GUI
                     MaterialMessageBox.Show("No se actualizo al socio");
                 }
             }
-            
+
             else if (validacionDeCampos())
             {
                 bool exito = ingresoSocioNuevo();
                 if (exito == true)
                 {
                     this.Close();
-                    new MenuPrincipal().Show();
+                    new MenuPrincipal(idUser).Show();
                 }
 
             }
@@ -276,7 +278,7 @@ namespace Gimnasio.GUI
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Close();
-            new MenuPrincipal().Show();
+            new MenuPrincipal(idUser).Show();
         }
 
         private void sltFechaNacimiento_MouseEnter_1(object sender, EventArgs e)

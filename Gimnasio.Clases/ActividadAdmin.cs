@@ -19,5 +19,6 @@ namespace Gimnasio.Clases
         public double porcentajeProfesor { get; set; }
         public int cupoUtilizado { get; set; }
         public int cupoDisponible { get; set; }
+        public int fk_Profesor_id { get;set; }
     }
 }

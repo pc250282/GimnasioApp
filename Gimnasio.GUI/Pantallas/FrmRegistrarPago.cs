@@ -26,30 +26,34 @@ namespace Gimnasio.GUI.Pantallas
         private int fk_AbonoSocio;
         private PagoDto pagoConfirmado;
         private DateTime fechaActual = DateTime.Now;
-        public FrmRegistrarPago()
+        private int idUser;
+        public FrmRegistrarPago(int idUser)
         {
             InitializeComponent();
+            this.idUser = idUser;
             materialSkinManager = MaterialSkin.MaterialSkinManager.Instance;
             materialSkinManager.EnforceBackcolorOnAllComponents = true;
             materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.LIGHT;
+            materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.DARK;
             //materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Indigo500, MaterialSkin.Primary.Indigo700, MaterialSkin.Primary.Indigo100, MaterialSkin.Accent.Blue400, MaterialSkin.TextShade.WHITE);
             materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Orange700, MaterialSkin.Primary.Orange600, MaterialSkin.Primary.Orange600, MaterialSkin.Accent.Orange400, MaterialSkin.TextShade.WHITE);
         }
 
-        public FrmRegistrarPago(SocioAdmin socio)
+        public FrmRegistrarPago(SocioAdmin socio, int idUser)
         {
             InitializeComponent();
             materialSkinManager = MaterialSkin.MaterialSkinManager.Instance;
             materialSkinManager.EnforceBackcolorOnAllComponents = true;
             materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.LIGHT;
+            materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.DARK;
             //materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Indigo500, MaterialSkin.Primary.Indigo700, MaterialSkin.Primary.Indigo100, MaterialSkin.Accent.Blue400, MaterialSkin.TextShade.WHITE);
             materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Orange700, MaterialSkin.Primary.Orange600, MaterialSkin.Primary.Orange600, MaterialSkin.Accent.Orange400, MaterialSkin.TextShade.WHITE);
             this.socio = socio;
+            this.idUser = idUser;
             lblAbonoNuevo.Visible = false;
             lblNuevoValor.Visible = false;
             lblNumSocio.Text = "N° de socio: " + socio.IdSocio.ToString();
+            lblNumSocio.ForeColor = Color.Red;
             lblApellidoSocio.Text = "Apellido: " + socio.apellido.ToString();
             if (socio.nombreAbono != null)
             {
@@ -70,21 +74,22 @@ namespace Gimnasio.GUI.Pantallas
             obtenerAbonoAcobrar();
         }
 
-        public FrmRegistrarPago(SocioAdmin socio, int IdAbonoSocio)
+        public FrmRegistrarPago(SocioAdmin socio, int IdAbonoSocio, int idUser)
         {
             InitializeComponent();
             materialSkinManager = MaterialSkin.MaterialSkinManager.Instance;
             materialSkinManager.EnforceBackcolorOnAllComponents = true;
             materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.LIGHT;
+            materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.DARK;
             //materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Indigo500, MaterialSkin.Primary.Indigo700, MaterialSkin.Primary.Indigo100, MaterialSkin.Accent.Blue400, MaterialSkin.TextShade.WHITE);
             materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Orange700, MaterialSkin.Primary.Orange600, MaterialSkin.Primary.Orange600, MaterialSkin.Accent.Orange400, MaterialSkin.TextShade.WHITE);
             this.socio = socio;
+            this.idUser = idUser;
             lblNumSocio.Text = "N° de socio: " + socio.IdSocio.ToString();
             lblApellidoSocio.Text = "Apellido: " + socio.apellido.ToString();
             lblAbonoSocio.Text = $"Membresia actual:  {socio.nombreAbono.ToString()} ";
             btnRegistrarPago.Text = "ACTUALIZAR MEMBRESIA";
-            lblTitulo.Text = "Valor total del abono: ";
+            lblTitulo.Text = "Monto a pagar: ";
 
 
             lblNombre.Text = "Nombre: " + socio.nombre.ToString();
@@ -132,12 +137,12 @@ namespace Gimnasio.GUI.Pantallas
             {
                 if (abono.IdAbonoSocio == IdAbonoSocio)
                 {
-                    lblMontoPago.Text = " $ " + abono.valor.ToString();
                     montoApagar = abono.valor;
+                    lblMontoPago.Text = $" ${calculoDePago(montoApagar).ToString()}";
                     fk_AbonoSocio = abono.IdAbonoSocio;
                     lblAbonoNuevo.Text = $"Membresia nueva: {abono.nombreAbono.ToString()}";
                     montoApagar = abono.valor;
-                    lblNuevoValor.Text = $"Dif. a pagar: -${calculoDePago(montoApagar).ToString()} ";
+                    lblNuevoValor.Text = "Precio de lista $ " + abono.valor.ToString();
                 }
             }
 
@@ -149,9 +154,21 @@ namespace Gimnasio.GUI.Pantallas
             TimeSpan diferencia = fechaActual.Subtract(socio.fechaUltimoPago);
             int difDiasPendientes = (int)Math.Round(30 - (diferencia.TotalDays));
             int diasApagar = 30 - difDiasPendientes;
-            double valorAbonoEnDias = valor / 30;
             double montoYaAbonado = pagoAnterior.montoPago;
-            double valorDePago = Math.Round(valor - (diasApagar * valorAbonoEnDias) - montoYaAbonado);
+            double valorDePago = 0.0;
+            double valorAbonoEnDias = 0.0;
+            //Si el socio va cambiar a una membresia mensual, le descuento el mes que ya pago.
+            if (!string.IsNullOrEmpty(socio.nombreAbono) && socio.nombreAbono.Contains("Mensual"))
+            {
+                valorDePago = Math.Round(valor - montoYaAbonado);
+            }
+            //Si el socio va cambiar a una membresia mensual, le descuento el valor de los dias que no utilizo el abono.
+            else
+            {
+                valorAbonoEnDias = valor / 30;
+                valorDePago = Math.Round(valor - (diasApagar * valorAbonoEnDias) - montoYaAbonado);
+
+            }
             return valorDePago;
         }
 
@@ -204,7 +221,9 @@ namespace Gimnasio.GUI.Pantallas
                     lblMontoPago.Visible = false;
                     txtMail.Text = $"{socio.mail}";
                     lblTitulo.Visible = false;
+                    groupBox2.Visible = false;
                     groupBox1.Visible = true;
+                    btnVolver.Visible = false;
                     txtDescripcionPago.Text = $"\n -------------------------------------\n\n" +
                         $"Cliente: {pagoConfirmado.nombre} {pagoConfirmado.apellido}\n\n" +
                         $"Fecha: {pagoConfirmado.fechaPago}\n\n" +

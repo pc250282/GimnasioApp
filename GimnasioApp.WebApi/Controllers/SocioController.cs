@@ -39,7 +39,7 @@ namespace GimnasioApp.WebApi.Controllers
         public void crearSocio(Persona newPerson)
         {
             int idPerson=sociosService.insertPersona(newPerson);
-            sociosService.insertSocio(idPerson);
+            sociosService.insertSocioSinAbono(idPerson);
 
         }
 
@@ -47,7 +47,7 @@ namespace GimnasioApp.WebApi.Controllers
         //PUT api/<SocioController>/5
         [HttpPut("{id}")]
         //[Route("CambiarAbono")]
-        public IActionResult updateAbonoSocio(SocioDto socio, int id)
+        public IActionResult updateAbonoSocio(SocioDto socio, int id ,int idAbono)
         {
             if (id != socio.IdSocio)
                 return BadRequest();
@@ -55,8 +55,8 @@ namespace GimnasioApp.WebApi.Controllers
             var existingSocio = sociosService.getSocioById(id);
             if (existingSocio is null)
                 return NotFound();
-
-            sociosService.editarAbonoSocio(id, socio);
+            int idEstado = 4;
+            sociosService.editarAbonoSocio(existingSocio.IdSocio,idAbono,idEstado);
 
             return NoContent();
         }

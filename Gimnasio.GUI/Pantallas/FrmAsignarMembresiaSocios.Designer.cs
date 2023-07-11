@@ -107,7 +107,7 @@
             sltAbono.MaxDropDownItems = 4;
             sltAbono.MouseState = MaterialSkin.MouseState.OUT;
             sltAbono.Name = "sltAbono";
-            sltAbono.Size = new Size(277, 49);
+            sltAbono.Size = new Size(403, 49);
             sltAbono.StartIndex = 0;
             sltAbono.TabIndex = 4;
             // 
@@ -127,7 +127,7 @@
             sltValorAbono.Hint = "Valor $";
             sltValorAbono.IntegralHeight = false;
             sltValorAbono.ItemHeight = 43;
-            sltValorAbono.Location = new Point(341, 223);
+            sltValorAbono.Location = new Point(35, 290);
             sltValorAbono.MaxDropDownItems = 1;
             sltValorAbono.MouseState = MaterialSkin.MouseState.OUT;
             sltValorAbono.Name = "sltValorAbono";
@@ -142,7 +142,7 @@
             btnVolver.Depth = 0;
             btnVolver.HighEmphasis = true;
             btnVolver.Icon = null;
-            btnVolver.Location = new Point(7, 321);
+            btnVolver.Location = new Point(78, 384);
             btnVolver.Margin = new Padding(4, 6, 4, 6);
             btnVolver.MouseState = MaterialSkin.MouseState.HOVER;
             btnVolver.Name = "btnVolver";
@@ -162,7 +162,7 @@
             btnConfirmar.Depth = 0;
             btnConfirmar.HighEmphasis = true;
             btnConfirmar.Icon = null;
-            btnConfirmar.Location = new Point(481, 321);
+            btnConfirmar.Location = new Point(463, 384);
             btnConfirmar.Margin = new Padding(4, 6, 4, 6);
             btnConfirmar.MouseState = MaterialSkin.MouseState.HOVER;
             btnConfirmar.Name = "btnConfirmar";
@@ -203,7 +203,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(613, 378);
+            ClientSize = new Size(681, 514);
             Controls.Add(lblDiasDeAbonoPendiente);
             Controls.Add(lblAbonoActual);
             Controls.Add(btnConfirmar);
@@ -215,6 +215,7 @@
             Controls.Add(lblNombre);
             Controls.Add(lblNumSocio);
             Name = "FrmAsignarMembresiaSocios";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Asignacion de abono";
             ResumeLayout(false);
             PerformLayout();

@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             tablaPagos = new DataGridView();
-            sltPagos = new MaterialSkin.Controls.MaterialComboBox();
-            btnVolver = new MaterialSkin.Controls.MaterialButton();
             IdPago = new DataGridViewTextBoxColumn();
             fechaPago = new DataGridViewTextBoxColumn();
             IdSocio = new DataGridViewTextBoxColumn();
@@ -39,6 +37,8 @@
             nombreAbono = new DataGridViewTextBoxColumn();
             nombreMdp = new DataGridViewTextBoxColumn();
             montoPago = new DataGridViewTextBoxColumn();
+            sltPagos = new MaterialSkin.Controls.MaterialComboBox();
+            btnVolver = new MaterialSkin.Controls.MaterialButton();
             ((System.ComponentModel.ISupportInitialize)tablaPagos).BeginInit();
             SuspendLayout();
             // 
@@ -54,49 +54,7 @@
             tablaPagos.RowTemplate.Height = 25;
             tablaPagos.Size = new Size(1044, 284);
             tablaPagos.TabIndex = 1;
-            // 
-            // sltPagos
-            // 
-            sltPagos.AutoResize = false;
-            sltPagos.BackColor = Color.FromArgb(255, 255, 255);
-            sltPagos.Depth = 0;
-            sltPagos.DrawMode = DrawMode.OwnerDrawVariable;
-            sltPagos.DropDownHeight = 174;
-            sltPagos.DropDownStyle = ComboBoxStyle.DropDownList;
-            sltPagos.DropDownWidth = 121;
-            sltPagos.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
-            sltPagos.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            sltPagos.FormattingEnabled = true;
-            sltPagos.Hint = "ID Pago";
-            sltPagos.IntegralHeight = false;
-            sltPagos.ItemHeight = 43;
-            sltPagos.Location = new Point(53, 405);
-            sltPagos.MaxDropDownItems = 4;
-            sltPagos.MouseState = MaterialSkin.MouseState.OUT;
-            sltPagos.Name = "sltPagos";
-            sltPagos.Size = new Size(191, 49);
-            sltPagos.StartIndex = 0;
-            sltPagos.TabIndex = 2;
-            // 
-            // btnVolver
-            // 
-            btnVolver.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnVolver.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnVolver.Depth = 0;
-            btnVolver.HighEmphasis = true;
-            btnVolver.Icon = null;
-            btnVolver.Location = new Point(382, 418);
-            btnVolver.Margin = new Padding(4, 6, 4, 6);
-            btnVolver.MouseState = MaterialSkin.MouseState.HOVER;
-            btnVolver.Name = "btnVolver";
-            btnVolver.NoAccentTextColor = Color.Empty;
-            btnVolver.Size = new Size(76, 36);
-            btnVolver.TabIndex = 3;
-            btnVolver.Text = "volver";
-            btnVolver.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            btnVolver.UseAccentColor = false;
-            btnVolver.UseVisualStyleBackColor = true;
-            btnVolver.Click += btnVolver_Click;
+            tablaPagos.SelectionChanged += tablaPagos_SelectionChanged;
             // 
             // IdPago
             // 
@@ -158,6 +116,49 @@
             montoPago.ReadOnly = true;
             montoPago.Width = 102;
             // 
+            // sltPagos
+            // 
+            sltPagos.AutoResize = false;
+            sltPagos.BackColor = Color.FromArgb(255, 255, 255);
+            sltPagos.Depth = 0;
+            sltPagos.DrawMode = DrawMode.OwnerDrawVariable;
+            sltPagos.DropDownHeight = 174;
+            sltPagos.DropDownStyle = ComboBoxStyle.DropDownList;
+            sltPagos.DropDownWidth = 121;
+            sltPagos.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            sltPagos.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            sltPagos.FormattingEnabled = true;
+            sltPagos.Hint = "ID Pago";
+            sltPagos.IntegralHeight = false;
+            sltPagos.ItemHeight = 43;
+            sltPagos.Location = new Point(53, 405);
+            sltPagos.MaxDropDownItems = 4;
+            sltPagos.MouseState = MaterialSkin.MouseState.OUT;
+            sltPagos.Name = "sltPagos";
+            sltPagos.Size = new Size(191, 49);
+            sltPagos.StartIndex = 0;
+            sltPagos.TabIndex = 2;
+            // 
+            // btnVolver
+            // 
+            btnVolver.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnVolver.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnVolver.Depth = 0;
+            btnVolver.HighEmphasis = true;
+            btnVolver.Icon = null;
+            btnVolver.Location = new Point(382, 418);
+            btnVolver.Margin = new Padding(4, 6, 4, 6);
+            btnVolver.MouseState = MaterialSkin.MouseState.HOVER;
+            btnVolver.Name = "btnVolver";
+            btnVolver.NoAccentTextColor = Color.Empty;
+            btnVolver.Size = new Size(76, 36);
+            btnVolver.TabIndex = 3;
+            btnVolver.Text = "volver";
+            btnVolver.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnVolver.UseAccentColor = false;
+            btnVolver.UseVisualStyleBackColor = true;
+            btnVolver.Click += btnVolver_Click;
+            // 
             // FrmHistorialPagos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -167,6 +168,7 @@
             Controls.Add(sltPagos);
             Controls.Add(tablaPagos);
             Name = "FrmHistorialPagos";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Pagos";
             ((System.ComponentModel.ISupportInitialize)tablaPagos).EndInit();
             ResumeLayout(false);

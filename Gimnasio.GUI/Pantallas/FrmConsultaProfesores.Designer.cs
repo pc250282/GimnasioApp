@@ -51,6 +51,7 @@
             tablaProfesores.RowTemplate.Height = 25;
             tablaProfesores.Size = new Size(647, 268);
             tablaProfesores.TabIndex = 1;
+            tablaProfesores.SelectionChanged += tablaProfesores_SelectionChanged;
             // 
             // sltNumProfesor
             // 
@@ -117,51 +118,63 @@
             // 
             // idProfesor
             // 
+            idProfesor.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             idProfesor.DataPropertyName = "idProfesor";
             idProfesor.HeaderText = "Legajo N°";
             idProfesor.Name = "idProfesor";
             idProfesor.ReadOnly = true;
+            idProfesor.Width = 84;
             // 
             // nombreEstado
             // 
+            nombreEstado.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             nombreEstado.DataPropertyName = "nombreEstado";
             nombreEstado.HeaderText = "Estado";
             nombreEstado.Name = "nombreEstado";
             nombreEstado.ReadOnly = true;
+            nombreEstado.Width = 67;
             // 
             // dataGridViewTextBoxColumn1
             // 
+            dataGridViewTextBoxColumn1.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridViewTextBoxColumn1.DataPropertyName = "nombre";
             dataGridViewTextBoxColumn1.HeaderText = "Nombre";
             dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             dataGridViewTextBoxColumn1.ReadOnly = true;
+            dataGridViewTextBoxColumn1.Width = 76;
             // 
             // dataGridViewTextBoxColumn2
             // 
+            dataGridViewTextBoxColumn2.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridViewTextBoxColumn2.DataPropertyName = "apellido";
             dataGridViewTextBoxColumn2.HeaderText = "Apellido";
             dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             dataGridViewTextBoxColumn2.ReadOnly = true;
+            dataGridViewTextBoxColumn2.Width = 76;
             // 
             // fechaContratacion
             // 
+            fechaContratacion.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             fechaContratacion.DataPropertyName = "fechaContratacion";
             fechaContratacion.HeaderText = "F. Contratacion";
             fechaContratacion.Name = "fechaContratacion";
             fechaContratacion.ReadOnly = true;
+            fechaContratacion.Width = 113;
             // 
             // sueldo
             // 
+            sueldo.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             sueldo.DataPropertyName = "sueldo";
             sueldo.HeaderText = "Sueldo";
             sueldo.Name = "sueldo";
             sueldo.ReadOnly = true;
+            sueldo.Width = 68;
             // 
             // FrmConsultaProfesores
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1060, 580);
             Controls.Add(btnVolver);
             Controls.Add(btbAsignarSueldo);
             Controls.Add(sltNumProfesor);

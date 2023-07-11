@@ -66,7 +66,7 @@ namespace Gimnasio.GUI.Pantallas
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Close();
-            new MenuPrincipal().Show();
+            
         }
 
         private void btbAsignarSueldo_Click(object sender, EventArgs e)
@@ -77,5 +77,19 @@ namespace Gimnasio.GUI.Pantallas
             this.Hide();
             frmAsignarSueldo.Show();
         }
+
+
+        private void tablaProfesores_SelectionChanged(object sender, EventArgs e)
+        {
+            if (tablaProfesores.SelectedRows.Count > 0)
+            {
+                // Obtener el valor del ID de la fila seleccionada en el DataGridView
+                int idSeleccionado = (int)tablaProfesores.SelectedRows[0].Cells["idProfesor"].Value;
+
+                // Seleccionar el valor correspondiente en el ComboBox
+                sltNumProfesor.Text = idSeleccionado.ToString();
+            }
+        }
+
     }
 }

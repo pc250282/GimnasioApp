@@ -54,6 +54,19 @@ namespace Gimnasio.GUI.Pantallas
             txtCupo.Text = actividadAeditar.cupoDisponible.ToString();
             obtenerAbonos();
             obtenerProfesoresDisponibles();
+            if (actividadAeditar.fk_Profesor_id == 0)
+            {
+                lblAbonoActual.Visible = false;
+                lblValorActual.Visible = false;
+                lblDatos.Visible = false;
+                lblProfesorActual.Visible = false;
+                btnCreaActividad.Text = "ASIGNAR PROFESOR";
+                txtCupo.ReadOnly = true;
+                txtHorasPorSemana.ReadOnly = true;
+                txtNombreActividad.ReadOnly = true;
+                txtHorario.ReadOnly = true;
+
+            }
             lblAbonoActual.Text = $"Abono: {actividadAeditar.nombreAbono}";
             if (actividadAeditar.nombre == null)
             {
@@ -96,6 +109,7 @@ namespace Gimnasio.GUI.Pantallas
 
         private void crearActividad()
         {
+            int fk_Profesor_id = 0;
             try
             {
                 Actividad nuevaActividad = new Actividad()
@@ -105,9 +119,14 @@ namespace Gimnasio.GUI.Pantallas
                     horasPorSemana = int.Parse(txtHorasPorSemana.Text),
                     fk_Abono_id = int.Parse(seleccionAbono.SelectedValue.ToString()),
                     cupoDisponible = int.Parse(txtCupo.Text),
-                    fk_Profesor_id = int.Parse(sltProfesor.SelectedValue.ToString())
+
 
                 };
+
+                if (chkProfesor.Checked)
+                {
+                    nuevaActividad.fk_Profesor_id = int.Parse(sltProfesor.SelectedValue.ToString());
+                }
 
                 int insertResult = actividadServices.insertActividad(nuevaActividad);
                 if (insertResult >= 1)
@@ -115,8 +134,6 @@ namespace Gimnasio.GUI.Pantallas
 
                     MaterialMessageBox.Show($"Se registro la actividad " + nuevaActividad.nombreActividad + " con exito");
                     this.Close();
-                    new MenuPrincipal().Show();
-
                 }
                 else
                 {
@@ -157,7 +174,6 @@ namespace Gimnasio.GUI.Pantallas
                     int updateProfesorResult = profesorServices.editarEstadoProfesor(actividadEditada.fk_Profesor_id);
                     MaterialMessageBox.Show($"Se actualizo la actividad N° {actividadEditada.idActividad}, {actividadEditada.nombreActividad} con exito");
                     this.Close();
-                    new MenuPrincipal().Show();
 
                 }
                 else
@@ -171,22 +187,14 @@ namespace Gimnasio.GUI.Pantallas
             {
                 MaterialMessageBox.Show("Algo salió mal : " + error);
 
-
             }
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            this.Close();
-            new MenuPrincipal().Show();
+           this.Close();
         }
 
-        private void txtCrearAbono_Click(object sender, EventArgs e)
-        {
-            FrmCrearAbono frmCrearAbono = new FrmCrearAbono();
-            frmCrearAbono.Show();
-            this.Hide();
-        }
 
         private void btnCreaActividad_Click(object sender, EventArgs e)
         {
@@ -199,6 +207,13 @@ namespace Gimnasio.GUI.Pantallas
                 crearActividad();
             }
 
+        }
+
+        private void txtCrearAbono_Click(object sender, EventArgs e)
+        {
+            FrmCrearAbono frmCrearAbono = new FrmCrearAbono();
+            frmCrearAbono.Show();
+            this.Hide();
         }
     }
 }

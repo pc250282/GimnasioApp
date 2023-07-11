@@ -6,10 +6,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Gimnasio.GUI.Pantallas
 {
@@ -17,6 +19,7 @@ namespace Gimnasio.GUI.Pantallas
     {
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
         APISocioServices securityServices = new APISocioServices();
+       
         public FrmCrearAbono()
         {
             InitializeComponent();
@@ -26,7 +29,7 @@ namespace Gimnasio.GUI.Pantallas
             materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.LIGHT;
             //materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Indigo500, MaterialSkin.Primary.Indigo700, MaterialSkin.Primary.Indigo100, MaterialSkin.Accent.Blue400, MaterialSkin.TextShade.WHITE);
             materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Orange700, MaterialSkin.Primary.Orange600, MaterialSkin.Primary.Orange600, MaterialSkin.Accent.Orange400, MaterialSkin.TextShade.WHITE);
-
+            
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -42,7 +45,7 @@ namespace Gimnasio.GUI.Pantallas
                 {
                     nombreAbono = txtNombreAbono.Text,
                     valorCuotaPura = double.Parse(txtValorAbono.Text.ToString()),
-                    porcentajeEstablecimiento =double.Parse(txtPorcentajeEstablecimiento.Text.ToString()),
+                    porcentajeEstablecimiento = double.Parse(txtPorcentajeEstablecimiento.Text.ToString()),
                     porcentajeProfesor = double.Parse(txtPorcentajeProfesor.Text.ToString()),
                 };
 
@@ -50,6 +53,8 @@ namespace Gimnasio.GUI.Pantallas
                 if (idAbono >= 1)
                 {
                     MaterialMessageBox.Show($"Se registro el abono " + nuevoAbono.nombreAbono + " con exito");
+                    this.Close();
+                    new FrmActividades().Show();
                 }
                 else
                 {
@@ -61,8 +66,6 @@ namespace Gimnasio.GUI.Pantallas
             catch (Exception error)
             {
                 MaterialMessageBox.Show("Algo salió mal : " + error);
-
-
             }
         }
 
@@ -74,25 +77,40 @@ namespace Gimnasio.GUI.Pantallas
 
         private void mostrarValores()
         {
-            int valor = int.Parse(txtValorAbono.Text.ToString());
-            int porcentajeProfe=int.Parse(txtPorcentajeProfesor.Text.ToString());
-            int porcentajeEstablecimiento=int.Parse(txtPorcentajeEstablecimiento.Text.ToString());
-            lblMuestraGanancia.Text="$ "+ ((porcentajeEstablecimiento*valor)/100).ToString();
-            lblMuestraPorcentajeProfesor.Text= "$ " + ((porcentajeProfe * valor) / 100).ToString();
-
+            double valor = 0.0;
+            int porcentajeProfe = 0;
+            int porcentajeEstablecimiento = 0;
+            valor = double.Parse(txtValorAbono.Text);
+            porcentajeEstablecimiento = int.Parse(txtPorcentajeEstablecimiento.Text);
+            porcentajeProfe = 100 - porcentajeEstablecimiento;
+            lblMuestraGanancia.Text = "Ganancia: $ " + ((porcentajeEstablecimiento * valor) / 100).ToString();
+            lblMuestraPorcentajeProfesor.Text = "A pagar al profesor: $ " + ((porcentajeProfe * valor) / 100).ToString();
+            txtPorcentajeProfesor.Text = (100 - (int.Parse(txtPorcentajeEstablecimiento.Text))).ToString();
         }
 
-        private void lblMuestraGanancia_MouseClick(object sender, MouseEventArgs e)
+        private void txtPorcentajeEstablecimiento_TextChanged(object sender, EventArgs e)
         {
-            mostrarValores();
+
+            if (string.IsNullOrEmpty(txtPorcentajeEstablecimiento.Text))
+                txtPorcentajeEstablecimiento.Text = "0";
+            else
+            {
+                int value;
+                if (!int.TryParse(txtPorcentajeEstablecimiento.Text, out value))
+                    txtPorcentajeEstablecimiento.Text = "0";
+                else if (value > 100 || value < 0)
+                    txtPorcentajeEstablecimiento.Text = "100";
+            }
+            txtPorcentajeProfesor.Text = (100 - (int.Parse(txtPorcentajeEstablecimiento.Text))).ToString();
         }
 
-        private void lblMuestraPorcentajeProfesor_Click(object sender, EventArgs e)
+
+        private void txtPorcentajeEstablecimiento_KeyPress(object sender, KeyPressEventArgs e)
         {
             mostrarValores();
         }
     }
 
-  
-     
+
+
 }

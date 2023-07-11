@@ -20,8 +20,9 @@ namespace Gimnasio.GUI.Pantallas
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
         APIPagosServices pagoServices = new APIPagosServices();
         private List<string> lstIds = new List<string>();
+        private int idUser;
 
-        public FrmHistorialPagos()
+        public FrmHistorialPagos(int idUser)
         {
             InitializeComponent();
             materialSkinManager = MaterialSkin.MaterialSkinManager.Instance;
@@ -32,6 +33,7 @@ namespace Gimnasio.GUI.Pantallas
             materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Orange700, MaterialSkin.Primary.Orange600, MaterialSkin.Primary.Orange600, MaterialSkin.Accent.Orange400, MaterialSkin.TextShade.WHITE);
             obtenerPagos();
             llenarIds();
+            this.idUser = idUser;
         }
 
         private void obtenerPagos()
@@ -69,7 +71,19 @@ namespace Gimnasio.GUI.Pantallas
         {
 
             this.Close();
-            new MenuPrincipal().Show();
+            new MenuPrincipal(idUser).Show();
+        }
+
+        private void tablaPagos_SelectionChanged(object sender, EventArgs e)
+        {
+            if (tablaPagos.SelectedRows.Count > 0)
+            {
+                // Obtener el valor del ID de la fila seleccionada en el DataGridView
+                int idSeleccionado = (int)tablaPagos.SelectedRows[0].Cells["idPago"].Value;
+
+                // Seleccionar el valor correspondiente en el ComboBox
+                sltPagos.Text = idSeleccionado.ToString();
+            }
         }
     }
 }

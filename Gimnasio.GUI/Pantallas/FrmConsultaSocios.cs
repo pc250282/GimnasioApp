@@ -27,7 +27,8 @@ namespace Gimnasio.GUI
         private List<string> lstIdsProfesores = new List<string>();
         private DateTime fechaActual = DateTime.Now;
         private int flagAbono;
-
+        private int idUser;
+        APILoginServices login = new APILoginServices();
 
         public FrmConsultaSocios()
         {
@@ -35,20 +36,21 @@ namespace Gimnasio.GUI
             materialSkinManager = MaterialSkin.MaterialSkinManager.Instance;
             materialSkinManager.EnforceBackcolorOnAllComponents = true;
             materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.LIGHT;
+            materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.DARK;
             //materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Indigo500, MaterialSkin.Primary.Indigo700, MaterialSkin.Primary.Indigo100, MaterialSkin.Accent.Blue400, MaterialSkin.TextShade.WHITE);
             materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Orange700, MaterialSkin.Primary.Orange600, MaterialSkin.Primary.Orange600, MaterialSkin.Accent.Orange400, MaterialSkin.TextShade.WHITE);
-
+            this.idUser = idUser;
             obtenerSocios();
             obtenerEstados();
             llenarIds();
 
         }
 
+
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Close();
-            new MenuPrincipal().Show();
+            
         }
 
 
@@ -92,6 +94,10 @@ namespace Gimnasio.GUI
                 else
                 {
                     tablaSocios.Rows[rowIndex].Cells[9].Style.BackColor = Color.Red;
+                }
+                if (tablaSocios.Rows[rowIndex].Cells[4].Value.ToString().Contains("Inactivo"))
+                {
+                    tablaSocios.Rows[rowIndex].Cells[4].Style.BackColor = Color.Red;
                 }
             }
             else
@@ -167,9 +173,18 @@ namespace Gimnasio.GUI
                 bool abonoAnual = true;
                 if (diferencia.TotalDays >= 365 || socio.fk_IdEstado == 3 || socio.fk_IdEstado == 5)
                 {
-                    FrmRegistrarPago frmRegistrarPago = new FrmRegistrarPago(socio);
+                    FrmRegistrarPago frmRegistrarPago = new FrmRegistrarPago(socio, idUser);
                     frmRegistrarPago.Show();
                     this.Hide();
+                    return;
+                }
+                //Requerimiento: Posibilidad de registrar pago omitiendo la validacion de dias, aplica a socios que cambiaron a un abono anual
+                else if (diferencia.TotalDays <= 365 && socio.fk_IdEstado == 6)
+                {
+                    FrmRegistrarPago frmRegistrarPago = new FrmRegistrarPago(socio, idUser);
+                    frmRegistrarPago.Show();
+                    this.Hide();
+                    return;
                 }
                 //No tiene que pagar aun, el valor obtenido es sobre la fecha actual por eso le sumo 30 dias para obtener dias que restan de abono
                 else
@@ -189,7 +204,7 @@ namespace Gimnasio.GUI
 
                 else
                 {
-                    FrmRegistrarPago frmRegistrarPago = new FrmRegistrarPago(socio);
+                    FrmRegistrarPago frmRegistrarPago = new FrmRegistrarPago(socio, idUser);
                     frmRegistrarPago.Show();
                     this.Hide();
                 }
@@ -211,7 +226,7 @@ namespace Gimnasio.GUI
             flagAbono = socio.fk_IdAbonoSocio;
             if (flagAbono == 0)
             {
-                FrmAsignarMembresiaSocios frmAbono = new FrmAsignarMembresiaSocios(socio);
+                FrmAsignarMembresiaSocios frmAbono = new FrmAsignarMembresiaSocios(socio, idUser);
                 frmAbono.Show();
                 this.Hide();
             }
@@ -232,7 +247,7 @@ namespace Gimnasio.GUI
                 MaterialMessageBox.Show("El socio seleccionado no tiene membresia asignada");
             }
 
-            else if(flagAbono!=0 && (!string.IsNullOrEmpty(socio.nombreAbono) && socio.nombreAbono.Contains("Anual")))
+            else if (flagAbono != 0 && (!string.IsNullOrEmpty(socio.nombreAbono) && socio.nombreAbono.Contains("Anual")))
             {
                 flagAbono = 0;
                 MaterialMessageBox.Show("No es posible cambiar un abono Anual, el socio debe gestionar el cambio desde atencion al cliente");
@@ -240,7 +255,7 @@ namespace Gimnasio.GUI
 
             else
             {
-                FrmAsignarMembresiaSocios frmAbono = new FrmAsignarMembresiaSocios(socio);
+                FrmAsignarMembresiaSocios frmAbono = new FrmAsignarMembresiaSocios(socio, idUser);
                 frmAbono.Show();
                 this.Hide();
             }
@@ -252,32 +267,54 @@ namespace Gimnasio.GUI
             int idEstado = int.Parse(sltEstado.SelectedValue.ToString());
             int idSocio = int.Parse(sltNumSocio.SelectedValue.ToString());
             SocioAdmin socio = securityServices.getSocioById(idSocio);
-
-            if (socio.fk_IdEstado == idEstado)
+            try
             {
-                MaterialMessageBox.Show($"El estado seleccionado es igual al actual");
-
-            }
-
-            else if (socio.fk_IdEstado == 3 || socio.fk_IdEstado == 5 || socio.fk_IdEstado == 6 || socio.fk_IdEstado == 1007)
-            {
-                MaterialMessageBox.Show($"No es posible cambiar el estado del socio, debe registrar el pago primero");
-            }
-
-            else
-            {
-                int resultado = securityServices.editarEstadoSocio(idSocio, idEstado);
-                if (resultado >= 1)
+                if (socio.fk_IdEstado == idEstado)
                 {
-                    obtenerSocios();
-                    MaterialMessageBox.Show($"Se actualizó con exito el estado del socio N° {idSocio.ToString()}");
+                    MaterialMessageBox.Show($"El estado seleccionado es igual al actual");
+
                 }
+
+                else if (socio.fk_IdEstado == 1 && idEstado != 2)
+                {
+                    MaterialMessageBox.Show($"El socio esta Activo, solo es posible cambiarlo a Innactivo");
+
+                }
+
+                else if (socio.fk_IdEstado == 3 || socio.fk_IdEstado == 5 || socio.fk_IdEstado == 6 || socio.fk_IdEstado == 1007)
+                {
+                    if (idEstado == 5)
+                    {
+                        int resultado = securityServices.editarEstadoSocio(idSocio, idEstado);
+                        if (resultado >= 1)
+                        {
+                            obtenerSocios();
+                            MaterialMessageBox.Show($"Se actualizó con exito el estado del socio N° {idSocio.ToString()}");
+                        }
+                    }
+                    else
+                    {
+                        MaterialMessageBox.Show($"No es posible cambiar el estado del socio, debe registrar el pago primero");
+                    }
+
+                }
+
+
                 else
                 {
-                    MaterialMessageBox.Show($"Ocurrió un error cambiando el estado del socio N°: {idSocio.ToString()}");
+                    int resultado = securityServices.editarEstadoSocio(idSocio, idEstado);
+                    if (resultado >= 1)
+                    {
+                        obtenerSocios();
+                        MaterialMessageBox.Show($"Se actualizó con exito el estado del socio N° {idSocio.ToString()}");
+                    }
+
                 }
             }
-
+            catch (Exception ex)
+            {
+                MaterialMessageBox.Show($"Ocurrió un error cambiando el estado del socio N°: {idSocio.ToString()}");
+            }
 
         }
 
@@ -285,7 +322,7 @@ namespace Gimnasio.GUI
         {
             int idSocio = int.Parse(sltNumSocio.SelectedValue.ToString());
             SocioAdmin socio = securityServices.getSocioById(idSocio);
-            MenuCargaSocio menuCargaSocio = new MenuCargaSocio(socio);
+            MenuCargaSocio menuCargaSocio = new MenuCargaSocio(socio, idUser);
             menuCargaSocio.Show();
             this.Hide();
         }

@@ -22,8 +22,9 @@ namespace Gimnasio.GUI
         APIProfesorServices profesorServices = new APIProfesorServices();
         APISocioServices personaServices = new APISocioServices();
         ValidacionesFront validacionesFrontEnd = new ValidacionesFront();
-
-        public MenuProfesores()
+        APILoginServices loginServices = new APILoginServices();
+        private int idUser;
+        public MenuProfesores(int idUser)
         {
             InitializeComponent();
             materialSkinManager = MaterialSkin.MaterialSkinManager.Instance;
@@ -31,9 +32,11 @@ namespace Gimnasio.GUI
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Orange700, MaterialSkin.Primary.Orange600, MaterialSkin.Primary.Orange600, MaterialSkin.Accent.Orange400, MaterialSkin.TextShade.WHITE);
-
+            this.idUser = idUser;
             obtenerGeneros();
         }
+
+
 
         public void obtenerGeneros()
         {
@@ -42,6 +45,15 @@ namespace Gimnasio.GUI
             sltGenero.DisplayMember = "nombreGenero";
             sltGenero.ValueMember = "IdGenero";
             sltGenero.DataSource = lstGenero;
+        }
+
+        public void obtenerRoles()
+        {
+            List<Roles> lstRoles = loginServices.obtenerRoles();
+
+            sltRoles.DisplayMember = "nombreRol";
+            sltRoles.ValueMember = "IdRol";
+            sltRoles.DataSource = lstRoles;
         }
 
 
@@ -107,10 +119,10 @@ namespace Gimnasio.GUI
                 if (exito == true)
                 {
                     this.Close();
-                    new MenuPrincipal().Show();
+                    new MenuPrincipal(idUser).Show();
                 }
             }
-            
+
             else
             {
                 MaterialMessageBox.Show("Debes completar todos los datos para registrar al profesor");
@@ -120,7 +132,7 @@ namespace Gimnasio.GUI
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Close();
-            new MenuPrincipal().Show();
+            new MenuPrincipal(idUser).Show();
 
         }
 
@@ -135,22 +147,28 @@ namespace Gimnasio.GUI
             return resultado;
         }
 
-        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            validacionesFrontEnd.soloLetras(e);
-        }
 
-        private void txtApellido_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            validacionesFrontEnd.soloLetras(e);
-        }
-
-        private void txtDNI_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
         {
             validacionesFrontEnd.soloNumeros(e);
         }
 
-        private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtNombre_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            validacionesFrontEnd.soloLetras(e);
+        }
+
+        private void txtApellido_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            validacionesFrontEnd.soloLetras(e);
+        }
+
+        private void txtDNI_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            validacionesFrontEnd.soloNumeros(e);
+        }
+
+        private void txtTelefono_KeyPress_1(object sender, KeyPressEventArgs e)
         {
             validacionesFrontEnd.soloNumeros(e);
         }

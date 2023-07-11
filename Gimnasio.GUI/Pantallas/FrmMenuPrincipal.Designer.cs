@@ -38,14 +38,21 @@
             btnBuscarProfesores = new MaterialSkin.Controls.MaterialButton();
             btnAdminPagos = new MaterialSkin.Controls.MaterialButton();
             pictureBox1 = new PictureBox();
-            groupBox1 = new GroupBox();
-            groupBox2 = new GroupBox();
+            grpAdmin = new GroupBox();
+            btnLogOff = new MaterialSkin.Controls.MaterialButton();
+            btnCambiarRol = new MaterialSkin.Controls.MaterialButton();
+            btnCrearEmpleado = new MaterialSkin.Controls.MaterialButton();
+            grpGerencia = new GroupBox();
             lblFecha = new MaterialSkin.Controls.MaterialLabel();
             lblHora = new MaterialSkin.Controls.MaterialLabel();
             timer1 = new System.Windows.Forms.Timer(components);
+            statusStrip1 = new StatusStrip();
+            toolStripStatusUsuario = new ToolStripStatusLabel();
+            toolStripStatusRol = new ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            groupBox1.SuspendLayout();
-            groupBox2.SuspendLayout();
+            grpAdmin.SuspendLayout();
+            grpGerencia.SuspendLayout();
+            statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // btnCrearSocio
@@ -56,7 +63,7 @@
             btnCrearSocio.Depth = 0;
             btnCrearSocio.HighEmphasis = true;
             btnCrearSocio.Icon = null;
-            btnCrearSocio.Location = new Point(7, 36);
+            btnCrearSocio.Location = new Point(32, 46);
             btnCrearSocio.Margin = new Padding(4, 6, 4, 6);
             btnCrearSocio.MouseState = MaterialSkin.MouseState.HOVER;
             btnCrearSocio.Name = "btnCrearSocio";
@@ -77,12 +84,12 @@
             btnCrearProfesor.Depth = 0;
             btnCrearProfesor.HighEmphasis = true;
             btnCrearProfesor.Icon = null;
-            btnCrearProfesor.Location = new Point(8, 94);
+            btnCrearProfesor.Location = new Point(40, 90);
             btnCrearProfesor.Margin = new Padding(4, 6, 4, 6);
             btnCrearProfesor.MouseState = MaterialSkin.MouseState.HOVER;
             btnCrearProfesor.Name = "btnCrearProfesor";
             btnCrearProfesor.NoAccentTextColor = Color.Empty;
-            btnCrearProfesor.Size = new Size(147, 36);
+            btnCrearProfesor.Size = new Size(195, 36);
             btnCrearProfesor.TabIndex = 1;
             btnCrearProfesor.Text = "Profesor nuevo";
             btnCrearProfesor.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -98,14 +105,14 @@
             btbBuscarSocio.Depth = 0;
             btbBuscarSocio.HighEmphasis = true;
             btbBuscarSocio.Icon = null;
-            btbBuscarSocio.Location = new Point(7, 36);
+            btbBuscarSocio.Location = new Point(7, 94);
             btbBuscarSocio.Margin = new Padding(4, 6, 4, 6);
             btbBuscarSocio.MouseState = MaterialSkin.MouseState.HOVER;
             btbBuscarSocio.Name = "btbBuscarSocio";
             btbBuscarSocio.NoAccentTextColor = Color.Empty;
             btbBuscarSocio.Size = new Size(195, 36);
             btbBuscarSocio.TabIndex = 2;
-            btbBuscarSocio.Text = "Administrar socios";
+            btbBuscarSocio.Text = "GESTION DE SOCIOS";
             btbBuscarSocio.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btbBuscarSocio.UseAccentColor = false;
             btbBuscarSocio.UseVisualStyleBackColor = true;
@@ -119,14 +126,14 @@
             btnVerActividades.Depth = 0;
             btnVerActividades.HighEmphasis = true;
             btnVerActividades.Icon = null;
-            btnVerActividades.Location = new Point(7, 155);
+            btnVerActividades.Location = new Point(7, 142);
             btnVerActividades.Margin = new Padding(4, 6, 4, 6);
             btnVerActividades.MouseState = MaterialSkin.MouseState.HOVER;
             btnVerActividades.Name = "btnVerActividades";
             btnVerActividades.NoAccentTextColor = Color.Empty;
             btnVerActividades.Size = new Size(195, 36);
             btnVerActividades.TabIndex = 5;
-            btnVerActividades.Text = "Administrar Actividades";
+            btnVerActividades.Text = "MENU DE ACTIVIDADES";
             btnVerActividades.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnVerActividades.UseAccentColor = false;
             btnVerActividades.UseVisualStyleBackColor = true;
@@ -140,12 +147,12 @@
             btnCrearActividad.Depth = 0;
             btnCrearActividad.HighEmphasis = true;
             btnCrearActividad.Icon = null;
-            btnCrearActividad.Location = new Point(7, 155);
+            btnCrearActividad.Location = new Point(40, 42);
             btnCrearActividad.Margin = new Padding(4, 6, 4, 6);
             btnCrearActividad.MouseState = MaterialSkin.MouseState.HOVER;
             btnCrearActividad.Name = "btnCrearActividad";
             btnCrearActividad.NoAccentTextColor = Color.Empty;
-            btnCrearActividad.Size = new Size(148, 36);
+            btnCrearActividad.Size = new Size(195, 36);
             btnCrearActividad.TabIndex = 6;
             btnCrearActividad.Text = "Nueva Actividad";
             btnCrearActividad.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -161,7 +168,7 @@
             btnBuscarProfesores.Depth = 0;
             btnBuscarProfesores.HighEmphasis = true;
             btnBuscarProfesores.Icon = null;
-            btnBuscarProfesores.Location = new Point(7, 94);
+            btnBuscarProfesores.Location = new Point(40, 138);
             btnBuscarProfesores.Margin = new Padding(4, 6, 4, 6);
             btnBuscarProfesores.MouseState = MaterialSkin.MouseState.HOVER;
             btnBuscarProfesores.Name = "btnBuscarProfesores";
@@ -182,7 +189,7 @@
             btnAdminPagos.Depth = 0;
             btnAdminPagos.HighEmphasis = true;
             btnAdminPagos.Icon = null;
-            btnAdminPagos.Location = new Point(7, 214);
+            btnAdminPagos.Location = new Point(7, 190);
             btnAdminPagos.Margin = new Padding(4, 6, 4, 6);
             btnAdminPagos.MouseState = MaterialSkin.MouseState.HOVER;
             btnAdminPagos.Name = "btnAdminPagos";
@@ -198,44 +205,106 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(195, 86);
+            pictureBox1.Location = new Point(231, 86);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(353, 326);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 9;
             pictureBox1.TabStop = false;
             // 
-            // groupBox1
+            // grpAdmin
             // 
-            groupBox1.Controls.Add(btnCrearActividad);
-            groupBox1.Controls.Add(btnCrearProfesor);
-            groupBox1.Controls.Add(btnCrearSocio);
-            groupBox1.Location = new Point(6, 82);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(183, 316);
-            groupBox1.TabIndex = 10;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Ingresos";
+            grpAdmin.Controls.Add(btnAdminPagos);
+            grpAdmin.Controls.Add(btbBuscarSocio);
+            grpAdmin.Controls.Add(btnCrearSocio);
+            grpAdmin.Controls.Add(btnVerActividades);
+            grpAdmin.Location = new Point(3, 82);
+            grpAdmin.Name = "grpAdmin";
+            grpAdmin.Size = new Size(222, 330);
+            grpAdmin.TabIndex = 10;
+            grpAdmin.TabStop = false;
             // 
-            // groupBox2
+            // btnLogOff
             // 
-            groupBox2.Controls.Add(btnAdminPagos);
-            groupBox2.Controls.Add(btnBuscarProfesores);
-            groupBox2.Controls.Add(btbBuscarSocio);
-            groupBox2.Controls.Add(btnVerActividades);
-            groupBox2.Location = new Point(554, 82);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(220, 300);
-            groupBox2.TabIndex = 11;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Administracion";
+            btnLogOff.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnLogOff.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnLogOff.Depth = 0;
+            btnLogOff.HighEmphasis = true;
+            btnLogOff.Icon = null;
+            btnLogOff.Location = new Point(342, 440);
+            btnLogOff.Margin = new Padding(4, 6, 4, 6);
+            btnLogOff.MouseState = MaterialSkin.MouseState.HOVER;
+            btnLogOff.Name = "btnLogOff";
+            btnLogOff.NoAccentTextColor = Color.Empty;
+            btnLogOff.Size = new Size(131, 36);
+            btnLogOff.TabIndex = 15;
+            btnLogOff.Text = "cerrar sesión";
+            btnLogOff.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnLogOff.UseAccentColor = false;
+            btnLogOff.UseVisualStyleBackColor = true;
+            btnLogOff.Click += btnLogOff_Click;
+            // 
+            // btnCambiarRol
+            // 
+            btnCambiarRol.AutoSize = false;
+            btnCambiarRol.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnCambiarRol.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnCambiarRol.Depth = 0;
+            btnCambiarRol.HighEmphasis = true;
+            btnCambiarRol.Icon = null;
+            btnCambiarRol.Location = new Point(40, 234);
+            btnCambiarRol.Margin = new Padding(4, 6, 4, 6);
+            btnCambiarRol.MouseState = MaterialSkin.MouseState.HOVER;
+            btnCambiarRol.Name = "btnCambiarRol";
+            btnCambiarRol.NoAccentTextColor = Color.Empty;
+            btnCambiarRol.Size = new Size(195, 36);
+            btnCambiarRol.TabIndex = 8;
+            btnCambiarRol.Text = "EDICION DE EMPLEADO";
+            btnCambiarRol.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnCambiarRol.UseAccentColor = false;
+            btnCambiarRol.UseVisualStyleBackColor = true;
+            btnCambiarRol.Click += btnCambiarRol_Click;
+            // 
+            // btnCrearEmpleado
+            // 
+            btnCrearEmpleado.AutoSize = false;
+            btnCrearEmpleado.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnCrearEmpleado.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnCrearEmpleado.Depth = 0;
+            btnCrearEmpleado.HighEmphasis = true;
+            btnCrearEmpleado.Icon = null;
+            btnCrearEmpleado.Location = new Point(40, 186);
+            btnCrearEmpleado.Margin = new Padding(4, 6, 4, 6);
+            btnCrearEmpleado.MouseState = MaterialSkin.MouseState.HOVER;
+            btnCrearEmpleado.Name = "btnCrearEmpleado";
+            btnCrearEmpleado.NoAccentTextColor = Color.Empty;
+            btnCrearEmpleado.Size = new Size(195, 36);
+            btnCrearEmpleado.TabIndex = 7;
+            btnCrearEmpleado.Text = "CREAR EMPLEADO";
+            btnCrearEmpleado.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnCrearEmpleado.UseAccentColor = false;
+            btnCrearEmpleado.UseVisualStyleBackColor = true;
+            btnCrearEmpleado.Click += btnCrearEmpleado_Click;
+            // 
+            // grpGerencia
+            // 
+            grpGerencia.Controls.Add(btnCrearEmpleado);
+            grpGerencia.Controls.Add(btnCambiarRol);
+            grpGerencia.Controls.Add(btnBuscarProfesores);
+            grpGerencia.Controls.Add(btnCrearProfesor);
+            grpGerencia.Controls.Add(btnCrearActividad);
+            grpGerencia.Location = new Point(590, 86);
+            grpGerencia.Name = "grpGerencia";
+            grpGerencia.Size = new Size(273, 326);
+            grpGerencia.TabIndex = 11;
+            grpGerencia.TabStop = false;
             // 
             // lblFecha
             // 
             lblFecha.AutoSize = true;
             lblFecha.Depth = 0;
             lblFecha.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblFecha.Location = new Point(195, 64);
+            lblFecha.Location = new Point(3, 440);
             lblFecha.MouseState = MaterialSkin.MouseState.HOVER;
             lblFecha.Name = "lblFecha";
             lblFecha.Size = new Size(107, 19);
@@ -247,7 +316,7 @@
             lblHora.AutoSize = true;
             lblHora.Depth = 0;
             lblHora.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblHora.Location = new Point(413, 64);
+            lblHora.Location = new Point(3, 473);
             lblHora.MouseState = MaterialSkin.MouseState.HOVER;
             lblHora.Name = "lblHora";
             lblHora.Size = new Size(107, 19);
@@ -258,21 +327,47 @@
             // 
             timer1.Tick += timer1_Tick;
             // 
+            // statusStrip1
+            // 
+            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusUsuario, toolStripStatusRol });
+            statusStrip1.Location = new Point(3, 502);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Size = new Size(871, 22);
+            statusStrip1.TabIndex = 14;
+            statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusUsuario
+            // 
+            toolStripStatusUsuario.Name = "toolStripStatusUsuario";
+            toolStripStatusUsuario.Size = new Size(118, 17);
+            toolStripStatusUsuario.Text = "toolStripStatusLabel1";
+            // 
+            // toolStripStatusRol
+            // 
+            toolStripStatusRol.Name = "toolStripStatusRol";
+            toolStripStatusRol.Size = new Size(118, 17);
+            toolStripStatusRol.Text = "toolStripStatusLabel2";
+            // 
             // MenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(785, 450);
+            ClientSize = new Size(877, 527);
+            Controls.Add(btnLogOff);
+            Controls.Add(statusStrip1);
             Controls.Add(lblHora);
             Controls.Add(lblFecha);
-            Controls.Add(groupBox2);
-            Controls.Add(groupBox1);
+            Controls.Add(grpGerencia);
+            Controls.Add(grpAdmin);
             Controls.Add(pictureBox1);
             Name = "MenuPrincipal";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Menu principal";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            groupBox1.ResumeLayout(false);
-            groupBox2.ResumeLayout(false);
+            grpAdmin.ResumeLayout(false);
+            grpGerencia.ResumeLayout(false);
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -287,10 +382,16 @@
         private MaterialSkin.Controls.MaterialButton btnBuscarProfesores;
         private MaterialSkin.Controls.MaterialButton btnAdminPagos;
         private PictureBox pictureBox1;
-        private GroupBox groupBox1;
-        private GroupBox groupBox2;
+        private GroupBox grpAdmin;
+        private GroupBox grpGerencia;
         private MaterialSkin.Controls.MaterialLabel lblFecha;
         private MaterialSkin.Controls.MaterialLabel lblHora;
         private System.Windows.Forms.Timer timer1;
+        private StatusStrip statusStrip1;
+        private ToolStripStatusLabel toolStripStatusUsuario;
+        private ToolStripStatusLabel toolStripStatusRol;
+        private MaterialSkin.Controls.MaterialButton btnCambiarRol;
+        private MaterialSkin.Controls.MaterialButton btnCrearEmpleado;
+        private MaterialSkin.Controls.MaterialButton btnLogOff;
     }
 }

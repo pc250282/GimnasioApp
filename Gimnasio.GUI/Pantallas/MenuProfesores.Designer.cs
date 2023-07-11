@@ -39,6 +39,7 @@
             btnRegistro = new MaterialSkin.Controls.MaterialButton();
             btnVolver = new MaterialSkin.Controls.MaterialButton();
             txtMail = new MaterialSkin.Controls.MaterialTextBox();
+            sltRoles = new MaterialSkin.Controls.MaterialComboBox();
             SuspendLayout();
             // 
             // txtApellido
@@ -58,6 +59,7 @@
             txtApellido.TabIndex = 3;
             txtApellido.Text = "";
             txtApellido.TrailingIcon = null;
+            txtApellido.KeyPress += txtApellido_KeyPress_1;
             // 
             // txtNombre
             // 
@@ -76,6 +78,7 @@
             txtNombre.TabIndex = 0;
             txtNombre.Text = "";
             txtNombre.TrailingIcon = null;
+            txtNombre.KeyPress += txtNombre_KeyPress_1;
             // 
             // txtTelefono
             // 
@@ -94,6 +97,7 @@
             txtTelefono.TabIndex = 6;
             txtTelefono.Text = "";
             txtTelefono.TrailingIcon = null;
+            txtTelefono.KeyPress += txtTelefono_KeyPress_1;
             // 
             // txtDireccion
             // 
@@ -130,6 +134,7 @@
             txtDNI.TabIndex = 5;
             txtDNI.Text = "";
             txtDNI.TrailingIcon = null;
+            txtDNI.KeyPress += txtDNI_KeyPress_1;
             // 
             // sltGenero
             // 
@@ -236,11 +241,34 @@
             txtMail.Text = "";
             txtMail.TrailingIcon = null;
             // 
+            // sltRoles
+            // 
+            sltRoles.AutoResize = false;
+            sltRoles.BackColor = Color.FromArgb(255, 255, 255);
+            sltRoles.Depth = 0;
+            sltRoles.DrawMode = DrawMode.OwnerDrawVariable;
+            sltRoles.DropDownHeight = 174;
+            sltRoles.DropDownStyle = ComboBoxStyle.DropDownList;
+            sltRoles.DropDownWidth = 121;
+            sltRoles.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            sltRoles.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            sltRoles.FormattingEnabled = true;
+            sltRoles.IntegralHeight = false;
+            sltRoles.ItemHeight = 43;
+            sltRoles.Location = new Point(240, 287);
+            sltRoles.MaxDropDownItems = 4;
+            sltRoles.MouseState = MaterialSkin.MouseState.OUT;
+            sltRoles.Name = "sltRoles";
+            sltRoles.Size = new Size(240, 49);
+            sltRoles.StartIndex = 0;
+            sltRoles.TabIndex = 18;
+            // 
             // MenuProfesores
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(636, 450);
+            Controls.Add(sltRoles);
             Controls.Add(txtMail);
             Controls.Add(btnVolver);
             Controls.Add(btnRegistro);
@@ -253,6 +281,7 @@
             Controls.Add(txtNombre);
             Controls.Add(txtApellido);
             Name = "MenuProfesores";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Registro de profesor";
             ResumeLayout(false);
             PerformLayout();
@@ -271,5 +300,6 @@
         private MaterialSkin.Controls.MaterialButton btnRegistro;
         private MaterialSkin.Controls.MaterialButton btnVolver;
         private MaterialSkin.Controls.MaterialTextBox txtMail;
+        private MaterialSkin.Controls.MaterialComboBox sltRoles;
     }
 }

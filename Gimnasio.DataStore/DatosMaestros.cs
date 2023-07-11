@@ -181,7 +181,7 @@ namespace Gimnasio.DataStore
             {
                 fk_idPersona = idPersona,
                 fechaDeInscripcion = DateTime.Now,
-                fk_IdEstado = 2
+                fk_IdEstado = 1007
             };
 
             int result = dbOperation.OperationExecute(sql, paramList);
@@ -504,6 +504,107 @@ namespace Gimnasio.DataStore
 
             int affectedRows = dbOperation.OperationExecute(sql, paramList);
             return affectedRows;
+        }
+
+        public List<Usuario> ObtenerUsuarios()
+        {
+            List<Usuario> LstUsuarios = new List<Usuario>();
+            string sql = "SELECT * FROM Usuario";
+            LstUsuarios = dbOperation.OperationQuery<Usuario>(sql);
+            return LstUsuarios;
+        }
+
+        public List<Roles> ObtenerRoles()
+        {
+            List<Roles> lstRoles = new List<Roles>();
+            string sql = "SELECT IdRol, nombreRol FROM RolUsuario";
+            lstRoles = dbOperation.OperationQuery<Roles>(sql);
+            return lstRoles;
+        }
+
+        public Usuario GetUsuario(int idUser)
+        {
+            Usuario usuario;
+            string sql = "SELECT UR.idUser,UR.nombreUsuario,UR.password,UR.fk_IdRol,UR.fk_PersonaId,"
+                          + "P.dni,P.nombre,P.apellido,P.telefono,P.direccion,P.mail,"
+                          + "R.IdRol,R.nombreRol "
+                          + "FROM Usuario UR "
+                          + "LEFT JOIN Persona P ON UR.fk_PersonaId = P.idPersona "
+                          + "INNER JOIN RolUsuario R ON UR.fk_IdRol = R.IdRol "
+                          + "WHERE UR.idUser = @idUser";
+
+            usuario = dbOperation.OperationQueryById2<Usuario>(sql, new
+            {
+                idUser = idUser
+            });
+
+            return usuario;
+        }
+        public Usuario GetUsuarioAdmin(int idUser)
+        {
+            Usuario usuario;
+            string sql = "SELECT UR.idUser,UR.nombreUsuario,UR.password,UR.fk_IdRol,UR.fk_PersonaId,"
+                          + "P.dni,P.nombre,P.apellido,P.telefono,P.direccion,P.mail,"
+                          + "R.IdRol,R.nombreRol "
+                          + "FROM Usuario UR "
+                          + "INNER JOIN Persona P ON UR.fk_PersonaId = P.idPersona "
+                          + "INNER JOIN RolUsuario R ON UR.fk_IdRol = R.IdRol "
+                          + "WHERE UR.idUser = @idUser";
+
+                usuario = dbOperation.OperationQueryById2<Usuario>(sql, new
+                {
+                    idUser = idUser
+                });
+
+                return usuario;  
+        }
+
+        public int InsertUsuario(Usuario usuarioNuevo)
+        {
+            string sql = "INSERT INTO Usuario (nombreUsuario,password,fk_IdRol)  Values" +
+                        "(@nombreUsuario,@password,@fk_IdRol)";
+            Object paramList = new
+                {
+                    nombreUsuario = usuarioNuevo.nombreUsuario,
+                    password = usuarioNuevo.password,
+                    fk_IdRol = usuarioNuevo.fk_IdRol,
+                };
+
+                int result = dbOperation.OperationExecute(sql, paramList);
+
+                return result;
+           
+        }
+
+        public int EditarRolUsuario(int idUser, int idRolUsuario)
+        {
+            string sql = "UPDATE Usuario SET fk_IdRol = @fk_IdRol WHERE idUser = @idUser";
+            Object paramList = new
+             {
+                idUser =idUser,
+                fk_IdRol = idRolUsuario
+                };
+
+                int affectedRows = dbOperation.OperationExecute(sql, paramList);
+
+                return affectedRows;
+
+
+        }
+
+        public int EditarPasswordUsuario(int idUser, string password)
+        {
+            string sql = "UPDATE Usuario SET password = @password WHERE idUser = @idUser";
+            Object paramList = new
+            {
+                idUser = idUser,
+                password= password
+            };
+
+            int affectedRows = dbOperation.OperationExecute(sql, paramList);
+
+            return affectedRows;
+
         }
     }
 }

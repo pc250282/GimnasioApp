@@ -42,6 +42,7 @@
             lblValorActual = new MaterialSkin.Controls.MaterialLabel();
             lblDatos = new MaterialSkin.Controls.MaterialLabel();
             txtCupo = new MaterialSkin.Controls.MaterialTextBox2();
+            chkProfesor = new MaterialSkin.Controls.MaterialCheckbox();
             SuspendLayout();
             // 
             // txtNombreActividad
@@ -162,7 +163,7 @@
             txtCrearAbono.Depth = 0;
             txtCrearAbono.HighEmphasis = true;
             txtCrearAbono.Icon = null;
-            txtCrearAbono.Location = new Point(301, 390);
+            txtCrearAbono.Location = new Point(405, 390);
             txtCrearAbono.Margin = new Padding(4, 6, 4, 6);
             txtCrearAbono.MouseState = MaterialSkin.MouseState.HOVER;
             txtCrearAbono.Name = "txtCrearAbono";
@@ -226,7 +227,7 @@
             btnCreaActividad.Depth = 0;
             btnCreaActividad.HighEmphasis = true;
             btnCreaActividad.Icon = null;
-            btnCreaActividad.Location = new Point(21, 390);
+            btnCreaActividad.Location = new Point(230, 390);
             btnCreaActividad.Margin = new Padding(4, 6, 4, 6);
             btnCreaActividad.MouseState = MaterialSkin.MouseState.HOVER;
             btnCreaActividad.Name = "btnCreaActividad";
@@ -339,11 +340,28 @@
             txtCupo.TrailingIcon = null;
             txtCupo.UseSystemPasswordChar = false;
             // 
+            // chkProfesor
+            // 
+            chkProfesor.AutoSize = true;
+            chkProfesor.Depth = 0;
+            chkProfesor.Location = new Point(301, 322);
+            chkProfesor.Margin = new Padding(0);
+            chkProfesor.MouseLocation = new Point(-1, -1);
+            chkProfesor.MouseState = MaterialSkin.MouseState.HOVER;
+            chkProfesor.Name = "chkProfesor";
+            chkProfesor.ReadOnly = false;
+            chkProfesor.Ripple = true;
+            chkProfesor.Size = new Size(249, 37);
+            chkProfesor.TabIndex = 14;
+            chkProfesor.Text = "Asignar profesor seleccionado";
+            chkProfesor.UseVisualStyleBackColor = true;
+            // 
             // FrmActividades
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(806, 450);
+            Controls.Add(chkProfesor);
             Controls.Add(txtCupo);
             Controls.Add(lblDatos);
             Controls.Add(lblValorActual);
@@ -359,6 +377,7 @@
             Controls.Add(txtHorario);
             Controls.Add(txtNombreActividad);
             Name = "FrmActividades";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Creacion de actividades";
             ResumeLayout(false);
             PerformLayout();
@@ -380,5 +399,6 @@
         private MaterialSkin.Controls.MaterialLabel lblValorActual;
         private MaterialSkin.Controls.MaterialLabel lblDatos;
         private MaterialSkin.Controls.MaterialTextBox2 txtCupo;
+        private MaterialSkin.Controls.MaterialCheckbox chkProfesor;
     }
 }

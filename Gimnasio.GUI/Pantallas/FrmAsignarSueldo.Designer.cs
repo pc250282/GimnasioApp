@@ -201,7 +201,7 @@
             btnVolver.MouseState = MaterialSkin.MouseState.HOVER;
             btnVolver.Name = "btnVolver";
             btnVolver.NoAccentTextColor = Color.Empty;
-            btnVolver.Size = new Size(158, 36);
+            btnVolver.Size = new Size(76, 36);
             btnVolver.TabIndex = 10;
             btnVolver.Text = "volver";
             btnVolver.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -225,6 +225,7 @@
             Controls.Add(lblNombre);
             Controls.Add(materialLabel1);
             Name = "FrmAsignarSueldo";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Asignar sueldo ";
             ((System.ComponentModel.ISupportInitialize)tablaActividadesProfesor).EndInit();
             ResumeLayout(false);
