@@ -31,7 +31,7 @@ namespace Gimnasio.GUI.Pantallas
             materialSkinManager = MaterialSkin.MaterialSkinManager.Instance;
             materialSkinManager.EnforceBackcolorOnAllComponents = true;
             materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.LIGHT;
+            materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.DARK;
             materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Orange700, MaterialSkin.Primary.Orange600, MaterialSkin.Primary.Orange600, MaterialSkin.Accent.Orange400, MaterialSkin.TextShade.WHITE);
             this.idUser = idUser;
             this.usuario = login.getUsuarioById(idUser);
@@ -80,7 +80,6 @@ namespace Gimnasio.GUI.Pantallas
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Close();
-            new MenuPrincipal(idUser).Show();
         }
 
         private void btnEditActividad_Click(object sender, EventArgs e)

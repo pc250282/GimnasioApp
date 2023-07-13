@@ -1,6 +1,7 @@
 ﻿using Gimnasio.Clases;
 using Gimnasio.Clases.Dto;
 using System;
+using System.Drawing;
 
 namespace Gimnasio.DataStore
 {
@@ -102,7 +103,7 @@ namespace Gimnasio.DataStore
         public List<AbonoSocio> GetAbonoSocios()
         {
             List<AbonoSocio> LstAbonoSocio = new List<AbonoSocio>();
-            string sql = "SELECT idAbonoSocio,nombreAbono,valor FROM AbonoSocio";
+            string sql = "SELECT idAbonoSocio,nombreAbono,valor,tipoIva FROM AbonoSocio";
             LstAbonoSocio = dbOperation.OperationQuery<AbonoSocio>(sql);
             return LstAbonoSocio;
         }
@@ -592,6 +593,14 @@ namespace Gimnasio.DataStore
 
         }
 
+        public List<Usuario> ValidacionExistenciaUsuarios()
+        {
+            List<Usuario> LstUsuarios = new List<Usuario>();
+            string sql = "SELECT nombreUsuario, COUNT(*) AS UsuarioCount FROM Usuario GROUP BY nombreUsuario;";
+            LstUsuarios = dbOperation.OperationQuery<Usuario>(sql);
+            return LstUsuarios;
+        }
+
         public int EditarPasswordUsuario(int idUser, string password)
         {
             string sql = "UPDATE Usuario SET password = @password WHERE idUser = @idUser";
@@ -606,6 +615,61 @@ namespace Gimnasio.DataStore
             return affectedRows;
 
         }
+
+        public List<TipoIva> GetIva()
+        {
+            List<TipoIva> LstIva = new List<TipoIva>();
+            string sql = "SELECT id,alicuota FROM TipoIva";
+            LstIva = dbOperation.OperationQuery<TipoIva>(sql);
+            return LstIva;
+        }
+
+        public int InsertMembresia(AbonoSocio membresia)
+        {
+            string sql = "INSERT INTO AbonoSocio (nombreAbono, valor, fk_tipoIva)  Values" +
+                        "(@nombreAbono, @valor, @fk_tipoIva)";
+            Object paramList = new
+            {
+                nombreAbono = membresia.nombreAbono,
+                valor = membresia.valor,
+                fk_IdRol = membresia.fk_tipoIva,
+            };
+
+            int result = dbOperation.OperationExecute(sql, paramList);
+
+            return result;
+
+        }
+
+        public int EditarMembresia(int idAbonoSocio,double valor)
+        {
+            string sql = "UPDATE AbonoSocio SET valor = @valor WHERE idAbonoSocio = @idAbonoSocio";
+            Object paramList = new
+            {
+                idAbonoSocio = idAbonoSocio,
+                valor = valor
+            };
+
+            int affectedRows = dbOperation.OperationExecute(sql, paramList);
+
+            return affectedRows;
+
+        }
+
+        public int BorrarMembresia (int idAbonoSocio)
+        {
+            string sql = "DELETE AbonoSocio WHERE idAbonoSocio = @idAbonoSocio";
+            Object paramList = new
+            {
+                idAbonoSocio = idAbonoSocio,
+            };
+
+            int affectedRows = dbOperation.OperationExecute(sql, paramList);
+
+            return affectedRows;
+        }
+
+
     }
 }
 

@@ -63,14 +63,14 @@ namespace Gimnasio.GUI
         {
             MenuCargaSocio menuCargaSocio = new MenuCargaSocio(usuario.idUser);
             menuCargaSocio.ShowDialog();
-            
+
         }
 
         private void btbBuscarSocio_Click(object sender, EventArgs e)
         {
             FrmConsultaSocios menuConsultaSocio = new FrmConsultaSocios();
             menuConsultaSocio.ShowDialog();
-            
+
         }
 
         private void btnCrearProfesor_Click(object sender, EventArgs e)
@@ -78,7 +78,7 @@ namespace Gimnasio.GUI
 
             MenuProfesores menuProfesores = new MenuProfesores(usuario.idUser);
             menuProfesores.ShowDialog();
-            
+
         }
 
 
@@ -86,14 +86,14 @@ namespace Gimnasio.GUI
         {
             FrmActividades frmActividades = new FrmActividades();
             frmActividades.ShowDialog();
-            
+
         }
 
         private void btnVerActividades_Click(object sender, EventArgs e)
         {
             FrmConsultaActividadesAbonos frmConsultaActividadesAbonos = new FrmConsultaActividadesAbonos(usuario.idUser);
             frmConsultaActividadesAbonos.ShowDialog();
-            
+
         }
 
         private void btnBuscarProfesores_Click(object sender, EventArgs e)
@@ -101,14 +101,14 @@ namespace Gimnasio.GUI
 
             FrmConsultaProfesores frmConsultaProfesores = new FrmConsultaProfesores();
             frmConsultaProfesores.ShowDialog();
-            
+
         }
 
         private void btnAdminPagos_Click(object sender, EventArgs e)
         {
             FrmHistorialPagos frmHistorialPagos = new FrmHistorialPagos(usuario.idUser);
             frmHistorialPagos.ShowDialog();
-            
+
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -121,30 +121,38 @@ namespace Gimnasio.GUI
         {
             FrmCrearUsuario menuUsuario = new FrmCrearUsuario(usuario);
             menuUsuario.ShowDialog();
-            
+
         }
 
         private void btnLogOff_Click(object sender, EventArgs e)
         {
+            this.Close();
             FrmLogin frmLogin = new FrmLogin();
             frmLogin.Show();
-            this.Close();
+
         }
 
         private void btnCambiarRol_Click(object sender, EventArgs e)
         {
             if (usuario.fk_IdRol == 3)
             {
-                new FrmCrearUsuario(usuario.idUser).ShowDialog();
-                
+                FrmCrearUsuario menuCambioPassword = new FrmCrearUsuario(usuario.idUser);
+                menuCambioPassword.ShowDialog();
+
             }
             else
             {
                 FrmCrearUsuario frmActualizaUsuario = new FrmCrearUsuario(usuario);
                 frmActualizaUsuario.ShowDialog();
-                
+
             }
 
+        }
+
+        private void materialButton1_Click(object sender, EventArgs e)
+        {
+            FrmMembresiasEstablecimiento frmMembresias = new FrmMembresiasEstablecimiento();
+            frmMembresias.ShowDialog();
         }
     }
 }

@@ -43,6 +43,7 @@
             btnCambiarRol = new MaterialSkin.Controls.MaterialButton();
             btnCrearEmpleado = new MaterialSkin.Controls.MaterialButton();
             grpGerencia = new GroupBox();
+            materialButton1 = new MaterialSkin.Controls.MaterialButton();
             lblFecha = new MaterialSkin.Controls.MaterialLabel();
             lblHora = new MaterialSkin.Controls.MaterialLabel();
             timer1 = new System.Windows.Forms.Timer(components);
@@ -252,14 +253,14 @@
             btnCambiarRol.Depth = 0;
             btnCambiarRol.HighEmphasis = true;
             btnCambiarRol.Icon = null;
-            btnCambiarRol.Location = new Point(40, 234);
+            btnCambiarRol.Location = new Point(738, 455);
             btnCambiarRol.Margin = new Padding(4, 6, 4, 6);
             btnCambiarRol.MouseState = MaterialSkin.MouseState.HOVER;
             btnCambiarRol.Name = "btnCambiarRol";
             btnCambiarRol.NoAccentTextColor = Color.Empty;
-            btnCambiarRol.Size = new Size(195, 36);
+            btnCambiarRol.Size = new Size(132, 42);
             btnCambiarRol.TabIndex = 8;
-            btnCambiarRol.Text = "EDICION DE EMPLEADO";
+            btnCambiarRol.Text = "CAMBIAR CONTRASEÑA";
             btnCambiarRol.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnCambiarRol.UseAccentColor = false;
             btnCambiarRol.UseVisualStyleBackColor = true;
@@ -273,14 +274,14 @@
             btnCrearEmpleado.Depth = 0;
             btnCrearEmpleado.HighEmphasis = true;
             btnCrearEmpleado.Icon = null;
-            btnCrearEmpleado.Location = new Point(40, 186);
+            btnCrearEmpleado.Location = new Point(595, 456);
             btnCrearEmpleado.Margin = new Padding(4, 6, 4, 6);
             btnCrearEmpleado.MouseState = MaterialSkin.MouseState.HOVER;
             btnCrearEmpleado.Name = "btnCrearEmpleado";
             btnCrearEmpleado.NoAccentTextColor = Color.Empty;
-            btnCrearEmpleado.Size = new Size(195, 36);
+            btnCrearEmpleado.Size = new Size(135, 41);
             btnCrearEmpleado.TabIndex = 7;
-            btnCrearEmpleado.Text = "CREAR EMPLEADO";
+            btnCrearEmpleado.Text = "CREAR USUARIO";
             btnCrearEmpleado.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnCrearEmpleado.UseAccentColor = false;
             btnCrearEmpleado.UseVisualStyleBackColor = true;
@@ -288,8 +289,7 @@
             // 
             // grpGerencia
             // 
-            grpGerencia.Controls.Add(btnCrearEmpleado);
-            grpGerencia.Controls.Add(btnCambiarRol);
+            grpGerencia.Controls.Add(materialButton1);
             grpGerencia.Controls.Add(btnBuscarProfesores);
             grpGerencia.Controls.Add(btnCrearProfesor);
             grpGerencia.Controls.Add(btnCrearActividad);
@@ -298,6 +298,27 @@
             grpGerencia.Size = new Size(273, 326);
             grpGerencia.TabIndex = 11;
             grpGerencia.TabStop = false;
+            // 
+            // materialButton1
+            // 
+            materialButton1.AutoSize = false;
+            materialButton1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton1.Depth = 0;
+            materialButton1.HighEmphasis = true;
+            materialButton1.Icon = null;
+            materialButton1.Location = new Point(40, 186);
+            materialButton1.Margin = new Padding(4, 6, 4, 6);
+            materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton1.Name = "materialButton1";
+            materialButton1.NoAccentTextColor = Color.Empty;
+            materialButton1.Size = new Size(195, 36);
+            materialButton1.TabIndex = 8;
+            materialButton1.Text = "gestion de membresias";
+            materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton1.UseAccentColor = false;
+            materialButton1.UseVisualStyleBackColor = true;
+            materialButton1.Click += materialButton1_Click;
             // 
             // lblFecha
             // 
@@ -353,7 +374,9 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(877, 527);
+            Controls.Add(btnCrearEmpleado);
             Controls.Add(btnLogOff);
+            Controls.Add(btnCambiarRol);
             Controls.Add(statusStrip1);
             Controls.Add(lblHora);
             Controls.Add(lblFecha);
@@ -393,5 +416,6 @@
         private MaterialSkin.Controls.MaterialButton btnCambiarRol;
         private MaterialSkin.Controls.MaterialButton btnCrearEmpleado;
         private MaterialSkin.Controls.MaterialButton btnLogOff;
+        private MaterialSkin.Controls.MaterialButton materialButton1;
     }
 }

@@ -143,6 +143,16 @@ namespace Gimnasio.GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap men_lifting_weights_in_gym_icon_free_vector {
+            get {
+                object obj = ResourceManager.GetObject("men-lifting-weights-in-gym-icon-free-vector", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap payOk {
             get {
                 object obj = ResourceManager.GetObject("payOk", resourceCulture);

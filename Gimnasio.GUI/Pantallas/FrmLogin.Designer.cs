@@ -29,108 +29,26 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLogin));
-            grpBievenido = new GroupBox();
-            btnGerencia = new MaterialSkin.Controls.MaterialButton();
-            btnAdmin = new MaterialSkin.Controls.MaterialButton();
             grpLogin = new GroupBox();
-            lblMessage = new Label();
-            btnVolver = new MaterialSkin.Controls.MaterialFloatingActionButton();
             btnLogin = new MaterialSkin.Controls.MaterialButton();
             txtPassword = new MaterialSkin.Controls.MaterialTextBox();
             txtUsuario = new MaterialSkin.Controls.MaterialTextBox();
-            grpBievenido.SuspendLayout();
             grpLogin.SuspendLayout();
             SuspendLayout();
-            // 
-            // grpBievenido
-            // 
-            grpBievenido.BackgroundImage = Properties.Resources.fondoSistema;
-            grpBievenido.BackgroundImageLayout = ImageLayout.Stretch;
-            grpBievenido.Controls.Add(btnGerencia);
-            grpBievenido.Controls.Add(btnAdmin);
-            grpBievenido.Location = new Point(35, 68);
-            grpBievenido.Name = "grpBievenido";
-            grpBievenido.Size = new Size(548, 501);
-            grpBievenido.TabIndex = 0;
-            grpBievenido.TabStop = false;
-            // 
-            // btnGerencia
-            // 
-            btnGerencia.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnGerencia.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnGerencia.Depth = 0;
-            btnGerencia.HighEmphasis = true;
-            btnGerencia.Icon = null;
-            btnGerencia.Location = new Point(203, 370);
-            btnGerencia.Margin = new Padding(4, 6, 4, 6);
-            btnGerencia.MouseState = MaterialSkin.MouseState.HOVER;
-            btnGerencia.Name = "btnGerencia";
-            btnGerencia.NoAccentTextColor = Color.Empty;
-            btnGerencia.Size = new Size(138, 36);
-            btnGerencia.TabIndex = 1;
-            btnGerencia.Text = "LOGIN GERENCIA";
-            btnGerencia.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            btnGerencia.UseAccentColor = false;
-            btnGerencia.UseVisualStyleBackColor = true;
-            btnGerencia.Click += btnGerencia_Click;
-            // 
-            // btnAdmin
-            // 
-            btnAdmin.AutoSize = false;
-            btnAdmin.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnAdmin.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnAdmin.Depth = 0;
-            btnAdmin.HighEmphasis = true;
-            btnAdmin.Icon = null;
-            btnAdmin.Location = new Point(203, 322);
-            btnAdmin.Margin = new Padding(4, 6, 4, 6);
-            btnAdmin.MouseState = MaterialSkin.MouseState.HOVER;
-            btnAdmin.Name = "btnAdmin";
-            btnAdmin.NoAccentTextColor = Color.Empty;
-            btnAdmin.Size = new Size(138, 36);
-            btnAdmin.TabIndex = 0;
-            btnAdmin.Text = "LOGIN ADMIN";
-            btnAdmin.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            btnAdmin.UseAccentColor = false;
-            btnAdmin.UseVisualStyleBackColor = true;
-            btnAdmin.Click += btnAdmin_Click;
             // 
             // grpLogin
             // 
             grpLogin.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            grpLogin.Controls.Add(lblMessage);
-            grpLogin.Controls.Add(btnVolver);
+            grpLogin.BackgroundImageLayout = ImageLayout.Stretch;
             grpLogin.Controls.Add(btnLogin);
             grpLogin.Controls.Add(txtPassword);
             grpLogin.Controls.Add(txtUsuario);
             grpLogin.Font = new Font("Arial Rounded MT Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            grpLogin.Location = new Point(6, 68);
+            grpLogin.Location = new Point(88, 112);
             grpLogin.Name = "grpLogin";
-            grpLogin.Size = new Size(611, 502);
+            grpLogin.Size = new Size(424, 412);
             grpLogin.TabIndex = 2;
             grpLogin.TabStop = false;
-            grpLogin.Visible = false;
-            // 
-            // lblMessage
-            // 
-            lblMessage.AutoSize = true;
-            lblMessage.Location = new Point(127, 35);
-            lblMessage.Name = "lblMessage";
-            lblMessage.Size = new Size(52, 17);
-            lblMessage.TabIndex = 6;
-            lblMessage.Text = "label1";
-            // 
-            // btnVolver
-            // 
-            btnVolver.Depth = 0;
-            btnVolver.Icon = Properties.Resources.btnBack;
-            btnVolver.Location = new Point(119, 95);
-            btnVolver.MouseState = MaterialSkin.MouseState.HOVER;
-            btnVolver.Name = "btnVolver";
-            btnVolver.Size = new Size(60, 60);
-            btnVolver.TabIndex = 4;
-            btnVolver.UseVisualStyleBackColor = true;
-            btnVolver.Click += btnVolver_Click;
             // 
             // btnLogin
             // 
@@ -139,7 +57,7 @@
             btnLogin.Depth = 0;
             btnLogin.HighEmphasis = true;
             btnLogin.Icon = null;
-            btnLogin.Location = new Point(261, 321);
+            btnLogin.Location = new Point(161, 291);
             btnLogin.Margin = new Padding(4, 6, 4, 6);
             btnLogin.MouseState = MaterialSkin.MouseState.HOVER;
             btnLogin.Name = "btnLogin";
@@ -160,7 +78,7 @@
             txtPassword.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtPassword.Hint = "Contraseña";
             txtPassword.LeadingIcon = Properties.Resources.cslogin_104358;
-            txtPassword.Location = new Point(203, 248);
+            txtPassword.Location = new Point(111, 225);
             txtPassword.MaxLength = 50;
             txtPassword.MouseState = MaterialSkin.MouseState.OUT;
             txtPassword.Multiline = false;
@@ -180,7 +98,7 @@
             txtUsuario.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtUsuario.Hint = "Usuario";
             txtUsuario.LeadingIcon = (Image)resources.GetObject("txtUsuario.LeadingIcon");
-            txtUsuario.Location = new Point(203, 185);
+            txtUsuario.Location = new Point(111, 135);
             txtUsuario.MaxLength = 50;
             txtUsuario.MouseState = MaterialSkin.MouseState.OUT;
             txtUsuario.Multiline = false;
@@ -198,11 +116,8 @@
             BackgroundImage = Properties.Resources.fondoSistema;
             ClientSize = new Size(623, 575);
             Controls.Add(grpLogin);
-            Controls.Add(grpBievenido);
             Name = "FrmLogin";
             StartPosition = FormStartPosition.CenterScreen;
-            grpBievenido.ResumeLayout(false);
-            grpBievenido.PerformLayout();
             grpLogin.ResumeLayout(false);
             grpLogin.PerformLayout();
             ResumeLayout(false);
@@ -210,14 +125,9 @@
 
         #endregion
 
-        private GroupBox grpBievenido;
+        private GroupBox grpLogin;
+        private MaterialSkin.Controls.MaterialButton btnLogin;
         private MaterialSkin.Controls.MaterialTextBox txtPassword;
         private MaterialSkin.Controls.MaterialTextBox txtUsuario;
-        private MaterialSkin.Controls.MaterialButton btnGerencia;
-        private MaterialSkin.Controls.MaterialButton btnAdmin;
-        private GroupBox grpLogin;
-        private MaterialSkin.Controls.MaterialFloatingActionButton btnVolver;
-        private MaterialSkin.Controls.MaterialButton btnLogin;
-        private Label lblMessage;
     }
 }

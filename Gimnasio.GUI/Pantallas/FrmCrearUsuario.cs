@@ -28,6 +28,7 @@ namespace Gimnasio.GUI
         ValidacionesFront validacionesFrontEnd = new ValidacionesFront();
         public FrmCrearUsuario(Usuario usuario)
         {
+            //MODO CREAR EMPLEADO
             InitializeComponent();
             materialSkinManager = MaterialSkin.MaterialSkinManager.Instance;
             materialSkinManager.EnforceBackcolorOnAllComponents = true;
@@ -41,6 +42,7 @@ namespace Gimnasio.GUI
 
         public FrmCrearUsuario(int idUser)
         {
+            //MODO CAMBIO DE CONTRASEÑA
             InitializeComponent();
             materialSkinManager = MaterialSkin.MaterialSkinManager.Instance;
             materialSkinManager.EnforceBackcolorOnAllComponents = true;
@@ -56,8 +58,9 @@ namespace Gimnasio.GUI
             lblNombreUser.Text = usuarioAeditar.nombreUsuario;
             txtPassword.Hint = "Nueva contraseña";
             txtPassword2.Password = false;
+            txtPassword2.Password = true;
             //txtPassword2.Hint = "";
-            txtPassword2.ReadOnly = true;
+            //txtPassword2.ReadOnly = true;
             //txtPassword2.Text = $"Rol actual: {usuarioAeditar.nombreRol}";
             sltRoles.Visible = false;
             btnConfirmar.Text = "CAMBIAR PASSWORD";
@@ -147,20 +150,24 @@ namespace Gimnasio.GUI
                 if (btnConfirmar.Text == "CAMBIAR PASSWORD")
                 {
                     string password = txtPassword.Text;
-                    int result = loginServices.editPassword(usuarioAeditar.idUser, password);
-                    if (result > 0)
+                    if (txtPassword.Text.Equals(txtPassword2.Text))
                     {
-                        MaterialMessageBox.Show("Contraseña actualizada");
+                        int result = loginServices.editPassword(usuarioAeditar.idUser, password);
+                        //MaterialMessageBox.Show("Contraseña actualizada");
                         this.Close();
-
                     }
+                    else
+                    {
+                        MaterialMessageBox.Show("Error al validar contraseña, reintente");                       
+                    }
+
                 }
                 else
                 {
                     bool exito = ingresoEmpleadoNuevo();
                     if (exito == true)
                     {
-                        this.Hide();
+                        this.Close();
                     }
                 }
             }

@@ -263,7 +263,6 @@ namespace Gimnasio.GUI
                 if (exito == true)
                 {
                     this.Close();
-                    new MenuPrincipal(idUser).Show();
                 }
 
             }
@@ -277,8 +276,7 @@ namespace Gimnasio.GUI
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            this.Close();
-            new MenuPrincipal(idUser).Show();
+            this.Close();    
         }
 
         private void sltFechaNacimiento_MouseEnter_1(object sender, EventArgs e)

@@ -37,6 +37,11 @@ namespace Gimnasio.Services
             return result;
         }
 
+        public List<Usuario> validacionExistenciaUsuario()
+        {
+            return datosMaestros.ValidacionExistenciaUsuarios();
+        }
+
         public Usuario getUsuarioAdminById(int idUser) 
         {
             return datosMaestros.GetUsuarioAdmin(idUser);

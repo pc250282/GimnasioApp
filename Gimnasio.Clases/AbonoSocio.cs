@@ -11,5 +11,6 @@ namespace Gimnasio.Clases
         public int IdAbonoSocio { get; set; }
         public string nombreAbono { get; set; }
         public float valor { get; set; }    
+        public int fk_tipoIva { get; set; }
     }
 }

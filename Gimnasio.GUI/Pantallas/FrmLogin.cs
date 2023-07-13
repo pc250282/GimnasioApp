@@ -19,6 +19,7 @@ namespace Gimnasio.GUI.Pantallas
     {
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
         private APILoginServices loginServices = new APILoginServices();
+        private List<Usuario> lstUsuarios=new List<Usuario>();
         public FrmLogin()
         {
             InitializeComponent();
@@ -31,46 +32,18 @@ namespace Gimnasio.GUI.Pantallas
 
         }
 
-        private void btnAdmin_Click(object sender, EventArgs e)
-        {
-            grpLogin.Visible = true;
-            grpBievenido.Visible = false;
-
-            lblMessage.Text = "Ingreso Administrativo";
-            lblMessage.Font = new Font("Arial", 20, FontStyle.Bold);
-            lblMessage.ForeColor = Color.White;
-            lblMessage.TextAlign = ContentAlignment.MiddleCenter;
-            lblMessage.BackColor = Color.FromArgb(255, 96, 0);
-            lblMessage.Size = new Size(300, 50);
 
 
-        }
 
-        private void btnVolver_Click(object sender, EventArgs e)
-        {
-            grpLogin.Visible = false;
-            grpBievenido.Visible = true;
-        }
 
-        private void btnGerencia_Click(object sender, EventArgs e)
-        {
-            grpLogin.Visible = true;
-            grpBievenido.Visible = false;
-            lblMessage.Text = "Ingreso Gerencial";
-            lblMessage.Font = new Font("Arial", 20, FontStyle.Bold);
-            lblMessage.ForeColor = Color.White;
-            lblMessage.TextAlign = ContentAlignment.MiddleCenter;
-            lblMessage.BackColor = Color.FromArgb(255, 96, 0);
-            lblMessage.Size = new Size(300, 50);
-
-        }
 
         private void materialButton1_Click(object sender, EventArgs e)
         {
             Usuario usuarioLogin = loginServices.loginUsuarios(txtUsuario.Text, txtPassword.Text);
-
+            //lstUsuarios = loginServices.obtenerUsuarios();
             try
             {
+                
                 if (usuarioLogin != null)
                 {
                     //Gerencia

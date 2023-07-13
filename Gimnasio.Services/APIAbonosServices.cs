@@ -23,6 +23,21 @@ namespace Gimnasio.Services
             return datosMaestros.GetAbonoSociosById(idAbonoSocio);
         }
 
+        public List<TipoIva> getTipoIva()
+        {
+            return datosMaestros.GetIva();
+
+        }
+
+        public int insertMembresia(AbonoSocio membresia)
+        {
+            return datosMaestros.InsertMembresia(membresia);
+        }
+
+        public int editarMembresia(int idAbonoSocio, double valor)
+        {
+            return datosMaestros.EditarMembresia(idAbonoSocio, valor);
+        }
         
     }
 }
