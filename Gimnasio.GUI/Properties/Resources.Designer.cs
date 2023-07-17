@@ -93,6 +93,16 @@ namespace Gimnasio.GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap fondoMembresia {
+            get {
+                object obj = ResourceManager.GetObject("fondoMembresia", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap fondoSistema {
             get {
                 object obj = ResourceManager.GetObject("fondoSistema", resourceCulture);

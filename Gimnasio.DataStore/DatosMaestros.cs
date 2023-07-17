@@ -103,7 +103,7 @@ namespace Gimnasio.DataStore
         public List<AbonoSocio> GetAbonoSocios()
         {
             List<AbonoSocio> LstAbonoSocio = new List<AbonoSocio>();
-            string sql = "SELECT idAbonoSocio,nombreAbono,valor,tipoIva FROM AbonoSocio";
+            string sql = "SELECT idAbonoSocio,nombreAbono,valor,fk_tipoIva FROM AbonoSocio";
             LstAbonoSocio = dbOperation.OperationQuery<AbonoSocio>(sql);
             return LstAbonoSocio;
         }
@@ -626,16 +626,17 @@ namespace Gimnasio.DataStore
 
         public int InsertMembresia(AbonoSocio membresia)
         {
-            string sql = "INSERT INTO AbonoSocio (nombreAbono, valor, fk_tipoIva)  Values" +
-                        "(@nombreAbono, @valor, @fk_tipoIva)";
+            string sql = "INSERT INTO AbonoSocio (nombreAbono, valor, fk_tipoIva) "
+                         +"OUTPUT INSERTED.idAbonoSocio "
+                         +"Values (@nombreAbono, @valor, @fk_tipoIva)";
             Object paramList = new
             {
                 nombreAbono = membresia.nombreAbono,
                 valor = membresia.valor,
-                fk_IdRol = membresia.fk_tipoIva,
+                fk_tipoIva = membresia.fk_tipoIva,
             };
 
-            int result = dbOperation.OperationExecute(sql, paramList);
+            int result = dbOperation.OperationExecuteWithIdentity(sql, paramList);
 
             return result;
 
@@ -668,8 +669,6 @@ namespace Gimnasio.DataStore
 
             return affectedRows;
         }
-
-
     }
 }
 

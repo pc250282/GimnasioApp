@@ -38,6 +38,11 @@ namespace Gimnasio.Services
         {
             return datosMaestros.EditarMembresia(idAbonoSocio, valor);
         }
+
+        public int borrarMembresia(int idAbonoSocio)
+        {
+            return datosMaestros.BorrarMembresia(idAbonoSocio);
+        }
         
     }
 }
